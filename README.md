@@ -75,7 +75,7 @@ Welcome to my personal website built with GitHub Pages. This site serves as both
 
 ```bash
 # Clone the repository
-git clone https://github.com/tu-usuario/tu-usuario.github.io.git
+git clone https://github.com/jig4l1nd0/g4l1nd0.github.io.git
 cd tu-usuario.github.io
 
 # Serve locally (choose one option)
