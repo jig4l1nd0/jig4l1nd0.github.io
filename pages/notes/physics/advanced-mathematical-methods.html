@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Mathematical Methods - Physics Notes</title>
+    <meta name="description" content="Mathematical techniques for physics: complex analysis, differential equations, Green's functions, and special functions">
+    <meta name="author" content="Josué Galindo">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Custom syntax highlighting styles -->
+    <link rel="stylesheet" href="../../../assets/css/syntax-highlighting.css">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../index.html" class="nav-link active">Notes</a></li>
+                <li><a href="../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main">
+        <!-- Note Header -->
+        <section class="note-header-section">
+            <div class="content-container">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Notes</a> → 
+                    <a href="index.html">Physics</a> → 
+                    <span>Advanced Mathematical Methods</span>
+                </nav>
+                
+                <h1>Advanced Mathematical Methods</h1>
+                
+                <div class="note-meta">
+                    <span class="note-area physics">Physics</span>
+                    <span class="note-date">June 19, 2025</span>
+                    <div class="note-tags">
+                        <span class="tag">Mathematical Physics</span>
+                        <span class="tag">Complex Analysis</span>
+                        <span class="tag">Green's Functions</span>
+                        <span class="tag">Special Functions</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note Content -->
+        <article class="note-content">
+            <div class="content-container">
+                <!-- Introduction -->
+                <section>
+                    <h2>Introduction</h2>
+                    <p>
+                        Advanced mathematical methods form the backbone of theoretical physics, providing powerful tools 
+                        to solve complex problems in quantum mechanics, electromagnetism, statistical mechanics, and 
+                        field theory. These techniques bridge pure mathematics and physical intuition.
+                    </p>
+                </section>
+
+                <!-- Complex Analysis -->
+                <section>
+                    <h2>Complex Analysis</h2>
+                    
+                    <h3>Analytic Functions</h3>
+                    <p>A function $f(z)$ is analytic if it is differentiable at every point in its domain. 
+                    The Cauchy-Riemann equations provide the necessary and sufficient conditions:</p>
+                    
+                    $$\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \quad 
+                      \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}$$
+                    
+                    <p>where $f(z) = u(x,y) + iv(x,y)$ with $z = x + iy$.</p>
+
+                    <h3>Cauchy's Integral Theorem</h3>
+                    <p>For any analytic function $f(z)$ and closed contour $C$:</p>
+                    
+                    $$\oint_C f(z) dz = 0$$
+                    
+                    <p>This leads to Cauchy's integral formula:</p>
+                    
+                    $$f(z_0) = \frac{1}{2\pi i} \oint_C \frac{f(z)}{z - z_0} dz$$
+
+                    <h3>Residue Theorem</h3>
+                    <p>For a function with isolated singularities at $z_k$:</p>
+                    
+                    $$\oint_C f(z) dz = 2\pi i \sum_k \text{Res}(f, z_k)$$
+                    
+                    <p>The residue at a simple pole $z_0$ is:</p>
+                    
+                    $$\text{Res}(f, z_0) = \lim_{z \to z_0} (z - z_0) f(z)$$
+
+                    <h3>Branch Cuts and Riemann Surfaces</h3>
+                    <p>Multivalued functions like $\sqrt{z}$ and $\log z$ require branch cuts. 
+                    For the logarithm:</p>
+                    
+                    $$\log z = \ln|z| + i(\arg z + 2\pi n)$$
+                    
+                    <p>The principal branch is typically chosen with $-\pi < \arg z \leq \pi$.</p>
+                </section>
+
+                <!-- Differential Equations -->
+                <section>
+                    <h2>Differential Equations</h2>
+                    
+                    <h3>Series Solutions</h3>
+                    <p>For second-order linear ODEs near regular singular points, we use the Frobenius method:</p>
+                    
+                    $$y = x^r \sum_{n=0}^{\infty} a_n x^n$$
+                    
+                    <p>This leads to the indicial equation determining the exponent $r$.</p>
+
+                    <h3>Sturm-Liouville Theory</h3>
+                    <p>The general Sturm-Liouville equation:</p>
+                    
+                    $$\frac{d}{dx}\left[p(x)\frac{dy}{dx}\right] - q(x)y + \lambda w(x)y = 0$$
+                    
+                    <p>with appropriate boundary conditions yields orthogonal eigenfunctions:</p>
+                    
+                    $$\int_a^b y_m(x) y_n(x) w(x) dx = \delta_{mn}$$
+
+                    <h3>Green's Functions</h3>
+                    <p>The Green's function $G(x, x')$ satisfies:</p>
+                    
+                    $$\mathcal{L} G(x, x') = \delta(x - x')$$
+                    
+                    <p>where $\mathcal{L}$ is a linear differential operator. The solution to $\mathcal{L}y = f$ is:</p>
+                    
+                    $$y(x) = \int G(x, x') f(x') dx'$$
+
+                    <h3>Partial Differential Equations</h3>
+                    <p>Classification of second-order PDEs:</p>
+                    
+                    <ul>
+                        <li><strong>Elliptic:</strong> $B^2 - 4AC < 0$ (Laplace equation)</li>
+                        <li><strong>Parabolic:</strong> $B^2 - 4AC = 0$ (Heat equation)</li>
+                        <li><strong>Hyperbolic:</strong> $B^2 - 4AC > 0$ (Wave equation)</li>
+                    </ul>
+                    
+                    <p>For the general form: $A\frac{\partial^2 u}{\partial x^2} + B\frac{\partial^2 u}{\partial x \partial y} + C\frac{\partial^2 u}{\partial y^2} + \cdots = 0$</p>
+                </section>
+
+                <!-- Special Functions -->
+                <section>
+                    <h2>Special Functions</h2>
+                    
+                    <h3>Legendre Polynomials</h3>
+                    <p>Solutions to Legendre's equation:</p>
+                    
+                    $$(1-x^2)\frac{d^2y}{dx^2} - 2x\frac{dy}{dx} + l(l+1)y = 0$$
+                    
+                    <p>The Rodrigues formula:</p>
+                    
+                    $$P_l(x) = \frac{1}{2^l l!} \frac{d^l}{dx^l}(x^2-1)^l$$
+                    
+                    <p>Orthogonality relation:</p>
+                    
+                    $$\int_{-1}^{1} P_l(x) P_m(x) dx = \frac{2}{2l+1} \delta_{lm}$$
+
+                    <h3>Bessel Functions</h3>
+                    <p>Solutions to Bessel's equation:</p>
+                    
+                    $$x^2 \frac{d^2y}{dx^2} + x\frac{dy}{dx} + (x^2 - n^2)y = 0$$
+                    
+                    <p>The Bessel function of the first kind:</p>
+                    
+                    $$J_n(x) = \sum_{m=0}^{\infty} \frac{(-1)^m}{m! \Gamma(m+n+1)} \left(\frac{x}{2}\right)^{2m+n}$$
+                    
+                    <p>Generating function:</p>
+                    
+                    $$e^{(x/2)(t-1/t)} = \sum_{n=-\infty}^{\infty} J_n(x) t^n$$
+
+                    <h3>Spherical Harmonics</h3>
+                    <p>Solutions to the angular part of Laplace's equation in spherical coordinates:</p>
+                    
+                    $$Y_l^m(\theta, \phi) = \sqrt{\frac{(2l+1)}{4\pi}\frac{(l-|m|)!}{(l+|m|)!}} P_l^{|m|}(\cos\theta) e^{im\phi}$$
+                    
+                    <p>where $P_l^m(x)$ are associated Legendre polynomials.</p>
+                    
+                    <p>Orthonormality:</p>
+                    
+                    $$\int_0^{2\pi} d\phi \int_0^{\pi} \sin\theta \, d\theta \, [Y_l^m(\theta,\phi)]^* Y_{l'}^{m'}(\theta,\phi) = \delta_{ll'} \delta_{mm'}$$
+
+                    <h3>Gamma and Beta Functions</h3>
+                    <p>The Gamma function extends the factorial:</p>
+                    
+                    $$\Gamma(z) = \int_0^{\infty} t^{z-1} e^{-t} dt$$
+                    
+                    <p>Key properties:</p>
+                    
+                    $$\Gamma(z+1) = z\Gamma(z), \quad \Gamma(n+1) = n!, \quad \Gamma(1/2) = \sqrt{\pi}$$
+                    
+                    <p>The Beta function:</p>
+                    
+                    $$B(x,y) = \int_0^1 t^{x-1}(1-t)^{y-1} dt = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}$$
+                </section>
+
+                <!-- Fourier Analysis -->
+                <section>
+                    <h2>Fourier Analysis</h2>
+                    
+                    <h3>Fourier Series</h3>
+                    <p>For a periodic function $f(x)$ with period $2L$:</p>
+                    
+                    $$f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left[a_n \cos\left(\frac{n\pi x}{L}\right) + b_n \sin\left(\frac{n\pi x}{L}\right)\right]$$
+                    
+                    <p>Fourier coefficients:</p>
+                    
+                    $$a_n = \frac{1}{L} \int_{-L}^{L} f(x) \cos\left(\frac{n\pi x}{L}\right) dx$$
+                    $$b_n = \frac{1}{L} \int_{-L}^{L} f(x) \sin\left(\frac{n\pi x}{L}\right) dx$$
+
+                    <h3>Fourier Transform</h3>
+                    <p>For non-periodic functions:</p>
+                    
+                    $$\tilde{f}(k) = \int_{-\infty}^{\infty} f(x) e^{-ikx} dx$$
+                    
+                    <p>Inverse transform:</p>
+                    
+                    $$f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde{f}(k) e^{ikx} dk$$
+                    
+                    <p>Parseval's theorem:</p>
+                    
+                    $$\int_{-\infty}^{\infty} |f(x)|^2 dx = \frac{1}{2\pi} \int_{-\infty}^{\infty} |\tilde{f}(k)|^2 dk$$
+
+                    <h3>Convolution Theorem</h3>
+                    <p>The Fourier transform of a convolution is the product of transforms:</p>
+                    
+                    $$\mathcal{F}[f * g] = \tilde{f}(k) \cdot \tilde{g}(k)$$
+                    
+                    <p>where $(f * g)(x) = \int_{-\infty}^{\infty} f(t) g(x-t) dt$</p>
+                </section>
+
+                <!-- Python Implementation -->
+                <section>
+                    <h2>Computational Examples</h2>
+                    
+                    <p>
+                        Here's a Python implementation demonstrating various mathematical methods:
+                    </p>
+                    
+                    <div class="note-code" data-language="python">
+                        <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import jv, legendre, sph_harm, gamma
+from scipy.integrate import quad
+from scipy.fft import fft, fftfreq, fftshift
+import warnings
+warnings.filterwarnings('ignore')
+
+# 1. Complex Analysis: Residue calculation example
+def complex_residue_example():
+    """
+    Calculate residues and evaluate contour integrals
+    Example: ∮ 1/(z² + 1) dz around unit circle
+    """
+    print("=== Complex Analysis: Residue Theorem ===")
+    
+    # Function: f(z) = 1/(z² + 1)
+    # Poles at z = ±i
+    # Residues: Res(f, i) = 1/(2i), Res(f, -i) = -1/(2i)
+    
+    # Only z = i is inside unit circle
+    residue_at_i = 1 / (2j)  # 1/(2i)
+    integral_value = 2j * np.pi * residue_at_i
+    
+    print(f"Function: f(z) = 1/(z² + 1)")
+    print(f"Residue at z = i: {residue_at_i}")
+    print(f"Integral around unit circle: {integral_value}")
+    print(f"Real part: {integral_value.real:.6f}")
+    print(f"Imaginary part: {integral_value.imag:.6f}")
+    print()
+
+# 2. Special Functions: Bessel and Legendre polynomials
+def special_functions_demo():
+    """
+    Demonstrate properties of special functions
+    """
+    print("=== Special Functions Demo ===")
+    
+    # Legendre polynomials
+    x = np.linspace(-1, 1, 1000)
+    
+    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+    
+    # Plot first few Legendre polynomials
+    for n in range(5):
+        P_n = legendre(n)
+        ax1.plot(x, P_n(x), label=f'P_{n}(x)', linewidth=2)
+    
+    ax1.set_xlabel('x')
+    ax1.set_ylabel('P_n(x)')
+    ax1.set_title('Legendre Polynomials')
+    ax1.legend()
+    ax1.grid(True)
+    
+    # Bessel functions J_n(x)
+    x_bessel = np.linspace(0, 20, 1000)
+    for n in range(4):
+        ax2.plot(x_bessel, jv(n, x_bessel), label=f'J_{n}(x)', linewidth=2)
+    
+    ax2.set_xlabel('x')
+    ax2.set_ylabel('J_n(x)')
+    ax2.set_title('Bessel Functions of First Kind')
+    ax2.legend()
+    ax2.grid(True)
+    
+    # Spherical harmonics (real part of Y_2^1)
+    theta = np.linspace(0, np.pi, 100)
+    phi = np.linspace(0, 2*np.pi, 100)
+    THETA, PHI = np.meshgrid(theta, phi)
+    
+    # Y_2^1 spherical harmonic
+    Y = sph_harm(1, 2, PHI, THETA)
+    
+    # Convert to Cartesian for plotting
+    X = np.sin(THETA) * np.cos(PHI)
+    Y_cart = np.sin(THETA) * np.sin(PHI)
+    Z = np.cos(THETA)
+    
+    # Plot magnitude
+    magnitude = np.abs(Y)
+    c = ax3.contourf(THETA, PHI, magnitude, levels=20, cmap='viridis')
+    ax3.set_xlabel('θ (radians)')
+    ax3.set_ylabel('φ (radians)')
+    ax3.set_title('|Y₂¹(θ,φ)| - Spherical Harmonic')
+    plt.colorbar(c, ax=ax3)
+    
+    # Gamma function
+    x_gamma = np.linspace(0.1, 5, 1000)
+    ax4.plot(x_gamma, gamma(x_gamma), 'b-', linewidth=2, label='Γ(x)')
+    ax4.plot(x_gamma, np.exp(x_gamma * np.log(x_gamma) - x_gamma + 0.5 * np.log(2*np.pi/x_gamma)), 
+             'r--', linewidth=2, label="Stirling's approximation")
+    
+    ax4.set_xlabel('x')
+    ax4.set_ylabel('Γ(x)')
+    ax4.set_title('Gamma Function and Stirling Approximation')
+    ax4.legend()
+    ax4.grid(True)
+    ax4.set_ylim(0, 20)
+    
+    plt.tight_layout()
+    plt.show()
+    
+    # Verify orthogonality of Legendre polynomials
+    def orthogonality_check():
+        print("\n--- Legendre Polynomial Orthogonality Check ---")
+        for l in range(3):
+            for m in range(3):
+                P_l = legendre(l)
+                P_m = legendre(m)
+                
+                # Numerical integration
+                integrand = lambda x: P_l(x) * P_m(x)
+                result, _ = quad(integrand, -1, 1)
+                theoretical = 2/(2*l + 1) if l == m else 0
+                
+                print(f"∫₋₁¹ P_{l}(x)P_{m}(x)dx = {result:.6f}, "
+                      f"Theory: {theoretical:.6f}")
+    
+    orthogonality_check()
+
+# 3. Fourier Analysis: Signal processing example
+def fourier_analysis_demo():
+    """
+    Demonstrate Fourier transform properties
+    """
+    print("\n=== Fourier Analysis Demo ===")
+    
+    # Create a composite signal
+    t = np.linspace(0, 2, 1000, endpoint=False)
+    dt = t[1] - t[0]
+    
+    # Signal: sum of sinusoids + noise
+    freq1, freq2, freq3 = 5, 15, 30  # Hz
+    signal = (np.sin(2*np.pi*freq1*t) + 
+              0.5*np.sin(2*np.pi*freq2*t) + 
+              0.3*np.sin(2*np.pi*freq3*t) + 
+              0.1*np.random.normal(0, 1, len(t)))
+    
+    # Fourier transform
+    ft_signal = fft(signal)
+    frequencies = fftfreq(len(signal), dt)
+    
+    # Plot results
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
+    
+    # Time domain
+    ax1.plot(t[:200], signal[:200], 'b-', linewidth=1.5)
+    ax1.set_xlabel('Time (s)')
+    ax1.set_ylabel('Amplitude')
+    ax1.set_title('Composite Signal in Time Domain')
+    ax1.grid(True)
+    
+    # Frequency domain (magnitude spectrum)
+    positive_freq_idx = frequencies > 0
+    ax2.plot(frequencies[positive_freq_idx], 
+             np.abs(ft_signal[positive_freq_idx])/len(signal), 'r-', linewidth=2)
+    
+    # Mark expected frequencies
+    for f in [freq1, freq2, freq3]:
+        ax2.axvline(x=f, color='green', linestyle='--', alpha=0.7, 
+                   label=f'{f} Hz' if f == freq1 else "")
+    
+    ax2.set_xlabel('Frequency (Hz)')
+    ax2.set_ylabel('Magnitude')
+    ax2.set_title('Magnitude Spectrum')
+    ax2.set_xlim(0, 50)
+    ax2.grid(True)
+    ax2.legend()
+    
+    plt.tight_layout()
+    plt.show()
+    
+    # Verify Parseval's theorem
+    time_energy = np.sum(np.abs(signal)**2) * dt
+    freq_energy = np.sum(np.abs(ft_signal)**2) * dt / len(signal)
+    
+    print(f"Parseval's Theorem Verification:")
+    print(f"Energy in time domain: {time_energy:.6f}")
+    print(f"Energy in frequency domain: {freq_energy:.6f}")
+    print(f"Relative error: {abs(time_energy - freq_energy)/time_energy:.2e}")
+
+# 4. Green's function example
+def greens_function_demo():
+    """
+    Demonstrate Green's function for 1D Poisson equation
+    """
+    print("\n=== Green's Function Demo ===")
+    print("Solving: -d²u/dx² = f(x) on [0,1] with u(0) = u(1) = 0")
+    
+    # Green's function for this problem
+    def greens_function(x, xi):
+        """Green's function G(x,ξ) for -d²/dx² with zero boundary conditions"""
+        if x <= xi:
+            return x * (1 - xi)
+        else:
+            return xi * (1 - x)
+    
+    # Source function f(x) = sin(π*x)
+    def source_function(x):
+        return np.sin(np.pi * x)
+    
+    # Analytical solution: u(x) = sin(π*x)/π²
+    def analytical_solution(x):
+        return np.sin(np.pi * x) / (np.pi**2)
+    
+    # Numerical solution using Green's function
+    x = np.linspace(0, 1, 100)
+    u_numerical = np.zeros_like(x)
+    
+    # u(x) = ∫₀¹ G(x,ξ) f(ξ) dξ
+    for i, xi in enumerate(x):
+        for j, xj in enumerate(x):
+            if j > 0 and j < len(x) - 1:  # Exclude boundaries
+                dx = x[1] - x[0]
+                u_numerical[i] += greens_function(xi, xj) * source_function(xj) * dx
+    
+    # Compare with analytical solution
+    u_analytical = analytical_solution(x)
+    
+    plt.figure(figsize=(10, 6))
+    plt.plot(x, u_analytical, 'b-', linewidth=3, label='Analytical solution')
+    plt.plot(x, u_numerical, 'r--', linewidth=2, label="Green's function solution")
+    plt.xlabel('x')
+    plt.ylabel('u(x)')
+    plt.title("Solution to Poisson Equation using Green's Function")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
+    # Error analysis
+    error = np.abs(u_analytical - u_numerical)
+    max_error = np.max(error)
+    print(f"Maximum error: {max_error:.2e}")
+
+# Run all demonstrations
+if __name__ == "__main__":
+    complex_residue_example()
+    special_functions_demo()
+    fourier_analysis_demo()
+    greens_function_demo()
+</code></pre>
+                    </div>
+                </section>
+
+                <!-- Integral Transforms -->
+                <section>
+                    <h2>Integral Transforms</h2>
+                    
+                    <h3>Laplace Transform</h3>
+                    <p>Definition:</p>
+                    
+                    $$\mathcal{L}[f(t)] = F(s) = \int_0^{\infty} f(t) e^{-st} dt$$
+                    
+                    <p>Key properties:</p>
+                    
+                    <ul>
+                        <li>Linearity: $\mathcal{L}[af + bg] = a\mathcal{L}[f] + b\mathcal{L}[g]$</li>
+                        <li>Differentiation: $\mathcal{L}[f'] = sF(s) - f(0)$</li>
+                        <li>Convolution: $\mathcal{L}[f * g] = F(s)G(s)$</li>
+                    </ul>
+
+                    <h3>Hankel Transform</h3>
+                    <p>For functions with cylindrical symmetry:</p>
+                    
+                    $$F_n(k) = \int_0^{\infty} f(r) J_n(kr) r \, dr$$
+                    
+                    <p>Inverse transform:</p>
+                    
+                    $$f(r) = \int_0^{\infty} F_n(k) J_n(kr) k \, dk$$
+
+                    <h3>Mellin Transform</h3>
+                    <p>Useful for scaling problems:</p>
+                    
+                    $$F(s) = \int_0^{\infty} f(x) x^{s-1} dx$$
+                    
+                    <p>Inverse:</p>
+                    
+                    $$f(x) = \frac{1}{2\pi i} \int_{c-i\infty}^{c+i\infty} F(s) x^{-s} ds$$
+                </section>
+
+                <!-- Applications -->
+                <section>
+                    <h2>Physics Applications</h2>
+                    
+                    <h3>Quantum Mechanics</h3>
+                    <ul>
+                        <li><strong>Spherical harmonics:</strong> Angular solutions to hydrogen atom</li>
+                        <li><strong>Bessel functions:</strong> Cylindrical quantum wells</li>
+                        <li><strong>Green's functions:</strong> Scattering theory and propagators</li>
+                        <li><strong>Complex analysis:</strong> Analytic continuation, S-matrix theory</li>
+                    </ul>
+
+                    <h3>Electromagnetism</h3>
+                    <ul>
+                        <li><strong>Legendre polynomials:</strong> Multipole expansions</li>
+                        <li><strong>Fourier transforms:</strong> Electromagnetic wave propagation</li>
+                        <li><strong>Green's functions:</strong> Solutions to Maxwell's equations</li>
+                        <li><strong>Complex analysis:</strong> Waveguide theory, impedance matching</li>
+                    </ul>
+
+                    <h3>Statistical Mechanics</h3>
+                    <ul>
+                        <li><strong>Gamma functions:</strong> Statistical distributions</li>
+                        <li><strong>Fourier analysis:</strong> Correlation functions, critical phenomena</li>
+                        <li><strong>Generating functions:</strong> Partition functions</li>
+                        <li><strong>Saddle point methods:</strong> Thermodynamic limits</li>
+                    </ul>
+                </section>
+
+                <!-- Summary -->
+                <section>
+                    <h2>Summary</h2>
+                    
+                    <p>
+                        Advanced mathematical methods provide essential tools for theoretical physics:
+                    </p>
+                    
+                    <ul>
+                        <li><strong>Complex Analysis:</strong> Powerful integration techniques and analytic continuation</li>
+                        <li><strong>Special Functions:</strong> Solutions to fundamental differential equations in physics</li>
+                        <li><strong>Green's Functions:</strong> Systematic approach to inhomogeneous problems</li>
+                        <li><strong>Fourier Analysis:</strong> Frequency domain representation and wave phenomena</li>
+                        <li><strong>Integral Transforms:</strong> Converting differential equations to algebraic ones</li>
+                    </ul>
+                    
+                    <p>
+                        Mastery of these methods enables deeper understanding of physical phenomena and provides 
+                        computational tools for solving complex problems in modern physics.
+                    </p>
+                </section>
+            </div>
+        </article>
+
+        <!-- Navigation between notes -->
+        <section class="note-navigation">
+            <div class="content-container">
+                <div class="nav-links">
+                    <a href="classical-mechanics.html" class="nav-link next">Next: Classical Mechanics →</a>
+                    <a href="index.html" class="nav-link up">↑ Back to Physics</a>
+                    <a href="quantum-mechanics.html" class="nav-link prev">← Quantum Mechanics</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <!-- ...existing footer content... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../../config/latex-config.js"></script>
+    <script src="../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../assets/js/latex-renderer.js"></script>
+    <script src="../../../assets/js/enhanced-syntax-highlighter.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
