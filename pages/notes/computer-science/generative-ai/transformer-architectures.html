@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformer Architectures - Generative AI Notes | Josué Galindo</title>
+    <meta name="description" content="Comprehensive guide to Transformer architectures: self-attention, multi-head attention, positional encoding, and PyTorch implementations">
+    <meta name="author" content="Josué Galindo">
+    <meta name="keywords" content="transformer, attention mechanism, self-attention, multi-head attention, positional encoding, neural networks, deep learning">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../../assets/css/syntax-highlighting.css">
+    <link rel="stylesheet" href="../../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../../index.html" class="nav-link">Notes</a></li>
+                <li><a href="../../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Note Header Section -->
+    <section class="note-header-section">
+        <div class="content-container">
+            <nav class="breadcrumb">
+                <a href="../../index.html">Notes</a> > 
+                <a href="../index.html">Computer Science</a> > 
+                <a href="index.html">Generative AI</a> > 
+                <span>Transformer Architectures</span>
+            </nav>
+            
+            <div class="note-header">
+                <h1>Transformer Architectures</h1>
+                <div class="note-meta">
+                    <span class="note-area generative-ai">Generative AI</span>
+                    <span class="note-difficulty advanced">Advanced</span>
+                    <span class="note-date">June 19, 2025</span>
+                </div>
+                
+                <div class="note-tags">
+                    <span class="tag">Attention Mechanism</span>
+                    <span class="tag">Self-Attention</span>
+                    <span class="tag">Multi-Head Attention</span>
+                    <span class="tag">Positional Encoding</span>
+                    <span class="tag">PyTorch</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="note-content">
+        <!-- Abstract -->
+        <section class="note-abstract">
+            <h2>Abstract</h2>
+            <p>
+                The Transformer architecture revolutionized natural language processing and became the foundation 
+                of modern AI. This comprehensive guide explores the mathematical foundations of self-attention, 
+                multi-head attention, positional encoding, and provides complete PyTorch implementations. 
+                We cover the architectural innovations that enabled parallelization, long-range dependencies, 
+                and the scalability that powers today's large language models.
+            </p>
+        </section>
+
+        <!-- Introduction -->
+        <section>
+            <h2>1. Introduction</h2>
+            
+            <p>
+                The Transformer architecture, introduced in "Attention Is All You Need" (Vaswani et al., 2017), 
+                fundamentally changed how we approach sequence modeling. Unlike RNNs that process sequences 
+                sequentially, Transformers enable parallel processing through the attention mechanism.
+            </p>
+
+            <h3>1.1 Key Innovations</h3>
+            <ul>
+                <li><strong>Self-Attention:</strong> Direct modeling of relationships between all sequence positions</li>
+                <li><strong>Parallelization:</strong> No sequential dependencies, enabling efficient training</li>
+                <li><strong>Long-Range Dependencies:</strong> Direct connections between distant positions</li>
+                <li><strong>Scalability:</strong> Architecture scales effectively with data and compute</li>
+            </ul>
+
+            <h3>1.2 Architecture Overview</h3>
+            <p>
+                The Transformer consists of an encoder-decoder structure, each built from stacked layers 
+                containing multi-head attention and feed-forward networks.
+            </p>
+            
+            <div class="math-block">
+                $$\text{Transformer} = \text{Encoder}(x) + \text{Decoder}(y, \text{Encoder}(x))$$
+            </div>
+        </section>
+
+        <!-- Attention Mechanism -->
+        <section>
+            <h2>2. Attention Mechanism</h2>
+            
+            <h3>2.1 Scaled Dot-Product Attention</h3>
+            <p>
+                The core of the Transformer is the scaled dot-product attention mechanism:
+            </p>
+            
+            <div class="math-block">
+                $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+            </div>
+            
+            <p>Where:</p>
+            <ul>
+                <li>$Q$ (queries): What information are we looking for?</li>
+                <li>$K$ (keys): What information is available at each position?</li>
+                <li>$V$ (values): The actual information content</li>
+                <li>$d_k$: Dimension of the key vectors (for scaling)</li>
+            </ul>
+
+            <h3>2.2 Mathematical Intuition</h3>
+            <p>
+                The attention mechanism computes a weighted average of values, where weights are determined 
+                by the compatibility between queries and keys:
+            </p>
+            
+            <div class="math-block">
+                $$\alpha_{ij} = \frac{\exp(q_i \cdot k_j / \sqrt{d_k})}{\sum_{k=1}^n \exp(q_i \cdot k_k / \sqrt{d_k})}$$
+            </div>
+            
+            <div class="math-block">
+                $$\text{output}_i = \sum_{j=1}^n \alpha_{ij} v_j$$
+            </div>
+
+            <div class="code-block-container">
+                <div class="code-block-header">
+                    <span class="language-label">Python - Scaled Dot-Product Attention</span>
+                    <button class="copy-code-btn" onclick="copyCode(this)">📋</button>
+                </div>
+                <pre><code class="language-python">import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import math
+
+def scaled_dot_product_attention(query, key, value, mask=None, dropout=None):
+    """
+    Compute scaled dot-product attention.
+    
+    Args:
+        query: [batch_size, seq_len, d_k]
+        key: [batch_size, seq_len, d_k]  
+        value: [batch_size, seq_len, d_v]
+        mask: Optional mask to prevent attention to certain positions
+        dropout: Optional dropout layer
+    
+    Returns:
+        output: [batch_size, seq_len, d_v]
+        attention_weights: [batch_size, seq_len, seq_len]
+    """
+    d_k = query.size(-1)
+    
+    # Compute attention scores
+    scores = torch.matmul(query, key.transpose(-2, -1)) / math.sqrt(d_k)
+    
+    # Apply mask if provided (set masked positions to large negative value)
+    if mask is not None:
+        scores = scores.masked_fill(mask == 0, -1e9)
+    
+    # Apply softmax to get attention weights
+    attention_weights = F.softmax(scores, dim=-1)
+    
+    # Apply dropout if provided
+    if dropout is not None:
+        attention_weights = dropout(attention_weights)
+    
+    # Apply attention weights to values
+    output = torch.matmul(attention_weights, value)
+    
+    return output, attention_weights
+
+# Example usage
+batch_size, seq_len, d_model = 2, 10, 512
+query = torch.randn(batch_size, seq_len, d_model)
+key = torch.randn(batch_size, seq_len, d_model)
+value = torch.randn(batch_size, seq_len, d_model)
+
+output, attention = scaled_dot_product_attention(query, key, value)
+print(f"Output shape: {output.shape}")
+print(f"Attention weights shape: {attention.shape}")</code></pre>
+            </div>
+        </section>
+
+        <!-- Multi-Head Attention -->
+        <section>
+            <h2>3. Multi-Head Attention</h2>
+            
+            <h3>3.1 Concept and Motivation</h3>
+            <p>
+                Multi-head attention allows the model to attend to information from different representation 
+                subspaces at different positions. Instead of performing a single attention function, we use 
+                multiple "attention heads" that can focus on different types of relationships.
+            </p>
+            
+            <div class="math-block">
+                $$\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, ..., \text{head}_h)W^O$$
+            </div>
+            
+            <p>Where each head is computed as:</p>
+            <div class="math-block">
+                $$\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$$
+            </div>
+
+            <h3>3.2 Parameter Matrices</h3>
+            <p>Each attention head has its own learned projection matrices:</p>
+            <ul>
+                <li>$W_i^Q \in \mathbb{R}^{d_{model} \times d_k}$: Query projection</li>
+                <li>$W_i^K \in \mathbb{R}^{d_{model} \times d_k}$: Key projection</li>
+                <li>$W_i^V \in \mathbb{R}^{d_{model} \times d_v}$: Value projection</li>
+                <li>$W^O \in \mathbb{R}^{hd_v \times d_{model}}$: Output projection</li>
+            </ul>
+
+            <div class="code-block-container">
+                <div class="code-block-header">
+                    <span class="language-label">Python - Multi-Head Attention</span>
+                    <button class="copy-code-btn" onclick="copyCode(this)">📋</button>
+                </div>
+                <pre><code class="language-python">class MultiHeadAttention(nn.Module):
+    def __init__(self, d_model, num_heads, dropout=0.1):
+        """
+        Multi-Head Attention module.
+        
+        Args:
+            d_model: Model dimension
+            num_heads: Number of attention heads
+            dropout: Dropout probability
+        """
+        super(MultiHeadAttention, self).__init__()
+        assert d_model % num_heads == 0
+        
+        self.d_model = d_model
+        self.num_heads = num_heads
+        self.d_k = d_model // num_heads
+        
+        # Linear projections for Q, K, V
+        self.w_q = nn.Linear(d_model, d_model)
+        self.w_k = nn.Linear(d_model, d_model)  
+        self.w_v = nn.Linear(d_model, d_model)
+        self.w_o = nn.Linear(d_model, d_model)
+        
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, query, key, value, mask=None):
+        """
+        Forward pass for multi-head attention.
+        
+        Args:
+            query: [batch_size, seq_len, d_model]
+            key: [batch_size, seq_len, d_model]
+            value: [batch_size, seq_len, d_model]
+            mask: Optional attention mask
+            
+        Returns:
+            output: [batch_size, seq_len, d_model]
+            attention: [batch_size, num_heads, seq_len, seq_len]
+        """
+        batch_size, seq_len = query.size(0), query.size(1)
+        
+        # 1. Linear projections and reshape for multi-head
+        Q = self.w_q(query).view(batch_size, seq_len, self.num_heads, self.d_k).transpose(1, 2)
+        K = self.w_k(key).view(batch_size, seq_len, self.num_heads, self.d_k).transpose(1, 2)
+        V = self.w_v(value).view(batch_size, seq_len, self.num_heads, self.d_k).transpose(1, 2)
+        
+        # 2. Apply scaled dot-product attention
+        attention_output, attention_weights = self.scaled_dot_product_attention(
+            Q, K, V, mask, self.dropout
+        )
+        
+        # 3. Concatenate heads and apply output projection
+        attention_output = attention_output.transpose(1, 2).contiguous().view(
+            batch_size, seq_len, self.d_model
+        )
+        
+        output = self.w_o(attention_output)
+        
+        return output, attention_weights
+    
+    def scaled_dot_product_attention(self, Q, K, V, mask, dropout):
+        """Apply scaled dot-product attention for multiple heads."""
+        d_k = Q.size(-1)
+        scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(d_k)
+        
+        if mask is not None:
+            scores = scores.masked_fill(mask == 0, -1e9)
+            
+        attention_weights = F.softmax(scores, dim=-1)
+        
+        if dropout is not None:
+            attention_weights = dropout(attention_weights)
+            
+        output = torch.matmul(attention_weights, V)
+        return output, attention_weights
+
+# Example usage
+d_model, num_heads = 512, 8
+mha = MultiHeadAttention(d_model, num_heads)
+
+# Input tensors
+x = torch.randn(2, 10, d_model)  # [batch_size, seq_len, d_model]
+
+# Self-attention (query, key, value are all the same)
+output, attention = mha(x, x, x)
+print(f"Multi-head attention output shape: {output.shape}")
+print(f"Attention weights shape: {attention.shape}")</code></pre>
+            </div>
+        </section>
+
+        <!-- Positional Encoding -->
+        <section>
+            <h2>4. Positional Encoding</h2>
+            
+            <h3>4.1 The Position Problem</h3>
+            <p>
+                Since the Transformer has no inherent notion of sequence order, we must inject positional 
+                information. The original paper uses sinusoidal positional encoding:
+            </p>
+            
+            <div class="math-block">
+                $$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
+            </div>
+            
+            <div class="math-block">
+                $$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
+            </div>
+            
+            <p>Where:</p>
+            <ul>
+                <li>$pos$: Position in the sequence</li>
+                <li>$i$: Dimension index</li>
+                <li>$d_{model}$: Model dimension</li>
+            </ul>
+
+            <h3>4.2 Properties of Sinusoidal Encoding</h3>
+            <p>
+                The sinusoidal encoding has several desirable properties:
+            </p>
+            <ul>
+                <li><strong>Unique encoding:</strong> Each position has a unique encoding</li>
+                <li><strong>Relative distances:</strong> Consistent relative positional relationships</li>
+                <li><strong>Extrapolation:</strong> Can handle sequences longer than training</li>
+                <li><strong>Linear relationships:</strong> $PE_{pos+k}$ can be expressed as linear function of $PE_{pos}$</li>
+            </ul>
+
+            <div class="code-block-container">
+                <div class="code-block-header">
+                    <span class="language-label">Python - Positional Encoding</span>
+                    <button class="copy-code-btn" onclick="copyCode(this)">📋</button>
+                </div>
+                <pre><code class="language-python">class PositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_seq_length=5000, dropout=0.1):
+        """
+        Sinusoidal positional encoding.
+        
+        Args:
+            d_model: Model dimension
+            max_seq_length: Maximum sequence length
+            dropout: Dropout probability
+        """
+        super(PositionalEncoding, self).__init__()
+        self.dropout = nn.Dropout(dropout)
+        
+        # Create positional encoding matrix
+        pe = torch.zeros(max_seq_length, d_model)
+        position = torch.arange(0, max_seq_length, dtype=torch.float).unsqueeze(1)
+        
+        # Create division term for sinusoidal encoding
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * 
+                           (-math.log(10000.0) / d_model))
+        
+        # Apply sin to even indices
+        pe[:, 0::2] = torch.sin(position * div_term)
+        # Apply cos to odd indices
+        pe[:, 1::2] = torch.cos(position * div_term)
+        
+        # Add batch dimension and register as buffer
+        pe = pe.unsqueeze(0).transpose(0, 1)
+        self.register_buffer('pe', pe)
+        
+    def forward(self, x):
+        """
+        Add positional encoding to input embeddings.
+        
+        Args:
+            x: Input embeddings [seq_len, batch_size, d_model]
+            
+        Returns:
+            x + positional encoding with dropout applied
+        """
+        x = x + self.pe[:x.size(0), :]
+        return self.dropout(x)
+
+# Alternative: Learned Positional Encoding
+class LearnedPositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_seq_length=5000, dropout=0.1):
+        """
+        Learned positional encoding using embedding layer.
+        """
+        super(LearnedPositionalEncoding, self).__init__()
+        self.dropout = nn.Dropout(dropout)
+        self.pe = nn.Embedding(max_seq_length, d_model)
+        
+    def forward(self, x):
+        """
+        Args:
+            x: [batch_size, seq_len, d_model]
+        """
+        batch_size, seq_len = x.size(0), x.size(1)
+        positions = torch.arange(seq_len, device=x.device).expand(batch_size, seq_len)
+        
+        x = x + self.pe(positions)
+        return self.dropout(x)
+
+# Visualization function for positional encoding
+def visualize_positional_encoding(d_model=512, max_len=100):
+    """Visualize the sinusoidal positional encoding patterns."""
+    import matplotlib.pyplot as plt
+    
+    pe = PositionalEncoding(d_model, max_len)
+    y = pe.pe[:max_len, 0, :].numpy()
+    
+    plt.figure(figsize=(15, 5))
+    plt.plot(y[:, :20])
+    plt.legend([f"dim {i}" for i in range(20)])
+    plt.title("Positional Encoding")
+    plt.xlabel("Position")
+    plt.ylabel("Encoding Value")
+    plt.show()
+
+# Example usage
+d_model = 512
+pos_encoding = PositionalEncoding(d_model)
+
+# Input: [seq_len, batch_size, d_model]
+x = torch.randn(20, 2, d_model)
+x_with_pos = pos_encoding(x)
+print(f"Input with positional encoding shape: {x_with_pos.shape}")</code></pre>
+            </div>
+        </section>
+
+        <!-- Complete Transformer Block -->
+        <section>
+            <h2>5. Complete Transformer Block</h2>
+            
+            <h3>5.1 Encoder Layer</h3>
+            <p>
+                Each encoder layer consists of two sub-layers:
+            </p>
+            <ol>
+                <li>Multi-head self-attention mechanism</li>
+                <li>Position-wise fully connected feed-forward network</li>
+            </ol>
+            
+            <p>Both sub-layers use residual connections and layer normalization:</p>
+            <div class="math-block">
+                $$\text{LayerNorm}(x + \text{Sublayer}(x))$$
+            </div>
+
+            <h3>5.2 Feed-Forward Network</h3>
+            <p>
+                The position-wise feed-forward network applies two linear transformations with ReLU activation:
+            </p>
+            <div class="math-block">
+                $$\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2$$
+            </div>
+
+            <div class="code-block-container">
+                <div class="code-block-header">
+                    <span class="language-label">Python - Complete Transformer Block</span>
+                    <button class="copy-code-btn" onclick="copyCode(this)">📋</button>
+                </div>
+                <pre><code class="language-python">class PositionwiseFeedForward(nn.Module):
+    def __init__(self, d_model, d_ff, dropout=0.1):
+        """
+        Position-wise feed-forward network.
+        
+        Args:
+            d_model: Model dimension
+            d_ff: Feed-forward dimension (typically 4 * d_model)
+            dropout: Dropout probability
+        """
+        super(PositionwiseFeedForward, self).__init__()
+        self.w_1 = nn.Linear(d_model, d_ff)
+        self.w_2 = nn.Linear(d_ff, d_model)
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, x):
+        """
+        Args:
+            x: [batch_size, seq_len, d_model]
+        Returns:
+            [batch_size, seq_len, d_model]
+        """
+        return self.w_2(self.dropout(F.relu(self.w_1(x))))
+
+class TransformerEncoderLayer(nn.Module):
+    def __init__(self, d_model, num_heads, d_ff, dropout=0.1):
+        """
+        Single Transformer encoder layer.
+        
+        Args:
+            d_model: Model dimension
+            num_heads: Number of attention heads
+            d_ff: Feed-forward dimension
+            dropout: Dropout probability
+        """
+        super(TransformerEncoderLayer, self).__init__()
+        
+        # Multi-head attention
+        self.self_attention = MultiHeadAttention(d_model, num_heads, dropout)
+        
+        # Feed-forward network
+        self.feed_forward = PositionwiseFeedForward(d_model, d_ff, dropout)
+        
+        # Layer normalization
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+        
+        # Dropout
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, x, mask=None):
+        """
+        Forward pass for encoder layer.
+        
+        Args:
+            x: [batch_size, seq_len, d_model]
+            mask: Optional attention mask
+            
+        Returns:
+            [batch_size, seq_len, d_model]
+        """
+        # Self-attention with residual connection and layer norm
+        attn_output, _ = self.self_attention(x, x, x, mask)
+        x = self.norm1(x + self.dropout(attn_output))
+        
+        # Feed-forward with residual connection and layer norm
+        ff_output = self.feed_forward(x)
+        x = self.norm2(x + self.dropout(ff_output))
+        
+        return x
+
+class TransformerEncoder(nn.Module):
+    def __init__(self, num_layers, d_model, num_heads, d_ff, 
+                 max_seq_length, vocab_size, dropout=0.1):
+        """
+        Complete Transformer encoder.
+        
+        Args:
+            num_layers: Number of encoder layers
+            d_model: Model dimension
+            num_heads: Number of attention heads
+            d_ff: Feed-forward dimension
+            max_seq_length: Maximum sequence length
+            vocab_size: Vocabulary size
+            dropout: Dropout probability
+        """
+        super(TransformerEncoder, self).__init__()
+        
+        # Input embedding and positional encoding
+        self.embedding = nn.Embedding(vocab_size, d_model)
+        self.positional_encoding = PositionalEncoding(d_model, max_seq_length, dropout)
+        
+        # Stack of encoder layers
+        self.layers = nn.ModuleList([
+            TransformerEncoderLayer(d_model, num_heads, d_ff, dropout)
+            for _ in range(num_layers)
+        ])
+        
+        self.d_model = d_model
+        
+    def forward(self, x, mask=None):
+        """
+        Forward pass for complete encoder.
+        
+        Args:
+            x: [batch_size, seq_len] - token indices
+            mask: Optional attention mask
+            
+        Returns:
+            [batch_size, seq_len, d_model]
+        """
+        # Embedding with scaling
+        x = self.embedding(x) * math.sqrt(self.d_model)
+        
+        # Add positional encoding
+        x = x.transpose(0, 1)  # [seq_len, batch_size, d_model]
+        x = self.positional_encoding(x)
+        x = x.transpose(0, 1)  # [batch_size, seq_len, d_model]
+        
+        # Pass through encoder layers
+        for layer in self.layers:
+            x = layer(x, mask)
+            
+        return x
+
+# Example usage
+def create_transformer_model():
+    """Create a complete Transformer encoder model."""
+    model = TransformerEncoder(
+        num_layers=6,
+        d_model=512,
+        num_heads=8,
+        d_ff=2048,
+        max_seq_length=1000,
+        vocab_size=10000,
+        dropout=0.1
+    )
+    return model
+
+# Test the model
+model = create_transformer_model()
+batch_size, seq_len = 2, 50
+
+# Random token indices
+input_ids = torch.randint(0, 10000, (batch_size, seq_len))
+
+# Forward pass
+output = model(input_ids)
+print(f"Transformer output shape: {output.shape}")
+print(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")</code></pre>
+            </div>
+        </section>
+
+        <!-- Training and Optimization -->
+        <section>
+            <h2>6. Training Considerations</h2>
+            
+            <h3>6.1 Attention Patterns</h3>
+            <p>
+                Different attention heads learn to focus on different types of relationships:
+            </p>
+            <ul>
+                <li><strong>Local attention:</strong> Focusing on nearby tokens</li>
+                <li><strong>Syntactic attention:</strong> Capturing grammatical relationships</li>
+                <li><strong>Semantic attention:</strong> Relating semantically similar concepts</li>
+                <li><strong>Positional attention:</strong> Encoding positional relationships</li>
+            </ul>
+
+            <h3>6.2 Computational Complexity</h3>
+            <p>
+                The self-attention mechanism has quadratic complexity in sequence length:
+            </p>
+            <div class="math-block">
+                $$\text{Time Complexity: } O(n^2 \cdot d)$$
+                $$\text{Space Complexity: } O(n^2 + n \cdot d)$$
+            </div>
+            
+            <p>Where $n$ is sequence length and $d$ is model dimension.</p>
+
+            <h3>6.3 Optimization Techniques</h3>
+            <div class="code-block-container">
+                <div class="code-block-header">
+                    <span class="language-label">Python - Training Setup</span>
+                    <button class="copy-code-btn" onclick="copyCode(this)">📋</button>
+                </div>
+                <pre><code class="language-python">def get_transformer_optimizer(model, d_model, warmup_steps=4000):
+    """
+    Adam optimizer with custom learning rate schedule used in original paper.
+    
+    lr = d_model^(-0.5) * min(step^(-0.5), step * warmup_steps^(-1.5))
+    """
+    class TransformerLRScheduler:
+        def __init__(self, optimizer, d_model, warmup_steps):
+            self.optimizer = optimizer
+            self.d_model = d_model
+            self.warmup_steps = warmup_steps
+            self.step_num = 0
+            
+        def step(self):
+            self.step_num += 1
+            lr = self.d_model ** (-0.5) * min(
+                self.step_num ** (-0.5),
+                self.step_num * (self.warmup_steps ** (-1.5))
+            )
+            
+            for param_group in self.optimizer.param_groups:
+                param_group['lr'] = lr
+    
+    optimizer = torch.optim.Adam(model.parameters(), betas=(0.9, 0.98), eps=1e-9)
+    scheduler = TransformerLRScheduler(optimizer, d_model, warmup_steps)
+    
+    return optimizer, scheduler
+
+def create_padding_mask(seq, pad_token=0):
+    """Create mask to ignore padding tokens in attention."""
+    return (seq != pad_token).unsqueeze(1).unsqueeze(1)
+
+def create_causal_mask(size):
+    """Create causal mask for decoder self-attention."""
+    mask = torch.triu(torch.ones(size, size), diagonal=1)
+    return mask == 0
+
+# Training loop example
+def train_step(model, data_loader, optimizer, scheduler, criterion):
+    """Single training step."""
+    model.train()
+    total_loss = 0
+    
+    for batch_idx, (input_ids, targets) in enumerate(data_loader):
+        optimizer.zero_grad()
+        
+        # Create padding mask
+        mask = create_padding_mask(input_ids)
+        
+        # Forward pass
+        outputs = model(input_ids, mask=mask)
+        
+        # Compute loss (example for language modeling)
+        loss = criterion(outputs.view(-1, outputs.size(-1)), targets.view(-1))
+        
+        # Backward pass
+        loss.backward()
+        
+        # Gradient clipping
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+        
+        # Update parameters
+        optimizer.step()
+        scheduler.step()
+        
+        total_loss += loss.item()
+        
+        if batch_idx % 100 == 0:
+            print(f'Batch {batch_idx}, Loss: {loss.item():.4f}, '
+                  f'LR: {optimizer.param_groups[0]["lr"]:.6f}')
+    
+    return total_loss / len(data_loader)</code></pre>
+            </div>
+        </section>
+
+        <!-- Variants and Extensions -->
+        <section>
+            <h2>7. Transformer Variants</h2>
+            
+            <h3>7.1 BERT (Bidirectional Encoder)</h3>
+            <p>
+                BERT uses only the encoder part of Transformer with bidirectional attention:
+            </p>
+            <ul>
+                <li>Masked Language Modeling (MLM) pre-training</li>
+                <li>Next Sentence Prediction (NSP)</li>
+                <li>Bidirectional context understanding</li>
+            </ul>
+
+            <h3>7.2 GPT (Generative Pre-trained Transformer)</h3>
+            <p>
+                GPT uses decoder-only architecture with causal attention:
+            </p>
+            <ul>
+                <li>Autoregressive language modeling</li>
+                <li>Causal (left-to-right) attention mask</li>
+                <li>Generative capabilities</li>
+            </ul>
+
+            <h3>7.3 Efficiency Improvements</h3>
+            <p>
+                Various techniques address the quadratic complexity:
+            </p>
+            <ul>
+                <li><strong>Sparse Attention:</strong> Longformer, BigBird</li>
+                <li><strong>Linear Attention:</strong> Linformer, Performer</li>
+                <li><strong>Hierarchical Attention:</strong> Hierarchical transformers</li>
+                <li><strong>Local Attention:</strong> Local attention windows</li>
+            </ul>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                The Transformer architecture revolutionized deep learning by introducing the attention mechanism 
+                as the primary building block. Its ability to model long-range dependencies, enable parallel 
+                processing, and scale effectively has made it the foundation of modern AI systems.
+            </p>
+            
+            <p>
+                Key takeaways from the Transformer architecture:
+            </p>
+            <ul>
+                <li><strong>Attention is fundamental:</strong> Direct modeling of relationships between all positions</li>
+                <li><strong>Parallelization enables scale:</strong> No sequential dependencies allow efficient training</li>
+                <li><strong>Architecture matters:</strong> Simple, elegant design that scales well</li>
+                <li><strong>Foundation for innovation:</strong> Basis for BERT, GPT, and modern LLMs</li>
+            </ul>
+            
+            <p>
+                Understanding Transformers is essential for working with modern AI systems and provides 
+                the foundation for exploring advanced architectures and training techniques.
+            </p>
+        </section>
+    </main>
+
+    <!-- Navigation -->
+    <section class="note-navigation">
+        <div class="nav-links">
+            <a href="../quantum-computation.html" class="nav-link prev">← Quantum Computation</a>
+            <a href="index.html" class="nav-link up">↑ Generative AI</a>
+            <a href="#" class="nav-link next">Large Language Models →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Related Topics</h4>
+                <ul class="footer-nav">
+                    <li><a href="../quantum-information.html">Quantum Information</a></li>
+                    <li><a href="../../mathematics/special-functions.html">Special Functions</a></li>
+                    <li><a href="../../physics/quantum-mechanics.html">Quantum Mechanics</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>External Resources</h4>
+                <ul class="footer-nav">
+                    <li><a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention Is All You Need</a></li>
+                    <li><a href="https://huggingface.co/docs/transformers/" target="_blank">Hugging Face Transformers</a></li>
+                    <li><a href="https://pytorch.org/tutorials/beginner/transformer_tutorial.html" target="_blank">PyTorch Tutorial</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <p class="footer-note">
+                    Transformer architectures notes • Updated June 19, 2025
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../../../config/latex-config.js"></script>
+    <script src="../../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../../assets/js/latex-renderer.js"></script>
+    <script src="../../../../assets/js/enhanced-syntax-highlighter.js"></script>
+    <script src="../../../../assets/js/main.js"></script>
+    
+    <script>
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.parentElement.nextElementSibling.querySelector('code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✅';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

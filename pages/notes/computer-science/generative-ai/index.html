@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI - Computer Science Notes | Josué Galindo</title>
+    <meta name="description" content="Comprehensive coverage of generative artificial intelligence: transformers, large language models, diffusion models, and modern AI architectures">
+    <meta name="author" content="Josué Galindo">
+    <meta name="keywords" content="generative AI, transformers, large language models, diffusion models, neural networks, deep learning">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../../index.html" class="nav-link">Notes</a></li>
+                <li><a href="../../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Topic Header Section -->
+    <section class="topic-header-section">
+        <div class="content-container">
+            <nav class="breadcrumb">
+                <a href="../../index.html">Notes</a> > 
+                <a href="../index.html">Computer Science</a> > 
+                <span>Generative AI</span>
+            </nav>
+            
+            <div class="topic-hero">
+                <div class="topic-icon">🤖</div>
+                <h1>Generative AI</h1>
+                <p class="topic-description">
+                    Explore the cutting-edge world of generative artificial intelligence, from transformer 
+                    architectures and large language models to diffusion models and multimodal AI systems. 
+                    Understand the mathematical foundations, architectural innovations, and practical 
+                    implementations that power modern AI.
+                </p>
+                <div class="topic-stats">
+                    <span class="stat">4 Topics</span>
+                    <span class="stat">Advanced Level</span>
+                    <span class="stat">Active Research</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topic Overview -->
+    <section class="topic-overview">
+        <div class="content-container">
+            <h2>Overview</h2>
+            <p>
+                Generative AI represents one of the most transformative developments in artificial intelligence, 
+                enabling machines to create human-like text, images, code, and multimedia content. This section 
+                covers the fundamental architectures, training methodologies, and applications that define the 
+                current state of generative AI.
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>Attention Mechanisms</h3>
+                    <p>
+                        The foundation of modern AI, attention mechanisms allow models to focus on relevant 
+                        parts of input sequences, enabling long-range dependencies and parallel processing.
+                    </p>
+                    <div class="concept-math">
+                        $$\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>Neural Language Models</h3>
+                    <p>
+                        From RNNs to Transformers, language models predict the probability distribution 
+                        over sequences of tokens, enabling text generation and understanding.
+                    </p>
+                    <div class="concept-math">
+                        $$P(x_1, ..., x_T) = \prod_{t=1}^T P(x_t | x_1, ..., x_{t-1})$$
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>Diffusion Processes</h3>
+                    <p>
+                        Diffusion models generate high-quality images by learning to reverse a noise 
+                        corruption process, creating stunning visual content.
+                    </p>
+                    <div class="concept-math">
+                        $$q(x_t|x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t}x_{t-1}, \beta_t I)$$
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>Emergent Capabilities</h3>
+                    <p>
+                        Large-scale models exhibit emergent behaviors like few-shot learning, reasoning, 
+                        and cross-modal understanding that weren't explicitly programmed.
+                    </p>
+                    <div class="concept-math">
+                        $$\text{Capability} \propto \text{Scale}^{\alpha} \cdot \text{Data}^{\beta}$$
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notes Collection -->
+    <section class="notes-collection">
+        <div class="content-container">
+            <h2>Generative AI Topics</h2>
+            <div class="notes-grid">
+                <!-- Transformer Architectures -->
+                <article class="note-card featured">
+                    <div class="note-status">
+                        <span class="status-badge complete">Complete</span>
+                    </div>
+                    <div class="note-header">
+                        <h3><a href="transformer-architectures.html">Transformer Architectures</a></h3>
+                        <div class="note-meta">
+                            <span class="note-difficulty advanced">Advanced</span>
+                            <span class="note-date">June 19, 2025</span>
+                        </div>
+                    </div>
+                    <p class="note-preview">
+                        Deep dive into the Transformer architecture that revolutionized AI: self-attention, 
+                        positional encoding, multi-head attention, and the complete mathematical framework 
+                        with PyTorch implementations.
+                    </p>
+                    <div class="note-highlights">
+                        <span class="highlight">Self-Attention</span>
+                        <span class="highlight">Multi-Head Attention</span>
+                        <span class="highlight">Positional Encoding</span>
+                        <span class="highlight">PyTorch Implementation</span>
+                    </div>
+                    <div class="note-actions">
+                        <a href="transformer-architectures.html" class="btn btn-primary btn-sm">Read Note</a>
+                    </div>
+                </article>
+
+                <!-- Large Language Models -->
+                <article class="note-card">
+                    <div class="note-status">
+                        <span class="status-badge planned">Planned</span>
+                    </div>
+                    <div class="note-header">
+                        <h3><a href="#" class="disabled">Large Language Models</a></h3>
+                        <div class="note-meta">
+                            <span class="note-difficulty advanced">Advanced</span>
+                            <span class="note-date">Coming Soon</span>
+                        </div>
+                    </div>
+                    <p class="note-preview">
+                        Comprehensive analysis of LLMs: GPT, BERT, T5 architectures, scaling laws, 
+                        training strategies, fine-tuning techniques, and emergent capabilities.
+                    </p>
+                    <div class="note-highlights">
+                        <span class="highlight">GPT Architecture</span>
+                        <span class="highlight">Scaling Laws</span>
+                        <span class="highlight">Fine-tuning</span>
+                        <span class="highlight">Emergent Abilities</span>
+                    </div>
+                    <div class="note-actions">
+                        <button class="btn btn-secondary btn-sm disabled">Coming Soon</button>
+                    </div>
+                </article>
+
+                <!-- Diffusion Models -->
+                <article class="note-card">
+                    <div class="note-status">
+                        <span class="status-badge planned">Planned</span>
+                    </div>
+                    <div class="note-header">
+                        <h3><a href="#" class="disabled">Diffusion Models</a></h3>
+                        <div class="note-meta">
+                            <span class="note-difficulty advanced">Advanced</span>
+                            <span class="note-date">Coming Soon</span>
+                        </div>
+                    </div>
+                    <p class="note-preview">
+                        Mathematical foundations of diffusion models: forward and reverse processes, 
+                        DDPM, DDIM, guided diffusion, and applications in image and audio generation.
+                    </p>
+                    <div class="note-highlights">
+                        <span class="highlight">Forward Process</span>
+                        <span class="highlight">Reverse Process</span>
+                        <span class="highlight">DDPM/DDIM</span>
+                        <span class="highlight">Guided Generation</span>
+                    </div>
+                    <div class="note-actions">
+                        <button class="btn btn-secondary btn-sm disabled">Coming Soon</button>
+                    </div>
+                </article>
+
+                <!-- Multimodal AI -->
+                <article class="note-card">
+                    <div class="note-status">
+                        <span class="status-badge planned">Planned</span>
+                    </div>
+                    <div class="note-header">
+                        <h3><a href="#" class="disabled">Multimodal AI Systems</a></h3>
+                        <div class="note-meta">
+                            <span class="note-difficulty advanced">Advanced</span>
+                            <span class="note-date">Coming Soon</span>
+                        </div>
+                    </div>
+                    <p class="note-preview">
+                        Cross-modal understanding and generation: CLIP, DALL-E, vision-language models, 
+                        unified multimodal architectures, and applications in creative AI.
+                    </p>
+                    <div class="note-highlights">
+                        <span class="highlight">Vision-Language</span>
+                        <span class="highlight">CLIP/DALL-E</span>
+                        <span class="highlight">Cross-Modal</span>
+                        <span class="highlight">Creative AI</span>
+                    </div>
+                    <div class="note-actions">
+                        <button class="btn btn-secondary btn-sm disabled">Coming Soon</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path -->
+    <section class="learning-path" style="background-color: var(--color-bg-secondary); padding: var(--space-16) 0;">
+        <div class="content-container">
+            <h2>Recommended Learning Path</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>1. Transformer Architectures</h3>
+                        <p>Start with the foundational architecture that powers most modern generative AI systems.</p>
+                        <span class="timeline-status">✅ Available</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>2. Large Language Models</h3>
+                        <p>Build upon transformers to understand how LLMs like GPT work and scale.</p>
+                        <span class="timeline-status">🔄 Coming Soon</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>3. Diffusion Models</h3>
+                        <p>Explore the mathematical beauty behind state-of-the-art image generation.</p>
+                        <span class="timeline-status">📅 Planned</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>4. Multimodal AI</h3>
+                        <p>Synthesize knowledge across modalities for comprehensive AI understanding.</p>
+                        <span class="timeline-status">🔮 Future</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Related Topics</h4>
+                <ul class="footer-nav">
+                    <li><a href="../quantum-information.html">Quantum Information</a></li>
+                    <li><a href="../quantum-computation.html">Quantum Computation</a></li>
+                    <li><a href="../../mathematics/special-functions.html">Special Functions</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>External Resources</h4>
+                <ul class="footer-nav">
+                    <li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li>
+                    <li><a href="https://openai.com/research" target="_blank">OpenAI Research</a></li>
+                    <li><a href="https://arxiv.org/list/cs.AI/recent" target="_blank">arXiv AI Papers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <p class="footer-note">
+                    Generative AI notes • Updated June 19, 2025
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../../../config/latex-config.js"></script>
+    <script src="../../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../../assets/js/latex-renderer.js"></script>
+    <script src="../../../../assets/js/main.js"></script>
+</body>
+</html>

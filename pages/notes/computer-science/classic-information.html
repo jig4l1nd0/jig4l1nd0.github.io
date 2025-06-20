@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Information Theory - Computer Science Notes</title>
+    <meta name="description" content="Fundamental concepts of information theory: entropy, coding theory, channel capacity, and data compression">
+    <meta name="author" content="Josué Galindo">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Custom syntax highlighting styles -->
+    <link rel="stylesheet" href="../../../assets/css/syntax-highlighting.css">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../index.html" class="nav-link active">Notes</a></li>
+                <li><a href="../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main">
+        <!-- Note Header -->
+        <section class="note-header-section">
+            <div class="content-container">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Notes</a> → 
+                    <a href="index.html">Computer Science</a> → 
+                    <span>Classic Information Theory</span>
+                </nav>
+                
+                <h1>Classic Information Theory</h1>
+                
+                <div class="note-meta">
+                    <span class="note-area computer-science">Computer Science</span>
+                    <span class="note-date">June 19, 2025</span>
+                    <div class="note-tags">
+                        <span class="tag">Information Theory</span>
+                        <span class="tag">Entropy</span>
+                        <span class="tag">Coding Theory</span>
+                        <span class="tag">Shannon</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note Content -->
+        <article class="note-content">
+            <div class="content-container">
+                <!-- Introduction -->
+                <section>
+                    <h2>Introduction</h2>
+                    <p>
+                        Information theory, founded by Claude Shannon in 1948, provides the mathematical foundation 
+                        for quantifying, storing, and communicating information. It establishes fundamental limits 
+                        on data compression and reliable communication over noisy channels.
+                    </p>
+                </section>
+
+                <!-- Entropy and Information -->
+                <section>
+                    <h2>Entropy and Information Content</h2>
+                    
+                    <h3>Self-Information</h3>
+                    <p>The information content of an event with probability $p$ is:</p>
+                    
+                    $$I(x) = -\log_2(p(x)) = \log_2\left(\frac{1}{p(x)}\right) \text{ bits}$$
+                    
+                    <p>Properties:</p>
+                    <ul>
+                        <li>More surprising events carry more information</li>
+                        <li>Certain events ($p = 1$) carry zero information</li>
+                        <li>Information is additive for independent events</li>
+                    </ul>
+
+                    <h3>Shannon Entropy</h3>
+                    <p>The expected information content of a random variable $X$:</p>
+                    
+                    $$H(X) = -\sum_{x \in \mathcal{X}} p(x) \log_2 p(x) \text{ bits}$$
+                    
+                    <p>For continuous variables:</p>
+                    
+                    $$H(X) = -\int_{-\infty}^{\infty} f(x) \log_2 f(x) \, dx$$
+
+                    <h3>Properties of Entropy</h3>
+                    <ul>
+                        <li><strong>Non-negativity:</strong> $H(X) \geq 0$</li>
+                        <li><strong>Maximum:</strong> $H(X) \leq \log_2 |\mathcal{X}|$ (achieved for uniform distribution)</li>
+                        <li><strong>Determinism:</strong> $H(X) = 0$ if $X$ is deterministic</li>
+                        <li><strong>Chain rule:</strong> $H(X,Y) = H(X) + H(Y|X)$</li>
+                    </ul>
+
+                    <h3>Joint and Conditional Entropy</h3>
+                    <p>Joint entropy of two variables:</p>
+                    
+                    $$H(X,Y) = -\sum_{x,y} p(x,y) \log_2 p(x,y)$$
+                    
+                    <p>Conditional entropy:</p>
+                    
+                    $$H(Y|X) = -\sum_{x,y} p(x,y) \log_2 p(y|x) = H(X,Y) - H(X)$$
+                    
+                    <p>This represents the uncertainty in $Y$ given knowledge of $X$.</p>
+                </section>
+
+                <!-- Mutual Information -->
+                <section>
+                    <h2>Mutual Information</h2>
+                    
+                    <h3>Definition</h3>
+                    <p>Mutual information measures the amount of information shared between two variables:</p>
+                    
+                    $$I(X;Y) = \sum_{x,y} p(x,y) \log_2 \frac{p(x,y)}{p(x)p(y)}$$
+                    
+                    <p>Alternative formulations:</p>
+                    
+                    $$I(X;Y) = H(X) - H(X|Y) = H(Y) - H(Y|X) = H(X) + H(Y) - H(X,Y)$$
+
+                    <h3>Properties</h3>
+                    <ul>
+                        <li><strong>Symmetry:</strong> $I(X;Y) = I(Y;X)$</li>
+                        <li><strong>Non-negativity:</strong> $I(X;Y) \geq 0$</li>
+                        <li><strong>Independence:</strong> $I(X;Y) = 0$ if $X$ and $Y$ are independent</li>
+                        <li><strong>Data processing inequality:</strong> $I(X;Z) \leq I(X;Y)$ if $X \to Y \to Z$</li>
+                    </ul>
+
+                    <h3>Kullback-Leibler Divergence</h3>
+                    <p>Measures the "distance" between two probability distributions:</p>
+                    
+                    $$D_{KL}(P||Q) = \sum_x p(x) \log_2 \frac{p(x)}{q(x)}$$
+                    
+                    <p>Properties:</p>
+                    <ul>
+                        <li>$D_{KL}(P||Q) \geq 0$ with equality iff $P = Q$</li>
+                        <li>Generally not symmetric: $D_{KL}(P||Q) \neq D_{KL}(Q||P)$</li>
+                        <li>$I(X;Y) = D_{KL}(p(x,y)||p(x)p(y))$</li>
+                    </ul>
+                </section>
+
+                <!-- Source Coding -->
+                <section>
+                    <h2>Source Coding</h2>
+                    
+                    <h3>Source Coding Theorem</h3>
+                    <p>Shannon's first theorem states that the average codeword length $L$ satisfies:</p>
+                    
+                    $$H(X) \leq L < H(X) + 1$$
+                    
+                    <p>The entropy $H(X)$ is the fundamental limit for lossless compression.</p>
+
+                    <h3>Huffman Coding</h3>
+                    <p>Optimal prefix-free code construction algorithm:</p>
+                    
+                    <ol>
+                        <li>List symbols in order of decreasing probability</li>
+                        <li>Combine two least probable symbols</li>
+                        <li>Repeat until one symbol remains</li>
+                        <li>Assign binary codes from the tree</li>
+                    </ol>
+                    
+                    <p>Huffman coding achieves the minimum expected codeword length among all prefix-free codes.</p>
+
+                    <h3>Arithmetic Coding</h3>
+                    <p>Represents entire messages as single numbers in $[0,1)$. Can achieve compression arbitrarily close to the entropy limit:</p>
+                    
+                    $$L \to H(X) \text{ as message length } \to \infty$$
+
+                    <h3>Lempel-Ziv Coding</h3>
+                    <p>Universal compression algorithms (LZ77, LZ78) that adapt to the source statistics without prior knowledge. Form the basis of practical compressors like gzip and ZIP.</p>
+                </section>
+
+                <!-- Channel Coding -->
+                <section>
+                    <h2>Channel Coding</h2>
+                    
+                    <h3>Channel Model</h3>
+                    <p>A discrete memoryless channel is characterized by:</p>
+                    
+                    $$p(y|x) = \text{probability of receiving } y \text{ given input } x$$
+                    
+                    <h4>Binary Symmetric Channel (BSC)</h4>
+                    <p>Simple model with crossover probability $p$:</p>
+                    
+                    $$p(y|x) = \begin{cases}
+                    1-p & \text{if } y = x \\
+                    p & \text{if } y \neq x
+                    \end{cases}$$
+
+                    <h4>Binary Erasure Channel (BEC)</h4>
+                    <p>Input bits are either received correctly or erased with probability $\alpha$:</p>
+                    
+                    $$p(y|x) = \begin{cases}
+                    1-\alpha & \text{if } y = x \\
+                    \alpha & \text{if } y = ? \\
+                    0 & \text{otherwise}
+                    \end{cases}$$
+
+                    <h3>Channel Capacity</h3>
+                    <p>The maximum rate of reliable communication:</p>
+                    
+                    $$C = \max_{p(x)} I(X;Y)$$
+                    
+                    <p>For specific channels:</p>
+                    <ul>
+                        <li><strong>BSC:</strong> $C = 1 - H(p) = 1 + p\log_2 p + (1-p)\log_2(1-p)$</li>
+                        <li><strong>BEC:</strong> $C = 1 - \alpha$</li>
+                        <li><strong>AWGN:</strong> $C = \frac{1}{2}\log_2(1 + \text{SNR})$ bits per channel use</li>
+                    </ul>
+
+                    <h3>Shannon's Channel Coding Theorem</h3>
+                    <p>For any rate $R < C$, there exist codes that achieve arbitrarily low error probability. Conversely, for $R > C$, the error probability is bounded away from zero.</p>
+                    
+                    <p>This establishes the fundamental trade-off between data rate and reliability.</p>
+
+                    <h3>Error Correcting Codes</h3>
+                    
+                    <h4>Linear Block Codes</h4>
+                    <p>An $(n,k)$ linear code maps $k$ information bits to $n$ codeword bits:</p>
+                    
+                    $$\mathbf{c} = \mathbf{u} \mathbf{G}$$
+                    
+                    <p>where $\mathbf{G}$ is the $k \times n$ generator matrix.</p>
+                    
+                    <p>The minimum distance $d_{min}$ determines error correction capability:</p>
+                    
+                    $$t = \left\lfloor \frac{d_{min} - 1}{2} \right\rfloor$$
+
+                    <h4>Hamming Codes</h4>
+                    <p>Perfect single-error-correcting codes with parameters:</p>
+                    
+                    $$n = 2^m - 1, \quad k = 2^m - 1 - m, \quad d_{min} = 3$$
+                    
+                    <p>Can correct any single bit error in the codeword.</p>
+
+                    <h4>Reed-Solomon Codes</h4>
+                    <p>Non-binary codes that can correct up to $t$ symbol errors:</p>
+                    
+                    $$n - k = 2t$$
+                    
+                    <p>Widely used in storage systems and digital communications.</p>
+                </section>
+
+                <!-- Python Implementation -->
+                <section>
+                    <h2>Computational Examples</h2>
+                    
+                    <p>
+                        Here's a comprehensive Python implementation of information theory concepts:
+                    </p>
+                    
+                    <div class="note-code" data-language="python">
+                        <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from collections import Counter, defaultdict
+from heapq import heappush, heappop
+import string
+import random
+
+# 1. Entropy and Information Measures
+def entropy(probabilities):
+    """Calculate Shannon entropy in bits"""
+    p = np.array(probabilities)
+    p = p[p > 0]  # Remove zero probabilities
+    return -np.sum(p * np.log2(p))
+
+def joint_entropy(joint_prob):
+    """Calculate joint entropy H(X,Y)"""
+    p = np.array(joint_prob).flatten()
+    p = p[p > 0]
+    return -np.sum(p * np.log2(p))
+
+def conditional_entropy(joint_prob, marginal_x):
+    """Calculate conditional entropy H(Y|X)"""
+    h_xy = joint_entropy(joint_prob)
+    h_x = entropy(marginal_x)
+    return h_xy - h_x
+
+def mutual_information(joint_prob, marginal_x, marginal_y):
+    """Calculate mutual information I(X;Y)"""
+    h_x = entropy(marginal_x)
+    h_y = entropy(marginal_y)
+    h_xy = joint_entropy(joint_prob)
+    return h_x + h_y - h_xy
+
+def kl_divergence(p, q):
+    """Calculate Kullback-Leibler divergence D(P||Q)"""
+    p, q = np.array(p), np.array(q)
+    # Add small epsilon to avoid log(0)
+    epsilon = 1e-10
+    q = np.maximum(q, epsilon)
+    mask = p > 0
+    return np.sum(p[mask] * np.log2(p[mask] / q[mask]))
+
+# 2. Huffman Coding Implementation
+class HuffmanNode:
+    def __init__(self, char=None, freq=0, left=None, right=None):
+        self.char = char
+        self.freq = freq
+        self.left = left
+        self.right = right
+    
+    def __lt__(self, other):
+        return self.freq < other.freq
+
+def build_huffman_tree(frequencies):
+    """Build Huffman tree from character frequencies"""
+    heap = []
+    
+    # Create leaf nodes
+    for char, freq in frequencies.items():
+        heappush(heap, HuffmanNode(char, freq))
+    
+    # Build tree bottom-up
+    while len(heap) > 1:
+        left = heappop(heap)
+        right = heappop(heap)
+        merged = HuffmanNode(freq=left.freq + right.freq, left=left, right=right)
+        heappush(heap, merged)
+    
+    return heap[0] if heap else None
+
+def generate_huffman_codes(root):
+    """Generate Huffman codes from tree"""
+    if not root:
+        return {}
+    
+    codes = {}
+    
+    def traverse(node, code=""):
+        if node.char is not None:  # Leaf node
+            codes[node.char] = code if code else "0"  # Handle single character case
+        else:
+            if node.left:
+                traverse(node.left, code + "0")
+            if node.right:
+                traverse(node.right, code + "1")
+    
+    traverse(root)
+    return codes
+
+def huffman_encode(text, codes):
+    """Encode text using Huffman codes"""
+    return ''.join(codes[char] for char in text)
+
+def huffman_decode(encoded, root):
+    """Decode Huffman encoded text"""
+    if not root or not encoded:
+        return ""
+    
+    decoded = []
+    current = root
+    
+    for bit in encoded:
+        if bit == '0':
+            current = current.left
+        else:
+            current = current.right
+        
+        if current.char is not None:  # Leaf node
+            decoded.append(current.char)
+            current = root
+    
+    return ''.join(decoded)
+
+# 3. Channel Models and Capacity
+def bsc_capacity(crossover_prob):
+    """Binary Symmetric Channel capacity"""
+    if crossover_prob == 0 or crossover_prob == 1:
+        return 1
+    h_p = -crossover_prob * np.log2(crossover_prob) - (1-crossover_prob) * np.log2(1-crossover_prob)
+    return 1 - h_p
+
+def bec_capacity(erasure_prob):
+    """Binary Erasure Channel capacity"""
+    return 1 - erasure_prob
+
+def awgn_capacity(snr_db):
+    """AWGN Channel capacity in bits per channel use"""
+    snr_linear = 10**(snr_db / 10)
+    return 0.5 * np.log2(1 + snr_linear)
+
+def simulate_bsc(bits, crossover_prob):
+    """Simulate transmission through Binary Symmetric Channel"""
+    received = []
+    for bit in bits:
+        if np.random.random() < crossover_prob:
+            received.append(1 - bit)  # Flip bit
+        else:
+            received.append(bit)
+    return received
+
+# 4. Demonstration and Analysis
+def information_theory_demo():
+    """Comprehensive demonstration of information theory concepts"""
+    
+    print("=== Information Theory Analysis ===\n")
+    
+    # 1. Entropy analysis
+    print("1. Entropy Analysis")
+    print("-" * 20)
+    
+    # Fair coin
+    fair_coin = [0.5, 0.5]
+    h_fair = entropy(fair_coin)
+    
+    # Biased coin
+    biased_coin = [0.1, 0.9]
+    h_biased = entropy(biased_coin)
+    
+    # Uniform distribution over 8 symbols
+    uniform_8 = [1/8] * 8
+    h_uniform = entropy(uniform_8)
+    
+    print(f"Fair coin entropy: {h_fair:.3f} bits")
+    print(f"Biased coin entropy: {h_biased:.3f} bits")
+    print(f"Uniform 8-symbol entropy: {h_uniform:.3f} bits")
+    print(f"Maximum entropy for 8 symbols: {np.log2(8):.3f} bits\n")
+    
+    # 2. Joint and conditional entropy
+    print("2. Joint and Conditional Entropy")
+    print("-" * 35)
+    
+    # Example: X and Y are binary variables
+    # Joint distribution P(X,Y)
+    joint_prob = np.array([[0.25, 0.25],    # P(X=0,Y=0), P(X=0,Y=1)
+                          [0.25, 0.25]])    # P(X=1,Y=0), P(X=1,Y=1)
+    
+    marginal_x = np.sum(joint_prob, axis=1)  # [0.5, 0.5]
+    marginal_y = np.sum(joint_prob, axis=0)  # [0.5, 0.5]
+    
+    h_x = entropy(marginal_x)
+    h_y = entropy(marginal_y)
+    h_xy = joint_entropy(joint_prob)
+    h_y_given_x = conditional_entropy(joint_prob, marginal_x)
+    mi_xy = mutual_information(joint_prob, marginal_x, marginal_y)
+    
+    print(f"H(X) = {h_x:.3f} bits")
+    print(f"H(Y) = {h_y:.3f} bits")
+    print(f"H(X,Y) = {h_xy:.3f} bits")
+    print(f"H(Y|X) = {h_y_given_x:.3f} bits")
+    print(f"I(X;Y) = {mi_xy:.3f} bits")
+    print(f"Verification: H(X) + H(Y|X) = {h_x + h_y_given_x:.3f} bits\n")
+    
+    # 3. Huffman coding example
+    print("3. Huffman Coding Example")
+    print("-" * 25)
+    
+    # Sample text
+    text = "this is an example of huffman coding"
+    
+    # Calculate character frequencies
+    frequencies = Counter(text)
+    total_chars = len(text)
+    
+    print(f"Original text: '{text}'")
+    print(f"Character frequencies: {dict(frequencies)}")
+    
+    # Build Huffman tree and generate codes
+    root = build_huffman_tree(frequencies)
+    codes = generate_huffman_codes(root)
+    
+    print(f"Huffman codes: {codes}")
+    
+    # Encode and decode
+    encoded = huffman_encode(text, codes)
+    decoded = huffman_decode(encoded, root)
+    
+    # Calculate compression statistics
+    original_bits = len(text) * 8  # ASCII encoding
+    compressed_bits = len(encoded)
+    compression_ratio = compressed_bits / original_bits
+    
+    # Calculate theoretical limits
+    char_probs = [freq/total_chars for freq in frequencies.values()]
+    theoretical_entropy = entropy(char_probs)
+    average_code_length = sum(len(codes[char]) * freq for char, freq in frequencies.items()) / total_chars
+    
+    print(f"\nCompression Analysis:")
+    print(f"Original size: {original_bits} bits")
+    print(f"Compressed size: {compressed_bits} bits")
+    print(f"Compression ratio: {compression_ratio:.3f}")
+    print(f"Space saving: {(1-compression_ratio)*100:.1f}%")
+    print(f"Theoretical entropy: {theoretical_entropy:.3f} bits/symbol")
+    print(f"Average code length: {average_code_length:.3f} bits/symbol")
+    print(f"Efficiency: {theoretical_entropy/average_code_length*100:.1f}%")
+    
+    # Verify encoding/decoding
+    print(f"Decoding successful: {decoded == text}\n")
+    
+    # 4. Channel capacity analysis
+    print("4. Channel Capacity Analysis")
+    print("-" * 30)
+    
+    # BSC capacity vs crossover probability
+    p_values = np.linspace(0, 0.5, 100)
+    bsc_capacities = [bsc_capacity(p) for p in p_values]
+    
+    # BEC capacity vs erasure probability
+    alpha_values = np.linspace(0, 1, 100)
+    bec_capacities = [bec_capacity(alpha) for alpha in alpha_values]
+    
+    # AWGN capacity vs SNR
+    snr_db_values = np.linspace(-10, 20, 100)
+    awgn_capacities = [awgn_capacity(snr) for snr in snr_db_values]
+    
+    # Plotting
+    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+    
+    # BSC Capacity
+    ax1.plot(p_values, bsc_capacities, 'b-', linewidth=2)
+    ax1.set_xlabel('Crossover Probability p')
+    ax1.set_ylabel('Capacity (bits)')
+    ax1.set_title('Binary Symmetric Channel Capacity')
+    ax1.grid(True)
+    
+    # BEC Capacity
+    ax2.plot(alpha_values, bec_capacities, 'r-', linewidth=2)
+    ax2.set_xlabel('Erasure Probability α')
+    ax2.set_ylabel('Capacity (bits)')
+    ax2.set_title('Binary Erasure Channel Capacity')
+    ax2.grid(True)
+    
+    # AWGN Capacity
+    ax3.plot(snr_db_values, awgn_capacities, 'g-', linewidth=2)
+    ax3.set_xlabel('SNR (dB)')
+    ax3.set_ylabel('Capacity (bits per channel use)')
+    ax3.set_title('AWGN Channel Capacity')
+    ax3.grid(True)
+    
+    # Entropy vs probability for binary source
+    p_binary = np.linspace(0.001, 0.999, 1000)
+    h_binary = [-p*np.log2(p) - (1-p)*np.log2(1-p) for p in p_binary]
+    
+    ax4.plot(p_binary, h_binary, 'purple', linewidth=2)
+    ax4.set_xlabel('Probability p')
+    ax4.set_ylabel('Entropy H(p) (bits)')
+    ax4.set_title('Binary Entropy Function')
+    ax4.grid(True)
+    ax4.axhline(y=1, color='red', linestyle='--', alpha=0.7, label='Maximum entropy')
+    ax4.legend()
+    
+    plt.tight_layout()
+    plt.show()
+    
+    # 5. Channel simulation
+    print("5. Channel Simulation")
+    print("-" * 20)
+    
+    # Generate random bits
+    message_bits = [random.randint(0, 1) for _ in range(1000)]
+    
+    # Simulate BSC with different crossover probabilities
+    crossover_probs = [0.01, 0.05, 0.1, 0.2]
+    
+    print("BSC Simulation Results:")
+    for p in crossover_probs:
+        received_bits = simulate_bsc(message_bits, p)
+        bit_errors = sum(1 for orig, recv in zip(message_bits, received_bits) if orig != recv)
+        ber = bit_errors / len(message_bits)
+        theoretical_ber = p
+        
+        print(f"p = {p:.2f}: BER = {ber:.4f}, Theoretical = {theoretical_ber:.4f}")
+    
+    print(f"\nKey Information Theory Results:")
+    print(f"- Shannon limit: Channel capacity C sets fundamental limit on reliable communication")
+    print(f"- Source coding: Entropy H(X) sets fundamental limit on compression")
+    print(f"- Channel coding: Codes approaching capacity achieve arbitrarily low error rates")
+    print(f"- Trade-offs: Rate vs reliability, compression vs complexity")
+
+# Run the demonstration
+if __name__ == "__main__":
+    information_theory_demo()
+</code></pre>
+                    </div>
+                </section>
+
+                <!-- Applications -->
+                <section>
+                    <h2>Applications and Modern Developments</h2>
+                    
+                    <h3>Data Compression</h3>
+                    <ul>
+                        <li><strong>Lossless:</strong> ZIP, gzip, FLAC (based on entropy coding)</li>
+                        <li><strong>Lossy:</strong> JPEG, MP3, H.264 (exploit perceptual redundancy)</li>
+                        <li><strong>Universal:</strong> Lempel-Ziv algorithms adapt without prior knowledge</li>
+                    </ul>
+
+                    <h3>Digital Communications</h3>
+                    <ul>
+                        <li><strong>Error correction:</strong> Reed-Solomon, Turbo codes, LDPC codes</li>
+                        <li><strong>Modulation:</strong> QAM, OFDM optimized for channel capacity</li>
+                        <li><strong>Multiple access:</strong> CDMA, MIMO systems</li>
+                    </ul>
+
+                    <h3>Storage Systems</h3>
+                    <ul>
+                        <li><strong>Hard drives:</strong> Reed-Solomon codes for error correction</li>
+                        <li><strong>Flash memory:</strong> LDPC codes, advanced signal processing</li>
+                        <li><strong>Optical storage:</strong> Cross-interleaved Reed-Solomon codes</li>
+                    </ul>
+
+                    <h3>Network Communications</h3>
+                    <ul>
+                        <li><strong>Internet protocols:</strong> TCP reliability, HTTP compression</li>
+                        <li><strong>Wireless:</strong> 4G/5G systems approaching Shannon limits</li>
+                        <li><strong>Satellite:</strong> Deep space communications with powerful codes</li>
+                    </ul>
+
+                    <h3>Machine Learning Connections</h3>
+                    <ul>
+                        <li><strong>Feature selection:</strong> Mutual information for relevance</li>
+                        <li><strong>Model compression:</strong> Entropy-based pruning</li>
+                        <li><strong>Generative models:</strong> Maximum entropy principles</li>
+                        <li><strong>Information bottleneck:</strong> Theory of deep learning</li>
+                    </ul>
+                </section>
+
+                <!-- Summary -->
+                <section>
+                    <h2>Summary</h2>
+                    
+                    <p>
+                        Classic information theory provides fundamental insights into information processing:
+                    </p>
+                    
+                    <ul>
+                        <li><strong>Entropy:</strong> Quantifies uncertainty and sets compression limits</li>
+                        <li><strong>Mutual Information:</strong> Measures statistical dependence between variables</li>
+                        <li><strong>Source Coding:</strong> Optimal compression approaches entropy limit</li>
+                        <li><strong>Channel Coding:</strong> Reliable communication up to channel capacity</li>
+                        <li><strong>Fundamental Limits:</strong> Mathematical bounds on information processing</li>
+                    </ul>
+                    
+                    <p>
+                        These principles underpin modern digital communications, data storage, compression algorithms, 
+                        and increasingly influence machine learning and artificial intelligence research.
+                    </p>
+                </section>
+            </div>
+        </article>
+
+        <!-- Navigation between notes -->
+        <section class="note-navigation">
+            <div class="content-container">
+                <div class="nav-links">
+                    <a href="quantum-information.html" class="nav-link next">Next: Quantum Information →</a>
+                    <a href="index.html" class="nav-link up">↑ Back to Computer Science</a>
+                    <a href="../mathematics/special-functions.html" class="nav-link prev">← Special Functions</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <!-- ...existing footer content... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../../config/latex-config.js"></script>
+    <script src="../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../assets/js/latex-renderer.js"></script>
+    <script src="../../../assets/js/enhanced-syntax-highlighter.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

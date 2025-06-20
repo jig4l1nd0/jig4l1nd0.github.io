@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Information Theory - Computer Science Notes</title>
+    <meta name="description" content="Quantum information processing: qubits, entanglement, quantum protocols, and quantum communication">
+    <meta name="author" content="Josué Galindo">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Custom syntax highlighting styles -->
+    <link rel="stylesheet" href="../../../assets/css/syntax-highlighting.css">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../index.html" class="nav-link active">Notes</a></li>
+                <li><a href="../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main">
+        <!-- Note Header -->
+        <section class="note-header-section">
+            <div class="content-container">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Notes</a> → 
+                    <a href="index.html">Computer Science</a> → 
+                    <span>Quantum Information</span>
+                </nav>
+                
+                <h1>Quantum Information Theory</h1>
+                
+                <div class="note-meta">
+                    <span class="note-area computer-science">Computer Science</span>
+                    <span class="note-date">June 19, 2025</span>
+                    <div class="note-tags">
+                        <span class="tag">Quantum Information</span>
+                        <span class="tag">Qubits</span>
+                        <span class="tag">Entanglement</span>
+                        <span class="tag">Quantum Protocols</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note Content -->
+        <article class="note-content">
+            <div class="content-container">
+                <!-- Introduction -->
+                <section>
+                    <h2>Introduction</h2>
+                    <p>
+                        Quantum information theory extends classical information theory to quantum mechanical systems, 
+                        exploiting quantum phenomena like superposition, entanglement, and measurement to achieve 
+                        information processing tasks impossible with classical systems.
+                    </p>
+                </section>
+
+                <!-- Quantum Bits and States -->
+                <section>
+                    <h2>Quantum Bits and States</h2>
+                    
+                    <h3>The Qubit</h3>
+                    <p>A quantum bit (qubit) is the fundamental unit of quantum information:</p>
+                    
+                    $$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$$
+                    
+                    <p>where $\alpha, \beta \in \mathbb{C}$ and $|\alpha|^2 + |\beta|^2 = 1$.</p>
+                    
+                    <p>Key differences from classical bits:</p>
+                    <ul>
+                        <li><strong>Superposition:</strong> Can exist in combinations of 0 and 1 states</li>
+                        <li><strong>Continuous parameters:</strong> Infinite possible states on the Bloch sphere</li>
+                        <li><strong>No-cloning:</strong> Cannot be perfectly copied</li>
+                        <li><strong>Measurement collapse:</strong> Observation destroys superposition</li>
+                    </ul>
+
+                    <h3>Bloch Sphere Representation</h3>
+                    <p>Any single qubit state can be written as:</p>
+                    
+                    $$|\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle$$
+                    
+                    <p>where $\theta \in [0,\pi]$ and $\phi \in [0,2\pi)$ are spherical coordinates.</p>
+
+                    <h3>Multi-Qubit Systems</h3>
+                    <p>An $n$-qubit system lives in a $2^n$-dimensional Hilbert space:</p>
+                    
+                    $$|\psi\rangle = \sum_{i=0}^{2^n-1} \alpha_i |i\rangle$$
+                    
+                    <p>with normalization $\sum_{i=0}^{2^n-1} |\alpha_i|^2 = 1$.</p>
+
+                    <h3>Density Matrix Formalism</h3>
+                    <p>Mixed quantum states are described by density matrices:</p>
+                    
+                    $$\rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|$$
+                    
+                    <p>Properties:</p>
+                    <ul>
+                        <li>$\text{Tr}(\rho) = 1$ (normalization)</li>
+                        <li>$\rho \geq 0$ (positive semidefinite)</li>
+                        <li>$\text{Tr}(\rho^2) = 1$ for pure states, $< 1$ for mixed states</li>
+                    </ul>
+                </section>
+
+                <!-- Quantum Entanglement -->
+                <section>
+                    <h2>Quantum Entanglement</h2>
+                    
+                    <h3>Definition and Examples</h3>
+                    <p>A quantum state is entangled if it cannot be written as a product of individual qubit states.</p>
+                    
+                    <h4>Bell States</h4>
+                    <p>The four maximally entangled two-qubit states:</p>
+                    
+                    $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+                    $$|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$$
+                    $$|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$$
+                    $$|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$$
+
+                    <h4>GHZ State</h4>
+                    <p>Three-qubit maximally entangled state:</p>
+                    
+                    $$|\text{GHZ}\rangle = \frac{1}{\sqrt{2}}(|000\rangle + |111\rangle)$$
+
+                    <h3>Entanglement Measures</h3>
+                    
+                    <h4>Concurrence</h4>
+                    <p>For a two-qubit state $\rho$:</p>
+                    
+                    $$C(\rho) = \max(0, \lambda_1 - \lambda_2 - \lambda_3 - \lambda_4)$$
+                    
+                    <p>where $\lambda_i$ are eigenvalues of $\sqrt{\sqrt{\rho}\tilde{\rho}\sqrt{\rho}}$ in decreasing order.</p>
+
+                    <h4>Entanglement of Formation</h4>
+                    <p>For two-qubit systems:</p>
+                    
+                    $$E_F(\rho) = h\left(\frac{1 + \sqrt{1 - C^2}}{2}\right)$$
+                    
+                    <p>where $h(x) = -x\log_2 x - (1-x)\log_2(1-x)$ is the binary entropy.</p>
+
+                    <h4>Entanglement Entropy</h4>
+                    <p>Von Neumann entropy of the reduced density matrix:</p>
+                    
+                    $$S(\rho_A) = -\text{Tr}(\rho_A \log_2 \rho_A)$$
+                    
+                    <p>where $\rho_A = \text{Tr}_B(\rho_{AB})$ is the partial trace.</p>
+
+                    <h3>Bell's Theorem and Nonlocality</h3>
+                    <p>Bell's inequality for local realistic theories:</p>
+                    
+                    $$|E(a,b) - E(a,c)| + |E(d,b) + E(d,c)| \leq 2$$
+                    
+                    <p>Quantum mechanics can violate this with maximum violation:</p>
+                    
+                    $$2\sqrt{2} \approx 2.828$$
+                    
+                    <p>achieved by the CHSH (Clauser-Horne-Shimony-Holt) inequality.</p>
+                </section>
+
+                <!-- Quantum Information Measures -->
+                <section>
+                    <h2>Quantum Information Measures</h2>
+                    
+                    <h3>Von Neumann Entropy</h3>
+                    <p>Quantum analog of Shannon entropy:</p>
+                    
+                    $$S(\rho) = -\text{Tr}(\rho \log_2 \rho) = -\sum_i \lambda_i \log_2 \lambda_i$$
+                    
+                    <p>where $\lambda_i$ are eigenvalues of $\rho$.</p>
+
+                    <h3>Quantum Mutual Information</h3>
+                    <p>Information shared between quantum subsystems:</p>
+                    
+                    $$I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})$$
+                    
+                    <p>Always non-negative, unlike classical case with quantum systems.</p>
+
+                    <h3>Quantum Conditional Entropy</h3>
+                    <p>Can be negative for entangled states:</p>
+                    
+                    $$S(A|B) = S(\rho_{AB}) - S(\rho_B)$$
+                    
+                    <p>Negative values indicate entanglement and quantum correlations.</p>
+
+                    <h3>Quantum Relative Entropy</h3>
+                    <p>Quantum analog of Kullback-Leibler divergence:</p>
+                    
+                    $$S(\rho||\sigma) = \text{Tr}(\rho \log \rho) - \text{Tr}(\rho \log \sigma)$$
+                    
+                    <p>Properties:</p>
+                    <ul>
+                        <li>$S(\rho||\sigma) \geq 0$ with equality iff $\rho = \sigma$</li>
+                        <li>Not symmetric: $S(\rho||\sigma) \neq S(\sigma||\rho)$</li>
+                        <li>Monotonic under quantum operations</li>
+                    </ul>
+
+                    <h3>Holevo Information</h3>
+                    <p>Maximum classical information extractable from quantum ensemble:</p>
+                    
+                    $$\chi(\{p_i, \rho_i\}) = S\left(\sum_i p_i \rho_i\right) - \sum_i p_i S(\rho_i)$$
+                    
+                    <p>Bounds the accessible information in quantum communication.</p>
+                </section>
+
+                <!-- Quantum Operations and Channels -->
+                <section>
+                    <h2>Quantum Operations and Channels</h2>
+                    
+                    <h3>Quantum Operations</h3>
+                    <p>Completely positive trace-preserving (CPTP) maps:</p>
+                    
+                    $$\mathcal{E}(\rho) = \sum_i K_i \rho K_i^\dagger$$
+                    
+                    <p>where $\{K_i\}$ are Kraus operators satisfying $\sum_i K_i^\dagger K_i = I$.</p>
+
+                    <h3>Common Quantum Channels</h3>
+                    
+                    <h4>Bit Flip Channel</h4>
+                    $$\mathcal{E}_{bf}(\rho) = (1-p)\rho + p X\rho X$$
+                    
+                    <h4>Phase Flip Channel</h4>
+                    $$\mathcal{E}_{pf}(\rho) = (1-p)\rho + p Z\rho Z$$
+                    
+                    <h4>Depolarizing Channel</h4>
+                    $$\mathcal{E}_{dep}(\rho) = (1-p)\rho + \frac{p}{3}(X\rho X + Y\rho Y + Z\rho Z)$$
+                    
+                    <h4>Amplitude Damping Channel</h4>
+                    <p>Models energy loss with Kraus operators:</p>
+                    $$K_0 = \begin{pmatrix} 1 & 0 \\ 0 & \sqrt{1-\gamma} \end{pmatrix}, \quad K_1 = \begin{pmatrix} 0 & \sqrt{\gamma} \\ 0 & 0 \end{pmatrix}$$
+
+                    <h3>Quantum Channel Capacity</h3>
+                    <p>Holevo capacity for classical information transmission:</p>
+                    
+                    $$C_{\chi} = \max_{\{p_i, \rho_i\}} \chi(\{p_i, \mathcal{E}(\rho_i)\})$$
+                    
+                    <p>Quantum capacity for quantum information transmission:</p>
+                    
+                    $$Q = \lim_{n \to \infty} \frac{1}{n} Q^{(1)}(\mathcal{E}^{\otimes n})$$
+                    
+                    <p>where $Q^{(1)}(\mathcal{E}) = \max_{\rho} [S(\mathcal{E}(\rho)) - S(\mathcal{E}, \rho)]$ is the coherent information.</p>
+                </section>
+
+                <!-- Quantum Protocols -->
+                <section>
+                    <h2>Quantum Communication Protocols</h2>
+                    
+                    <h3>Quantum Key Distribution (QKD)</h3>
+                    
+                    <h4>BB84 Protocol</h4>
+                    <ol>
+                        <li>Alice sends random qubits in $\{|0\rangle, |1\rangle, |+\rangle, |-\rangle\}$ bases</li>
+                        <li>Bob measures in random $\{Z, X\}$ bases</li>
+                        <li>They compare bases and keep matching results</li>
+                        <li>Error detection and privacy amplification</li>
+                    </ol>
+                    
+                    <p>Security guaranteed by quantum no-cloning theorem and measurement disturbance.</p>
+
+                    <h4>E91 Protocol</h4>
+                    <p>Uses entangled pairs and Bell inequality violations to detect eavesdropping.</p>
+
+                    <h3>Quantum Teleportation</h3>
+                    <p>Protocol to transfer unknown quantum state using entanglement and classical communication:</p>
+                    
+                    <ol>
+                        <li>Alice and Bob share Bell state $|\Phi^+\rangle_{23}$</li>
+                        <li>Alice performs Bell measurement on qubits 1 and 2</li>
+                        <li>Alice sends 2 classical bits to Bob</li>
+                        <li>Bob applies appropriate Pauli operation to reconstruct state</li>
+                    </ol>
+                    
+                    <p>Requires 2 classical bits + 1 entangled pair (ebit) to send 1 qubit.</p>
+
+                    <h3>Quantum Dense Coding</h3>
+                    <p>Send 2 classical bits using 1 qubit + 1 ebit:</p>
+                    
+                    <ol>
+                        <li>Alice and Bob share $|\Phi^+\rangle$</li>
+                        <li>Alice applies operation based on 2-bit message:
+                            <ul>
+                                <li>00: $I$ → $|\Phi^+\rangle$</li>
+                                <li>01: $Z$ → $|\Phi^-\rangle$</li>
+                                <li>10: $X$ → $|\Psi^+\rangle$</li>
+                                <li>11: $XZ$ → $|\Psi^-\rangle$</li>
+                            </ul>
+                        </li>
+                        <li>Alice sends her qubit to Bob</li>
+                        <li>Bob performs Bell measurement to determine message</li>
+                    </ol>
+
+                    <h3>Quantum Error Correction</h3>
+                    
+                    <h4>Quantum Error Correction Conditions</h4>
+                    <p>A code can correct errors $\{E_a\}$ iff:</p>
+                    
+                    $$\langle \psi_i | E_a^\dagger E_b | \psi_j \rangle = C_{ab} \delta_{ij}$$
+                    
+                    <p>for all codewords $|\psi_i\rangle$.</p>
+
+                    <h4>Shor's 9-Qubit Code</h4>
+                    <p>Corrects arbitrary single-qubit errors by encoding:</p>
+                    
+                    $$|0\rangle_L = \frac{1}{2\sqrt{2}}(|000\rangle + |111\rangle) \otimes (|000\rangle + |111\rangle) \otimes (|000\rangle + |111\rangle)$$
+                    
+                    $$|1\rangle_L = \frac{1}{2\sqrt{2}}(|000\rangle - |111\rangle) \otimes (|000\rangle - |111\rangle) \otimes (|000\rangle - |111\rangle)$$
+
+                    <h4>Stabilizer Codes</h4>
+                    <p>Defined by commuting Pauli operators (stabilizers). The code space is:</p>
+                    
+                    $$\mathcal{C} = \{|\psi\rangle : S|\psi\rangle = |\psi\rangle \text{ for all } S \in \mathcal{S}\}$$
+                    
+                    <p>Example: 5-qubit code with stabilizers:</p>
+                    <ul>
+                        <li>$S_1 = XZZXI$</li>
+                        <li>$S_2 = IXZZX$</li>
+                        <li>$S_3 = XIXZZ$</li>
+                        <li>$S_4 = ZXIXZ$</li>
+                    </ul>
+                </section>
+
+                <!-- Python Implementation -->
+                <section>
+                    <h2>Computational Examples</h2>
+                    
+                    <p>
+                        Here's a comprehensive Python implementation of quantum information concepts:
+                    </p>
+                    
+                    <div class="note-code" data-language="python">
+                        <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.linalg import sqrtm, logm
+import random
+
+# Pauli matrices
+I = np.array([[1, 0], [0, 1]], dtype=complex)
+X = np.array([[0, 1], [1, 0]], dtype=complex)
+Y = np.array([[0, -1j], [1j, 0]], dtype=complex)
+Z = np.array([[1, 0], [0, -1]], dtype=complex)
+
+# Common quantum states
+zero = np.array([[1], [0]], dtype=complex)
+one = np.array([[0], [1]], dtype=complex)
+plus = (zero + one) / np.sqrt(2)
+minus = (zero - one) / np.sqrt(2)
+
+def tensor_product(*args):
+    """Compute tensor product of matrices/vectors"""
+    result = args[0]
+    for arg in args[1:]:
+        result = np.kron(result, arg)
+    return result
+
+def partial_trace(rho, dims, axis):
+    """Compute partial trace over specified subsystem"""
+    n_dims = len(dims)
+    rho_reshaped = rho.reshape(dims + dims)
+    
+    # Sum over the traced-out subsystem
+    axes_to_sum = [axis, axis + n_dims]
+    rho_traced = np.sum(rho_reshaped, axis=tuple(axes_to_sum))
+    
+    # Reshape back to matrix form
+    remaining_dims = dims[:axis] + dims[axis+1:]
+    total_dim = np.prod(remaining_dims)
+    return rho_traced.reshape(total_dim, total_dim)
+
+def von_neumann_entropy(rho, base=2):
+    """Calculate von Neumann entropy"""
+    eigenvals = np.linalg.eigvals(rho)
+    eigenvals = eigenvals[eigenvals > 1e-12]  # Remove numerical zeros
+    if len(eigenvals) == 0:
+        return 0
+    return -np.sum(eigenvals * np.log(eigenvals) / np.log(base))
+
+def quantum_mutual_information(rho_AB, dims):
+    """Calculate quantum mutual information I(A:B)"""
+    rho_A = partial_trace(rho_AB, dims, 1)
+    rho_B = partial_trace(rho_AB, dims, 0)
+    
+    S_A = von_neumann_entropy(rho_A)
+    S_B = von_neumann_entropy(rho_B)
+    S_AB = von_neumann_entropy(rho_AB)
+    
+    return S_A + S_B - S_AB
+
+def concurrence(rho):
+    """Calculate concurrence for two-qubit state"""
+    # Spin-flipped state
+    rho_tilde = tensor_product(Y, Y) @ np.conj(rho) @ tensor_product(Y, Y)
+    
+    # Calculate R matrix
+    R = sqrtm(sqrtm(rho) @ rho_tilde @ sqrtm(rho))
+    eigenvals = np.linalg.eigvals(R)
+    eigenvals = np.sort(np.real(eigenvals))[::-1]  # Sort in descending order
+    
+    return max(0, eigenvals[0] - eigenvals[1] - eigenvals[2] - eigenvals[3])
+
+def bell_state(which='phi_plus'):
+    """Generate Bell states"""
+    states = {
+        'phi_plus': (tensor_product(zero, zero) + tensor_product(one, one)) / np.sqrt(2),
+        'phi_minus': (tensor_product(zero, zero) - tensor_product(one, one)) / np.sqrt(2),
+        'psi_plus': (tensor_product(zero, one) + tensor_product(one, zero)) / np.sqrt(2),
+        'psi_minus': (tensor_product(zero, one) - tensor_product(one, zero)) / np.sqrt(2)
+    }
+    return states[which]
+
+def ghz_state(n_qubits=3):
+    """Generate n-qubit GHZ state"""
+    zeros = tensor_product(*[zero for _ in range(n_qubits)])
+    ones = tensor_product(*[one for _ in range(n_qubits)])
+    return (zeros + ones) / np.sqrt(2)
+
+def depolarizing_channel(rho, p):
+    """Apply depolarizing channel"""
+    return (1 - p) * rho + p/3 * (X @ rho @ X + Y @ rho @ Y + Z @ rho @ Z)
+
+def amplitude_damping_channel(rho, gamma):
+    """Apply amplitude damping channel"""
+    K0 = np.array([[1, 0], [0, np.sqrt(1-gamma)]], dtype=complex)
+    K1 = np.array([[0, np.sqrt(gamma)], [0, 0]], dtype=complex)
+    
+    return K0 @ rho @ K0.conj().T + K1 @ rho @ K1.conj().T
+
+def quantum_teleportation_demo():
+    """Demonstrate quantum teleportation protocol"""
+    print("=== Quantum Teleportation Demo ===")
+    
+    # Unknown state to teleport (random qubit)
+    theta, phi = np.random.uniform(0, 2*np.pi, 2)
+    psi = np.cos(theta/2) * zero + np.exp(1j*phi) * np.sin(theta/2) * one
+    print(f"Original state coefficients: [{np.cos(theta/2):.3f}, {np.exp(1j*phi)*np.sin(theta/2):.3f}]")
+    
+    # Shared Bell state between Alice and Bob
+    bell = bell_state('phi_plus')
+    
+    # Total initial state: |ψ⟩₁ ⊗ |Φ⁺⟩₂₃
+    initial_state = tensor_product(psi, bell)
+    
+    # Alice's Bell measurement on qubits 1,2
+    # Bell basis projectors
+    proj_phi_plus = bell_state('phi_plus') @ bell_state('phi_plus').conj().T
+    proj_phi_minus = bell_state('phi_minus') @ bell_state('phi_minus').conj().T
+    proj_psi_plus = bell_state('psi_plus') @ bell_state('psi_plus').conj().T
+    proj_psi_minus = bell_state('psi_minus') @ bell_state('psi_minus').conj().T
+    
+    # Extend projectors to 3-qubit system
+    bell_projectors = [
+        tensor_product(proj_phi_plus, I),
+        tensor_product(proj_phi_minus, I),
+        tensor_product(proj_psi_plus, I),
+        tensor_product(proj_psi_minus, I)
+    ]
+    
+    # Simulate measurement outcome
+    probabilities = [np.real(np.trace(P @ initial_state @ initial_state.conj().T @ P.conj().T)) 
+                    for P in bell_projectors]
+    outcome = np.random.choice(4, p=probabilities)
+    
+    # Bob's correction operations
+    corrections = [I, Z, X, X@Z]
+    correction = corrections[outcome]
+    
+    # Extract Bob's final state (qubit 3)
+    post_measurement = bell_projectors[outcome] @ initial_state / np.sqrt(probabilities[outcome])
+    bob_rho = partial_trace(post_measurement @ post_measurement.conj().T, [2, 2, 2], 0)
+    bob_rho = partial_trace(bob_rho, [2, 2], 0)
+    
+    # Apply correction
+    final_state_rho = correction @ bob_rho @ correction.conj().T
+    
+    # Check fidelity with original state
+    original_rho = psi @ psi.conj().T
+    fidelity = np.real(np.trace(sqrtm(sqrtm(original_rho) @ final_state_rho @ sqrtm(original_rho))))
+    
+    print(f"Measurement outcome: {outcome}")
+    print(f"Correction applied: {['I', 'Z', 'X', 'XZ'][outcome]}")
+    print(f"Teleportation fidelity: {fidelity:.6f}")
+    print()
+
+def entanglement_analysis():
+    """Analyze entanglement properties of various states"""
+    print("=== Entanglement Analysis ===")
+    
+    # States to analyze
+    states = {
+        'Product state': tensor_product(zero, zero),
+        'Bell state |Φ⁺⟩': bell_state('phi_plus'),
+        'Bell state |Ψ⁻⟩': bell_state('psi_minus'),
+        'Partially mixed': 0.7 * bell_state('phi_plus') @ bell_state('phi_plus').conj().T + 
+                          0.3 * tensor_product(zero, zero) @ tensor_product(zero, zero).conj().T
+    }
+    
+    for name, state in states.items():
+        if state.ndim == 1:  # Pure state
+            rho = state @ state.conj().T
+        else:  # Mixed state
+            rho = state
+        
+        # Calculate measures
+        S_AB = von_neumann_entropy(rho)
+        rho_A = partial_trace(rho, [2, 2], 1)
+        rho_B = partial_trace(rho, [2, 2], 0)
+        S_A = von_neumann_entropy(rho_A)
+        S_B = von_neumann_entropy(rho_B)
+        I_AB = quantum_mutual_information(rho, [2, 2])
+        C = concurrence(rho)
+        
+        print(f"\n{name}:")
+        print(f"  S(AB) = {S_AB:.4f}")
+        print(f"  S(A) = {S_A:.4f}")
+        print(f"  S(B) = {S_B:.4f}")
+        print(f"  I(A:B) = {I_AB:.4f}")
+        print(f"  Concurrence = {C:.4f}")
+        
+        if C > 0.01:
+            print(f"  → Entangled state")
+        else:
+            print(f"  → Separable state")
+
+def quantum_channel_analysis():
+    """Analyze properties of quantum channels"""
+    print("\n=== Quantum Channel Analysis ===")
+    
+    # Initial pure state
+    psi = (zero + one) / np.sqrt(2)  # |+⟩ state
+    rho_initial = psi @ psi.conj().T
+    
+    print(f"Initial state purity: {np.real(np.trace(rho_initial @ rho_initial)):.4f}")
+    print(f"Initial von Neumann entropy: {von_neumann_entropy(rho_initial):.4f}")
+    
+    # Apply different channels
+    channels = [
+        ("Identity", lambda rho: rho),
+        ("Bit flip (p=0.1)", lambda rho: depolarizing_channel(rho, 0.1)),
+        ("Depolarizing (p=0.3)", lambda rho: depolarizing_channel(rho, 0.3)),
+        ("Amplitude damping (γ=0.2)", lambda rho: amplitude_damping_channel(rho, 0.2))
+    ]
+    
+    for name, channel in channels:
+        rho_final = channel(rho_initial)
+        purity = np.real(np.trace(rho_final @ rho_final))
+        entropy = von_neumann_entropy(rho_final)
+        
+        print(f"\n{name}:")
+        print(f"  Final purity: {purity:.4f}")
+        print(f"  Final entropy: {entropy:.4f}")
+        print(f"  Entropy increase: {entropy - von_neumann_entropy(rho_initial):.4f}")
+
+def bb84_simulation():
+    """Simulate BB84 quantum key distribution protocol"""
+    print("\n=== BB84 QKD Simulation ===")
+    
+    n_bits = 1000
+    
+    # Alice's random choices
+    alice_bits = [random.randint(0, 1) for _ in range(n_bits)]
+    alice_bases = [random.randint(0, 1) for _ in range(n_bits)]  # 0: Z basis, 1: X basis
+    
+    # Alice prepares qubits
+    alice_states = []
+    for bit, basis in zip(alice_bits, alice_bases):
+        if basis == 0:  # Z basis
+            state = zero if bit == 0 else one
+        else:  # X basis  
+            state = plus if bit == 0 else minus
+        alice_states.append(state)
+    
+    # Bob's random measurement choices
+    bob_bases = [random.randint(0, 1) for _ in range(n_bits)]
+    
+    # Bob measures qubits
+    bob_results = []
+    for i, state in enumerate(alice_states):
+        rho = state @ state.conj().T
+        
+        if bob_bases[i] == 0:  # Z basis measurement
+            prob_0 = np.real(np.trace(zero @ zero.conj().T @ rho))
+            result = 0 if random.random() < prob_0 else 1
+        else:  # X basis measurement
+            prob_plus = np.real(np.trace(plus @ plus.conj().T @ rho))
+            result = 0 if random.random() < prob_plus else 1
+        
+        bob_results.append(result)
+    
+    # Sifting: keep only matching bases
+    sifted_alice = []
+    sifted_bob = []
+    for i in range(n_bits):
+        if alice_bases[i] == bob_bases[i]:
+            sifted_alice.append(alice_bits[i])
+            sifted_bob.append(bob_results[i])
+    
+    # Calculate error rate
+    errors = sum(1 for a, b in zip(sifted_alice, sifted_bob) if a != b)
+    error_rate = errors / len(sifted_alice) if sifted_alice else 0
+    
+    print(f"Original key length: {n_bits}")
+    print(f"Sifted key length: {len(sifted_alice)}")
+    print(f"Sifting efficiency: {len(sifted_alice)/n_bits:.2%}")
+    print(f"Quantum bit error rate (QBER): {error_rate:.4f}")
+    
+    if error_rate < 0.11:  # Theoretical limit for BB84
+        print("✓ Key distribution successful (QBER below threshold)")
+    else:
+        print("✗ Key distribution failed (QBER too high)")
+
+def quantum_information_demo():
+    """Run comprehensive quantum information demonstrations"""
+    print("=== Quantum Information Theory Demonstrations ===\n")
+    
+    quantum_teleportation_demo()
+    entanglement_analysis()
+    quantum_channel_analysis()
+    bb84_simulation()
+    
+    # Plot entanglement measures
+    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+    
+    # 1. Concurrence vs mixing parameter
+    p_values = np.linspace(0, 1, 100)
+    concurrences = []
+    
+    for p in p_values:
+        # Mixed state: p|Φ⁺⟩⟨Φ⁺| + (1-p)|00⟩⟨00|
+        bell_dm = bell_state('phi_plus') @ bell_state('phi_plus').conj().T
+        product_dm = tensor_product(zero, zero) @ tensor_product(zero, zero).conj().T
+        mixed_state = p * bell_dm + (1-p) * product_dm
+        concurrences.append(concurrence(mixed_state))
+    
+    ax1.plot(p_values, concurrences, 'b-', linewidth=2)
+    ax1.set_xlabel('Bell state weight p')
+    ax1.set_ylabel('Concurrence')
+    ax1.set_title('Entanglement vs Mixing')
+    ax1.grid(True)
+    
+    # 2. Channel capacity vs noise
+    p_noise = np.linspace(0, 1, 100)
+    capacities_dep = []
+    capacities_ad = []
+    
+    for p in p_noise:
+        # For visualization, we'll use simplified capacity formulas
+        # Depolarizing channel capacity (approximate)
+        cap_dep = max(0, 1 - 2*p)  # Simplified formula
+        capacities_dep.append(cap_dep)
+        
+        # Amplitude damping capacity (approximate)
+        cap_ad = max(0, 1 - p)  # Simplified formula
+        capacities_ad.append(cap_ad)
+    
+    ax2.plot(p_noise, capacities_dep, 'r-', linewidth=2, label='Depolarizing')
+    ax2.plot(p_noise, capacities_ad, 'g-', linewidth=2, label='Amplitude damping')
+    ax2.set_xlabel('Noise parameter')
+    ax2.set_ylabel('Capacity (approx.)')
+    ax2.set_title('Quantum Channel Capacities')
+    ax2.legend()
+    ax2.grid(True)
+    
+    # 3. Bloch sphere visualization
+    theta = np.linspace(0, np.pi, 50)
+    phi = np.linspace(0, 2*np.pi, 50)
+    THETA, PHI = np.meshgrid(theta, phi)
+    
+    X_bloch = np.sin(THETA) * np.cos(PHI)
+    Y_bloch = np.sin(THETA) * np.sin(PHI)  
+    Z_bloch = np.cos(THETA)
+    
+    ax3 = plt.subplot(2, 2, 3, projection='3d')
+    ax3.plot_surface(X_bloch, Y_bloch, Z_bloch, alpha=0.3, color='lightblue')
+    
+    # Add some quantum states
+    states_to_plot = [
+        (0, 0, 1, '|0⟩'),      # North pole
+        (0, 0, -1, '|1⟩'),     # South pole  
+        (1, 0, 0, '|+⟩'),      # X-axis
+        (-1, 0, 0, '|-⟩'),     # -X-axis
+        (0, 1, 0, '|+i⟩'),     # Y-axis
+    ]
+    
+    for x, y, z, label in states_to_plot:
+        ax3.scatter([x], [y], [z], s=100, c='red')
+        ax3.text(x*1.2, y*1.2, z*1.2, label, fontsize=10)
+    
+    ax3.set_xlabel('X')
+    ax3.set_ylabel('Y')
+    ax3.set_zlabel('Z')
+    ax3.set_title('Bloch Sphere')
+    
+    # 4. Quantum vs classical mutual information
+    correlation_strengths = np.linspace(0, 1, 100)
+    classical_mi = []
+    quantum_mi = []
+    
+    for r in correlation_strengths:
+        # Classical correlated state
+        p_classical = np.array([[0.5*(1+r), 0, 0, 0.5*(1-r)],
+                               [0, 0, 0, 0],
+                               [0, 0, 0, 0],
+                               [0.5*(1-r), 0, 0, 0.5*(1+r)]])
+        
+        # Quantum correlated state (Werner state)
+        bell_dm = bell_state('phi_plus') @ bell_state('phi_plus').conj().T
+        identity_dm = np.eye(4) / 4
+        p_quantum = r * bell_dm + (1-r) * identity_dm
+        
+        # Calculate mutual informations
+        mi_classical = quantum_mutual_information(p_classical, [2, 2])
+        mi_quantum = quantum_mutual_information(p_quantum, [2, 2])
+        
+        classical_mi.append(mi_classical)
+        quantum_mi.append(mi_quantum)
+    
+    ax4.plot(correlation_strengths, classical_mi, 'b-', linewidth=2, label='Classical')
+    ax4.plot(correlation_strengths, quantum_mi, 'r-', linewidth=2, label='Quantum')
+    ax4.set_xlabel('Correlation strength')
+    ax4.set_ylabel('Mutual information')
+    ax4.set_title('Classical vs Quantum Correlations')
+    ax4.legend()
+    ax4.grid(True)
+    
+    plt.tight_layout()
+    plt.show()
+
+# Run the demonstration
+if __name__ == "__main__":
+    quantum_information_demo()
+</code></pre>
+                    </div>
+                </section>
+
+                <!-- Applications -->
+                <section>
+                    <h2>Applications and Future Directions</h2>
+                    
+                    <h3>Quantum Computing</h3>
+                    <ul>
+                        <li><strong>Algorithm design:</strong> Quantum algorithms exploiting superposition and entanglement</li>
+                        <li><strong>Error correction:</strong> Protecting quantum information from decoherence</li>
+                        <li><strong>Quantum supremacy:</strong> Demonstrating quantum advantage over classical systems</li>
+                    </ul>
+
+                    <h3>Quantum Communication</h3>
+                    <ul>
+                        <li><strong>Quantum internet:</strong> Distributed quantum information processing</li>
+                        <li><strong>Quantum cryptography:</strong> Provably secure communication protocols</li>
+                        <li><strong>Quantum networks:</strong> Long-distance entanglement distribution</li>
+                    </ul>
+
+                    <h3>Quantum Sensing and Metrology</h3>
+                    <ul>
+                        <li><strong>Quantum sensors:</strong> Enhanced precision using quantum correlations</li>
+                        <li><strong>Atomic clocks:</strong> Improved timekeeping with trapped ions</li>
+                        <li><strong>Gravitational wave detection:</strong> Quantum-enhanced interferometry</li>
+                    </ul>
+
+                    <h3>Theoretical Physics</h3>
+                    <ul>
+                        <li><strong>Black hole information:</strong> Understanding information paradoxes</li>
+                        <li><strong>Many-body physics:</strong> Quantum correlations in complex systems</li>
+                        <li><strong>Quantum field theory:</strong> Information-theoretic perspectives</li>
+                    </ul>
+                </section>
+
+                <!-- Summary -->
+                <section>
+                    <h2>Summary</h2>
+                    
+                    <p>
+                        Quantum information theory revolutionizes our understanding of information processing:
+                    </p>
+                    
+                    <ul>
+                        <li><strong>Qubits:</strong> Quantum superposition enables parallel information processing</li>
+                        <li><strong>Entanglement:</strong> Non-local correlations provide new information resources</li>
+                        <li><strong>Quantum Protocols:</strong> Achieve tasks impossible with classical information</li>
+                        <li><strong>Information Measures:</strong> Quantum entropy and mutual information capture quantum correlations</li>
+                        <li><strong>Fundamental Limits:</strong> Quantum mechanics sets new bounds on information processing</li>
+                    </ul>
+                    
+                    <p>
+                        These principles drive the development of quantum technologies and provide deep insights 
+                        into the fundamental nature of information, computation, and physical reality.
+                    </p>
+                </section>
+            </div>
+        </article>
+
+        <!-- Navigation between notes -->
+        <section class="note-navigation">
+            <div class="content-container">
+                <div class="nav-links">
+                    <a href="quantum-computation.html" class="nav-link next">Next: Quantum Computation →</a>
+                    <a href="index.html" class="nav-link up">↑ Back to Computer Science</a>
+                    <a href="classic-information.html" class="nav-link prev">← Classic Information</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <!-- ...existing footer content... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../../config/latex-config.js"></script>
+    <script src="../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../assets/js/latex-renderer.js"></script>
+    <script src="../../../assets/js/enhanced-syntax-highlighter.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
