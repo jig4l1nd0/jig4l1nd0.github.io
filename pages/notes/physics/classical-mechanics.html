@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classical Mechanics - Physics Notes</title>
+    <meta name="description" content="Comprehensive study of classical mechanics from Newtonian to Lagrangian and Hamiltonian formulations">
+    <meta name="author" content="Josué Galindo">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Prism.js CSS for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    
+    <!-- Custom syntax highlighting styles -->
+    <link rel="stylesheet" href="../../../assets/css/syntax-highlighting.css">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../index.html" class="nav-link active">Notes</a></li>
+                <li><a href="../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main">
+        <!-- Note Header -->
+        <section class="note-header-section">
+            <div class="content-container">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Notes</a> → 
+                    <a href="index.html">Physics</a> → 
+                    <span>Classical Mechanics</span>
+                </nav>
+                
+                <h1>Classical Mechanics</h1>
+                
+                <div class="note-meta">
+                    <span class="note-area physics">Physics</span>
+                    <span class="note-date">June 19, 2025</span>
+                    <div class="note-tags">
+                        <span class="tag">Mechanics</span>
+                        <span class="tag">Lagrangian</span>
+                        <span class="tag">Hamiltonian</span>
+                        <span class="tag">Newtonian</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note Content -->
+        <article class="note-content">
+            <div class="content-container">
+                <!-- Introduction -->
+                <section>
+                    <h2>Introduction</h2>
+                    <p>
+                        Classical mechanics describes the motion of macroscopic objects, from projectiles to planets, 
+                        using deterministic laws. This foundational theory provides three equivalent formulations: 
+                        Newtonian, Lagrangian, and Hamiltonian mechanics.
+                    </p>
+                </section>
+
+                <!-- Newtonian Mechanics -->
+                <section>
+                    <h2>Newtonian Mechanics</h2>
+                    
+                    <h3>Newton's Laws</h3>
+                    <p>The foundation of classical mechanics rests on Newton's three laws:</p>
+                    
+                    <ol>
+                        <li><strong>First Law (Inertia):</strong> A body at rest stays at rest, and a body in motion stays in motion, unless acted upon by a net external force.</li>
+                        <li><strong>Second Law:</strong> The acceleration of an object is directly proportional to the net force acting on it.</li>
+                        <li><strong>Third Law:</strong> For every action, there is an equal and opposite reaction.</li>
+                    </ol>
+
+                    <h3>Equation of Motion</h3>
+                    <p>Newton's second law in its most general form:</p>
+                    
+                    $$\mathbf{F} = \frac{d\mathbf{p}}{dt} = \frac{d(m\mathbf{v})}{dt}$$
+                    
+                    <p>For constant mass, this reduces to the familiar:</p>
+                    
+                    $$\mathbf{F} = m\mathbf{a} = m\frac{d^2\mathbf{r}}{dt^2}$$
+
+                    <h3>Central Force Problems</h3>
+                    <p>For a central force $\mathbf{F} = f(r)\hat{\mathbf{r}}$, we can derive the effective potential:</p>
+                    
+                    $$U_{\text{eff}}(r) = U(r) + \frac{L^2}{2mr^2}$$
+                    
+                    <p>where $L$ is the conserved angular momentum and the second term is the centrifugal barrier.</p>
+                </section>
+
+                <!-- Lagrangian Mechanics -->
+                <section>
+                    <h2>Lagrangian Mechanics</h2>
+                    
+                    <h3>The Lagrangian Function</h3>
+                    <p>The Lagrangian is defined as the difference between kinetic and potential energy:</p>
+                    
+                    $$\mathcal{L}(q_i, \dot{q}_i, t) = T - V$$
+                    
+                    <p>where $q_i$ are generalized coordinates and $\dot{q}_i$ are generalized velocities.</p>
+
+                    <h3>Euler-Lagrange Equations</h3>
+                    <p>The equations of motion are derived from Hamilton's principle of least action:</p>
+                    
+                    $$\frac{d}{dt}\left(\frac{\partial \mathcal{L}}{\partial \dot{q}_i}\right) - \frac{\partial \mathcal{L}}{\partial q_i} = 0$$
+                    
+                    <p>This elegant formulation automatically handles constraints and is coordinate-independent.</p>
+
+                    <h3>Conserved Quantities</h3>
+                    <p>Noether's theorem connects symmetries to conservation laws:</p>
+                    
+                    <ul>
+                        <li><strong>Time translation symmetry</strong> → Energy conservation</li>
+                        <li><strong>Spatial translation symmetry</strong> → Momentum conservation</li>
+                        <li><strong>Rotational symmetry</strong> → Angular momentum conservation</li>
+                    </ul>
+
+                    <p>If the Lagrangian doesn't explicitly depend on a coordinate $q_i$, then:</p>
+                    
+                    $$p_i = \frac{\partial \mathcal{L}}{\partial \dot{q}_i} = \text{constant}$$
+                </section>
+
+                <!-- Hamiltonian Mechanics -->
+                <section>
+                    <h2>Hamiltonian Mechanics</h2>
+                    
+                    <h3>The Hamiltonian Function</h3>
+                    <p>The Hamiltonian is obtained via Legendre transformation:</p>
+                    
+                    $$\mathcal{H}(q_i, p_i, t) = \sum_i p_i \dot{q}_i - \mathcal{L}$$
+                    
+                    <p>where $p_i = \frac{\partial \mathcal{L}}{\partial \dot{q}_i}$ are the generalized momenta.</p>
+
+                    <h3>Hamilton's Equations</h3>
+                    <p>The equations of motion in Hamiltonian form are:</p>
+                    
+                    $$\dot{q}_i = \frac{\partial \mathcal{H}}{\partial p_i}, \quad \dot{p}_i = -\frac{\partial \mathcal{H}}{\partial q_i}$$
+                    
+                    <p>These first-order differential equations preserve phase space volume (Liouville's theorem).</p>
+
+                    <h3>Canonical Transformations</h3>
+                    <p>Transformations that preserve the Hamiltonian structure satisfy:</p>
+                    
+                    $$\sum_i p_i dq_i - \mathcal{H} dt = \sum_i P_i dQ_i - \mathcal{K} dt + dF$$
+                    
+                    <p>where $F$ is a generating function and $(Q_i, P_i)$ are new canonical coordinates.</p>
+                </section>
+
+                <!-- Applications -->
+                <section>
+                    <h2>Key Applications</h2>
+                    
+                    <h3>Simple Harmonic Oscillator</h3>
+                    <p>The paradigmatic system with Hamiltonian:</p>
+                    
+                    $$\mathcal{H} = \frac{p^2}{2m} + \frac{1}{2}kx^2$$
+                    
+                    <p>Leading to the familiar solution $x(t) = A\cos(\omega t + \phi)$ with $\omega = \sqrt{k/m}$.</p>
+
+                    <h3>Two-Body Problem</h3>
+                    <p>Reducible to a one-body problem in the center-of-mass frame with reduced mass:</p>
+                    
+                    $$\mu = \frac{m_1 m_2}{m_1 + m_2}$$
+                    
+                    <p>For gravitational interactions, this leads to Kepler's laws and conic section orbits.</p>
+
+                    <h3>Rigid Body Motion</h3>
+                    <p>The rotational kinetic energy in terms of angular velocity $\boldsymbol{\omega}$ and inertia tensor $\mathbf{I}$:</p>
+                    
+                    $$T_{\text{rot}} = \frac{1}{2}\boldsymbol{\omega} \cdot \mathbf{I} \cdot \boldsymbol{\omega}$$
+                    
+                    <p>Leading to Euler's equations for torque-free motion.</p>
+                </section>
+
+                <!-- Python Implementation -->
+                <section>
+                    <h2>Computational Examples</h2>
+                    
+                    <p>
+                        Here's a Python implementation of a simple pendulum using the Lagrangian approach:
+                    </p>
+                    
+                    <div class="note-code" data-language="python">
+                        <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+def pendulum_lagrangian(state, t, g, L):
+    """
+    Solve pendulum motion using Lagrangian mechanics
+    state = [theta, theta_dot]
+    """
+    theta, theta_dot = state
+    
+    # Euler-Lagrange equation for simple pendulum
+    # d/dt(∂L/∂θ̇) - ∂L/∂θ = 0
+    # gives: θ̈ + (g/L)sin(θ) = 0
+    theta_ddot = -(g/L) * np.sin(theta)
+    
+    return [theta_dot, theta_ddot]
+
+# Parameters
+g = 9.81  # gravity
+L = 1.0   # length
+theta0 = np.pi/3  # initial angle
+omega0 = 0.0      # initial angular velocity
+
+# Time array
+t = np.linspace(0, 10, 1000)
+
+# Solve ODE
+initial_state = [theta0, omega0]
+solution = odeint(pendulum_lagrangian, initial_state, t, args=(g, L))
+
+theta = solution[:, 0]
+omega = solution[:, 1]
+
+# Plot results
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+
+ax1.plot(t, theta, 'b-', linewidth=2)
+ax1.set_xlabel('Time (s)')
+ax1.set_ylabel('Angle θ (rad)')
+ax1.set_title('Pendulum Motion')
+ax1.grid(True)
+
+# Phase space plot
+ax2.plot(theta, omega, 'r-', linewidth=1.5)
+ax2.set_xlabel('Angle θ (rad)')
+ax2.set_ylabel('Angular velocity ω (rad/s)')
+ax2.set_title('Phase Space')
+ax2.grid(True)
+
+plt.tight_layout()
+plt.show()
+
+# Energy conservation check
+def energy(theta, omega, g, L):
+    """Calculate total energy"""
+    kinetic = 0.5 * L**2 * omega**2
+    potential = g * L * (1 - np.cos(theta))
+    return kinetic + potential
+
+E = energy(theta, omega, g, L)
+print(f"Energy conservation: ΔE/E₀ = {(E.max() - E.min())/E[0]:.2e}")
+</code></pre>
+                    </div>
+                </section>
+
+                <!-- Advanced Topics -->
+                <section>
+                    <h2>Advanced Topics</h2>
+                    
+                    <h3>Action-Angle Variables</h3>
+                    <p>For integrable systems, we can find canonical coordinates where:</p>
+                    
+                    $$\mathcal{H} = \mathcal{H}(I_1, I_2, \ldots, I_n)$$
+                    
+                    <p>The action variables $I_i$ are adiabatic invariants, and the angle variables $\theta_i$ evolve linearly in time.</p>
+
+                    <h3>Perturbation Theory</h3>
+                    <p>For nearly integrable systems with Hamiltonian:</p>
+                    
+                    $$\mathcal{H} = \mathcal{H}_0(I) + \epsilon \mathcal{H}_1(I, \theta, t)$$
+                    
+                    <p>Canonical perturbation theory allows systematic analysis of small deviations from integrability.</p>
+
+                    <h3>Chaos and KAM Theory</h3>
+                    <p>The Kolmogorov-Arnold-Moser theorem describes the persistence of quasi-periodic motion under small perturbations, while chaos emerges in regions where resonance conditions are met.</p>
+                </section>
+
+                <!-- Conclusion -->
+                <section>
+                    <h2>Summary</h2>
+                    
+                    <p>
+                        Classical mechanics provides three equivalent but distinct perspectives on mechanical systems:
+                    </p>
+                    
+                    <ul>
+                        <li><strong>Newtonian:</strong> Direct force analysis, intuitive but limited to Cartesian coordinates</li>
+                        <li><strong>Lagrangian:</strong> Energy-based approach, handles constraints naturally</li>
+                        <li><strong>Hamiltonian:</strong> Phase space formulation, foundation for statistical mechanics and quantum mechanics</li>
+                    </ul>
+                    
+                    <p>
+                        These formulations not only solve mechanical problems but also provide the conceptual foundation 
+                        for field theory, quantum mechanics, and modern physics.
+                    </p>
+                </section>
+            </div>
+        </article>
+
+        <!-- Navigation between notes -->
+        <section class="note-navigation">
+            <div class="content-container">
+                <div class="nav-links">
+                    <a href="quantum-mechanics.html" class="nav-link next">Next: Quantum Mechanics →</a>
+                    <a href="index.html" class="nav-link up">↑ Back to Physics</a>
+                    <a href="advanced-mathematical-methods.html" class="nav-link prev">← Mathematical Methods</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigate</h4>
+                <ul class="footer-nav">
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../about.html">About</a></li>
+                    <li><a href="../../projects/index.html">Projects</a></li>
+                    <li><a href="../index.html">Notes</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>This Note</h4>
+                <ul class="footer-nav">
+                    <li><a href="#" onclick="window.print()">Print/Save PDF</a></li>
+                    <li><a href="#" onclick="latexRenderer.renderContainer('main')">Re-render Math</a></li>
+                    <li><span class="math-tip">💡 Tip: Alt+click on equations to copy LaTeX</span></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <p class="footer-note">
+                    LaTeX rendered with KaTeX • Last updated: June 19, 2025
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../../config/latex-config.js"></script>
+    <script src="../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../assets/js/latex-renderer.js"></script>
+    
+    <!-- Syntax Highlighting Scripts -->
+    <script src="../../../assets/js/enhanced-syntax-highlighter.js"></script>
+    
+    <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
