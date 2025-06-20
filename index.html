@@ -148,7 +148,28 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <script src="config/latex-config.js"></script>
+    
+    <!-- Load enhanced syntax highlighter for pages with code blocks -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if page has code blocks
+            const codeBlocks = document.querySelectorAll('pre code, .code-block, [class*="language-"]');
+            if (codeBlocks.length > 0) {
+                // Load enhanced highlighter for pages with code
+                const script = document.createElement('script');
+                script.src = 'assets/js/enhanced-syntax-highlighter.js';
+                document.head.appendChild(script);
+            } else {
+                // Load basic highlighter for simple pages
+                const script = document.createElement('script');
+                script.src = 'assets/js/syntax-highlighter.js';
+                document.head.appendChild(script);
+            }
+        });
+    </script>
+    
     <script src="assets/js/theme-switcher.js"></script>
     <script src="assets/js/main.js"></script>
 </body>

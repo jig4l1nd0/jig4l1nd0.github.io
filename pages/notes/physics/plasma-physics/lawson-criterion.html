@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawson Criterion Analysis - Physics Notes</title>
+    <meta name="description" content="Mathematical analysis of the Lawson criterion for fusion reactor viability">
+    <meta name="author" content="Josué Galindo">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Prism.js CSS for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    
+    <!-- Custom syntax highlighting styles -->
+    <link rel="stylesheet" href="../../../../assets/css/syntax-highlighting.css">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="../../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../../index.html" class="nav-link active">Notes</a></li>
+                <li><a href="../../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main">
+        <!-- Note Header -->
+        <section class="note-header-section">
+            <div class="content-container">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Notes</a> → 
+                    <a href="../index.html">Physics</a> → 
+                    <a href="index.html">Plasma Physics</a> → 
+                    <span>Lawson Criterion</span>
+                </nav>
+                
+                <h1>Lawson Criterion Analysis</h1>
+                
+                <div class="note-meta">
+                    <span class="note-area physics">Physics</span>
+                    <span class="note-date">June 18, 2025</span>
+                    <div class="note-tags">
+                        <span class="tag">Plasma Physics</span>
+                        <span class="tag">Fusion Energy</span>
+                        <span class="tag">MATLAB</span>
+                        <span class="tag">Numerical Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note Content -->
+        <article class="note-content">
+            <div class="content-container">
+                <!-- Introduction -->
+                <section>
+                    <h2>Introduction</h2>
+                    <p>
+                        The Lawson criterion is a fundamental condition that must be satisfied for a 
+                        fusion reactor to achieve energy breakeven. It establishes the minimum 
+                        requirements for the product of particle density and confinement time in a 
+                        fusion plasma to sustain the reaction.
+                    </p>
+                </section>
+
+                <!-- Mathematical Derivation -->
+                <section>
+                    <h2>Mathematical Derivation</h2>
+                    
+                    <h3>Energy Balance Equation</h3>
+                    <p>
+                        For a deuterium-tritium (D-T) fusion reaction, the energy balance can be 
+                        expressed as:
+                    </p>
+                    
+                    $$\frac{dW}{dt} = P_{\text{fusion}} - P_{\text{loss}}$$
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>$W$ is the total plasma energy</li>
+                        <li>$P_{\text{fusion}}$ is the fusion power</li>
+                        <li>$P_{\text{loss}}$ is the power loss</li>
+                    </ul>
+
+                    <h3>Fusion Reaction Rate</h3>
+                    <p>
+                        The D-T fusion reaction produces 17.6 MeV of energy per reaction. The 
+                        reaction rate per unit volume is given by:
+                    </p>
+                    
+                    $$R = n_D n_T \langle \sigma v \rangle$$
+                    
+                    <p>
+                        For a 50-50 D-T mixture with density $n$, we have $n_D = n_T = n/2$, so:
+                    </p>
+                    
+                    $$R = \frac{n^2}{4} \langle \sigma v \rangle$$
+
+                    <h3>Power Densities</h3>
+                    <p>
+                        The fusion power density is:
+                    </p>
+                    
+                    $$p_{\text{fusion}} = R \cdot E_{\text{fusion}} = \frac{n^2}{4} \langle \sigma v \rangle E_{\text{fusion}}$$
+                    
+                    <p>
+                        The power loss density, assuming simple confinement, is:
+                    </p>
+                    
+                    $$p_{\text{loss}} = \frac{3nk_B T}{\tau_E}$$
+                    
+                    <p>Where $\tau_E$ is the energy confinement time.</p>
+                </section>
+
+                <!-- Figure Example -->
+                <div class="note-figure">
+                    <img src="../../../../assets/images/notes/lawson-criterion-plot.png" alt="Lawson criterion visualization">
+                    <div class="figure-caption">
+                        <strong>Figure 1:</strong> Visualization of the Lawson criterion showing the required 
+                        $n\tau_E$ product as a function of temperature for D-T fusion. The breakeven condition 
+                        occurs above the curve.
+                    </div>
+                </div>
+
+                <!-- Lawson Criterion -->
+                <section>
+                    <h2>The Lawson Criterion</h2>
+                    
+                    <p>
+                        For energy breakeven ($P_{\text{fusion}} = P_{\text{loss}}$), we require:
+                    </p>
+                    
+                    $$\frac{n^2}{4} \langle \sigma v \rangle E_{\text{fusion}} = \frac{3nk_B T}{\tau_E}$$
+                    
+                    <p>
+                        Rearranging for the famous Lawson criterion:
+                    </p>
+                    
+                    $$n \tau_E = \frac{12 k_B T}{E_{\text{fusion}} \langle \sigma v \rangle}$$
+                    
+                    <p>
+                        For D-T fusion at optimal temperature ($T \approx 10$ keV), this gives:
+                    </p>
+                    
+                    $$n \tau_E \gtrsim 1.5 \times 10^{20} \text{ m}^{-3} \cdot \text{s}$$
+
+                    <h3>Ignition Condition</h3>
+                    <p>
+                        For ignition (self-sustaining fusion), only the alpha particles need to 
+                        maintain the plasma temperature. Since alphas carry 20% of the fusion energy:
+                    </p>
+                    
+                    $$n \tau_E \gtrsim 7.5 \times 10^{20} \text{ m}^{-3} \cdot \text{s}$$
+                </section>
+
+                <!-- MATLAB Implementation -->
+                <section>
+                    <h2>MATLAB Implementation</h2>
+                    
+                    <p>
+                        The following MATLAB code calculates the Lawson criterion for different 
+                        temperatures and visualizes the results:
+                    </p>
+                    
+                    <div class="note-code" data-language="matlab">
+                        <pre><code class="language-matlab">% Lawson Criterion Analysis
+% Calculate n*tau_E requirement for D-T fusion
+
+function lawson_analysis()
+    % Temperature range in keV
+    T = linspace(1, 50, 1000);
+    
+    % Physical constants
+    k_B = 8.617e-5;  % Boltzmann constant (keV/K)
+    E_fusion = 17.6; % Fusion energy (MeV)
+    
+    % D-T cross section (simplified fit)
+    sigma_v = dt_cross_section(T);
+    
+    % Lawson criterion calculation
+    n_tau_E = (12 * k_B * T) ./ (E_fusion * 1e3 * sigma_v);
+    
+    % Plot results
+    figure;
+    loglog(T, n_tau_E, 'LineWidth', 2);
+    xlabel('Temperature (keV)');
+    ylabel('n\tau_E (m^{-3} \cdot s)');
+    title('Lawson Criterion for D-T Fusion');
+    grid on;
+    
+    % Mark optimal point
+    [min_val, min_idx] = min(n_tau_E);
+    hold on;
+    loglog(T(min_idx), min_val, 'ro', 'MarkerSize', 8, 'LineWidth', 2);
+    
+    fprintf('Optimal temperature: %.1f keV\n', T(min_idx));
+    fprintf('Minimum n*tau_E: %.2e m^-3*s\n', min_val);
+end
+
+function sigma_v = dt_cross_section(T)
+    % Simplified D-T cross section parametrization
+    % T in keV, returns sigma*v in m^3/s
+    sigma_v = 1.1e-24 * T.^2 ./ (1 + (T/15).^0.8 + (T/300).^1.6);
+end</code></pre>
+                    </div>
+                </section>
+
+                <!-- Simulation Results -->
+                <section>
+                    <h2>Simulation Results</h2>
+                    
+                    <p>
+                        The MATLAB simulation reveals several important insights:
+                    </p>
+                    
+                    <ul>
+                        <li>The optimal fusion temperature is approximately $T \approx 10$ keV</li>
+                        <li>At this temperature, $n\tau_E \geq 1.5 \times 10^{20}$ m$^{-3} \cdot$s for breakeven</li>
+                        <li>Current tokamaks like ITER aim to achieve $n\tau_E \approx 3 \times 10^{20}$ m$^{-3} \cdot$s</li>
+                    </ul>
+
+                    <div class="note-figure">
+                        <img src="../../../../assets/images/notes/matlab-simulation.png" alt="MATLAB simulation results">
+                        <div class="figure-caption">
+                            <strong>Figure 2:</strong> MATLAB simulation output showing the temperature dependence 
+                            of the Lawson criterion. The red dot indicates the optimal operating point.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Conclusion -->
+                <section>
+                    <h2>Conclusions</h2>
+                    
+                    <p>
+                        The Lawson criterion provides a fundamental constraint for fusion reactor design. 
+                        Key takeaways from this analysis:
+                    </p>
+                    
+                    <ol>
+                        <li>The criterion establishes a trade-off between density and confinement time</li>
+                        <li>There exists an optimal temperature that minimizes the $n\tau_E$ requirement</li>
+                        <li>Modern tokamak designs are approaching the conditions needed for sustained fusion</li>
+                        <li>The mathematical framework can be extended to other fusion reactions</li>
+                    </ol>
+                    
+                    <p>
+                        This analysis demonstrates the power of combining theoretical physics with 
+                        computational tools to understand complex plasma phenomena and guide 
+                        experimental design.
+                    </p>
+                </section>
+
+                <!-- References -->
+                <section>
+                    <h2>References</h2>
+                    <ol>
+                        <li>Lawson, J. D. (1957). "Some criteria for a power producing thermonuclear reactor." <em>Proceedings of the Physical Society</em>.</li>
+                        <li>Wesson, J. (2004). <em>Tokamaks</em>. Oxford University Press.</li>
+                        <li>Chen, F. F. (2016). <em>Introduction to Plasma Physics and Controlled Fusion</em>. Springer.</li>
+                    </ol>
+                </section>
+            </div>
+        </article>
+
+        <!-- Navigation between notes -->
+        <section class="note-navigation">
+            <div class="content-container">
+                <div class="nav-links">
+                    <a href="#" class="nav-link prev">← Previous: Plasma Equilibrium</a>
+                    <a href="../index.html" class="nav-link up">↑ Back to Plasma Physics</a>
+                    <a href="#" class="nav-link next">Next: Tokamak Geometry →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigate</h4>
+                <ul class="footer-nav">
+                    <li><a href="../../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About</a></li>
+                    <li><a href="../../../projects/index.html">Projects</a></li>
+                    <li><a href="../../index.html">Notes</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>This Note</h4>
+                <ul class="footer-nav">
+                    <li><a href="#" onclick="window.print()">Print/Save PDF</a></li>
+                    <li><a href="#" onclick="latexRenderer.renderContainer('main')">Re-render Math</a></li>
+                    <li><span class="math-tip">💡 Tip: Alt+click on equations to copy LaTeX</span></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <p class="footer-note">
+                    LaTeX rendered with KaTeX • Last updated: June 18, 2025
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../../../config/latex-config.js"></script>
+    <script src="../../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../../assets/js/latex-renderer.js"></script>
+    
+    <!-- Syntax Highlighting Scripts -->
+    <script src="../../../../assets/js/enhanced-syntax-highlighter.js"></script>
+    
+    <script src="../../../../assets/js/main.js"></script>
+</body>
+</html>

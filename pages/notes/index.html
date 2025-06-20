@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Hub - Josué Galindo | Personal Digital Space</title>
+    <meta name="description" content="Technical notes, research documentation, and knowledge management with LaTeX support">
+    <meta name="author" content="Josué Galindo">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="index.html" class="nav-link active">Notes</a></li>
+                <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main">
+        <!-- Hero Section -->
+        <section class="notes-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Knowledge Hub</h1>
+                <p class="hero-subtitle">
+                    Technical notes, research documentation, and mathematical explorations 
+                    with LaTeX support for equations and diagrams
+                </p>
+                <div class="hero-actions">
+                    <a href="#recent-notes" class="btn btn-primary">Recent Notes</a>
+                    <a href="#browse-topics" class="btn btn-secondary">Browse Topics</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="notes-search">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search notes by topic, equation, or concept..." class="search-input">
+                    <button class="search-btn" aria-label="Search">🔍</button>
+                </div>
+                <div class="search-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="physics">Physics</button>
+                    <button class="filter-btn" data-filter="mathematics">Mathematics</button>
+                    <button class="filter-btn" data-filter="cs">Computer Science</button>
+                    <button class="filter-btn" data-filter="data-science">Data Science</button>
+                    <button class="filter-btn" data-filter="research">Research</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Knowledge Areas -->
+        <section class="knowledge-areas" id="browse-topics">
+            <div class="content-container">
+                <h2>Knowledge Areas</h2>
+                <div class="areas-grid">
+                    <!-- Physics Area -->
+                    <div class="knowledge-area" data-area="physics">
+                        <div class="area-header">
+                            <div class="area-icon">⚛️</div>
+                            <h3>Physics</h3>
+                            <span class="notes-count">12 notes</span>
+                        </div>
+                        <div class="area-topics">
+                            <a href="physics/mechanics/" class="topic-link">
+                                <span class="topic-name">Mechanics</span>
+                                <span class="topic-count">4</span>
+                            </a>
+                            <a href="physics/plasma-physics/" class="topic-link">
+                                <span class="topic-name">Plasma Physics</span>
+                                <span class="topic-count">3</span>
+                            </a>
+                            <a href="physics/advanced-mathematical-methods/" class="topic-link">
+                                <span class="topic-name">Advanced Mathematical Methods</span>
+                                <span class="topic-count">3</span>
+                            </a>
+                            <a href="physics/quantum-computing/" class="topic-link">
+                                <span class="topic-name">Quantum Computing</span>
+                                <span class="topic-count">2</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mathematics Area -->
+                    <div class="knowledge-area" data-area="mathematics">
+                        <div class="area-header">
+                            <div class="area-icon">📐</div>
+                            <h3>Mathematics</h3>
+                            <span class="notes-count">15 notes</span>
+                        </div>
+                        <div class="area-topics">
+                            <a href="mathematics/calculus/" class="topic-link">
+                                <span class="topic-name">Calculus</span>
+                                <span class="topic-count">6</span>
+                            </a>
+                            <a href="mathematics/linear-algebra/" class="topic-link">
+                                <span class="topic-name">Linear Algebra</span>
+                                <span class="topic-count">5</span>
+                            </a>
+                            <a href="mathematics/differential-equations/" class="topic-link">
+                                <span class="topic-name">Differential Equations</span>
+                                <span class="topic-count">4</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Computer Science Area -->
+                    <div class="knowledge-area" data-area="cs">
+                        <div class="area-header">
+                            <div class="area-icon">💻</div>
+                            <h3>Computer Science</h3>
+                            <span class="notes-count">8 notes</span>
+                        </div>
+                        <div class="area-topics">
+                            <a href="computer-science/algorithms/" class="topic-link">
+                                <span class="topic-name">Algorithms</span>
+                                <span class="topic-count">3</span>
+                            </a>
+                            <a href="computer-science/machine-learning/" class="topic-link">
+                                <span class="topic-name">Machine Learning</span>
+                                <span class="topic-count">3</span>
+                            </a>
+                            <a href="computer-science/data-structures/" class="topic-link">
+                                <span class="topic-name">Data Structures</span>
+                                <span class="topic-count">2</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Data Science Area -->
+                    <div class="knowledge-area" data-area="data-science">
+                        <div class="area-header">
+                            <div class="area-icon">📊</div>
+                            <h3>Data Science</h3>
+                            <span class="notes-count">10 notes</span>
+                        </div>
+                        <div class="area-topics">
+                            <a href="data-science/statistics/" class="topic-link">
+                                <span class="topic-name">Statistics</span>
+                                <span class="topic-count">4</span>
+                            </a>
+                            <a href="data-science/visualization/" class="topic-link">
+                                <span class="topic-name">Visualization</span>
+                                <span class="topic-count">3</span>
+                            </a>
+                            <a href="data-science/modeling/" class="topic-link">
+                                <span class="topic-name">Modeling</span>
+                                <span class="topic-count">3</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Research Area -->
+                    <div class="knowledge-area" data-area="research">
+                        <div class="area-header">
+                            <div class="area-icon">🔬</div>
+                            <h3>Research Methods</h3>
+                            <span class="notes-count">6 notes</span>
+                        </div>
+                        <div class="area-topics">
+                            <a href="research/papers/" class="topic-link">
+                                <span class="topic-name">Paper Reviews</span>
+                                <span class="topic-count">3</span>
+                            </a>
+                            <a href="research/methods/" class="topic-link">
+                                <span class="topic-name">Methodologies</span>
+                                <span class="topic-count">2</span>
+                            </a>
+                            <a href="research/tools/" class="topic-link">
+                                <span class="topic-name">Tools & Software</span>
+                                <span class="topic-count">1</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Notes -->
+        <section class="recent-notes" id="recent-notes">
+            <div class="content-container">
+                <h2>Recent Notes</h2>
+                <div class="notes-timeline">
+                    <article class="note-card">
+                        <div class="note-header">
+                            <h3><a href="physics/plasma-physics/lawson-criterion.html">Lawson Criterion Analysis</a></h3>
+                            <div class="note-meta">
+                                <span class="note-area physics">Physics</span>
+                                <span class="note-date">June 18, 2025</span>
+                            </div>
+                        </div>
+                        <p class="note-preview">
+                            Detailed analysis of the Lawson criterion for fusion reactor viability, including 
+                            mathematical derivations and MATLAB simulation results...
+                        </p>
+                        <div class="note-tags">
+                            <span class="tag">Plasma Physics</span>
+                            <span class="tag">Fusion Energy</span>
+                            <span class="tag">MATLAB</span>
+                        </div>
+                    </article>
+
+                    <article class="note-card">
+                        <div class="note-header">
+                            <h3><a href="mathematics/linear-algebra/eigenvalue-methods.html">Eigenvalue Computational Methods</a></h3>
+                            <div class="note-meta">
+                                <span class="note-area mathematics">Mathematics</span>
+                                <span class="note-date">June 15, 2025</span>
+                            </div>
+                        </div>
+                        <p class="note-preview">
+                            Comparison of numerical methods for eigenvalue computation: Power iteration, 
+                            QR algorithm, and Jacobi methods with convergence analysis...
+                        </p>
+                        <div class="note-tags">
+                            <span class="tag">Linear Algebra</span>
+                            <span class="tag">Numerical Methods</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </article>
+
+                    <article class="note-card">
+                        <div class="note-header">
+                            <h3><a href="computer-science/machine-learning/fraud-detection-models.html">Fraud Detection Model Architecture</a></h3>
+                            <div class="note-meta">
+                                <span class="note-area cs">Computer Science</span>
+                                <span class="note-date">June 12, 2025</span>
+                            </div>
+                        </div>
+                        <p class="note-preview">
+                            Design patterns and architectural considerations for scalable fraud detection 
+                            systems in financial technology applications...
+                        </p>
+                        <div class="note-tags">
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Fraud Detection</span>
+                            <span class="tag">Architecture</span>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="notes-actions">
+                    <a href="#" class="btn btn-secondary">View All Notes</a>
+                    <a href="#" class="btn btn-primary">Create New Note</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LaTeX Examples Section -->
+        <section class="latex-examples">
+            <div class="content-container">
+                <h2>Mathematical Notation Examples</h2>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <h4>Schrödinger Equation</h4>
+                        <div class="math-example">
+                            $$i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)$$
+                        </div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h4>Maxwell's Equations</h4>
+                        <div class="math-example">
+                            $$\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}$$
+                            $$\nabla \times \mathbf{B} = \mu_0\mathbf{J} + \mu_0\epsilon_0\frac{\partial \mathbf{E}}{\partial t}$$
+                        </div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h4>Machine Learning Loss</h4>
+                        <div class="math-example">
+                            $$L(\theta) = \frac{1}{m}\sum_{i=1}^{m} \ell(h_\theta(x^{(i)}), y^{(i)}) + \lambda R(\theta)$$
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigate</h4>
+                <ul class="footer-nav">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../projects/index.html">Projects</a></li>
+                    <li><a href="index.html">Notes</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Knowledge Areas</h4>
+                <ul class="footer-nav">
+                    <li><a href="physics/">Physics</a></li>
+                    <li><a href="mathematics/">Mathematics</a></li>
+                    <li><a href="computer-science/">Computer Science</a></li>
+                    <li><a href="data-science/">Data Science</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <p class="footer-note">
+                    LaTeX powered • Open knowledge sharing
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../config/latex-config.js"></script>
+    <script src="../../assets/js/theme-switcher.js"></script>
+    <script src="../../assets/js/latex-renderer.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

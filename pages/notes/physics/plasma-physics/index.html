@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plasma Physics - Physics Notes</title>
+    <meta name="description" content="Advanced plasma physics notes covering fusion energy, magnetohydrodynamics, and computational plasma physics">
+    <meta name="author" content="Josué Galindo">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="../../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../../index.html" class="nav-link active">Notes</a></li>
+                <li><a href="../../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main">
+        <!-- Plasma Physics Hero Section -->
+        <section class="topic-header-section">
+            <div class="content-container">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Notes</a> → 
+                    <a href="../index.html">Physics</a> → 
+                    <span>Plasma Physics</span>
+                </nav>
+                
+                <div class="topic-hero">
+                    <div class="topic-icon">⚡</div>
+                    <h1>Plasma Physics</h1>
+                    <p class="topic-description">
+                        The fourth state of matter and the physics of ionized gases. Exploring fusion energy, 
+                        magnetohydrodynamics, and the computational methods that drive modern plasma research.
+                    </p>
+                    <div class="topic-stats">
+                        <span class="stat">3 Core Topics</span>
+                        <span class="stat">MATLAB Simulations</span>
+                        <span class="stat">Fusion Applications</span>
+                        <span class="stat">Advanced Level</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Concepts Overview -->
+        <section class="topic-overview">
+            <div class="content-container">
+                <h2>Fundamental Concepts</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Plasma Parameters</h3>
+                        <p>
+                            Debye length, plasma frequency, and the fundamental scales that govern 
+                            plasma behavior from laboratory to astrophysical systems.
+                        </p>
+                        <div class="concept-math">
+                            $$\lambda_D = \sqrt{\frac{\epsilon_0 k_B T_e}{n_e e^2}}$$
+                        </div>
+                    </div>
+                    
+                    <div class="concept-card">
+                        <h3>Magnetohydrodynamics</h3>
+                        <p>
+                            The fluid description of plasma dynamics, combining the Navier-Stokes 
+                            equations with Maxwell's equations for conducting fluids.
+                        </p>
+                        <div class="concept-math">
+                            $$\frac{\partial \mathbf{B}}{\partial t} = \nabla \times (\mathbf{v} \times \mathbf{B}) + \eta \nabla^2 \mathbf{B}$$
+                        </div>
+                    </div>
+                    
+                    <div class="concept-card">
+                        <h3>Fusion Reactions</h3>
+                        <p>
+                            Nuclear fusion cross-sections, reaction rates, and the physics of 
+                            controlled fusion for energy generation.
+                        </p>
+                        <div class="concept-math">
+                            $$\langle\sigma v\rangle = \sqrt{\frac{8k_B T}{\pi \mu}} \int_0^\infty \sigma(E) E e^{-E/k_B T} dE$$
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notes Collection -->
+        <section class="notes-collection">
+            <div class="content-container">
+                <h2>Plasma Physics Notes</h2>
+                <div class="notes-grid">
+                    <!-- Lawson Criterion - Complete -->
+                    <article class="note-card featured">
+                        <div class="note-status">
+                            <span class="status-badge complete">Complete</span>
+                        </div>
+                        <div class="note-header">
+                            <h3><a href="lawson-criterion.html">Lawson Criterion Analysis</a></h3>
+                            <div class="note-meta">
+                                <span class="note-difficulty advanced">Advanced</span>
+                                <span class="note-area">Fusion Physics</span>
+                                <span class="note-date">June 18, 2025</span>
+                            </div>
+                        </div>
+                        <p class="note-preview">
+                            Complete mathematical derivation of the Lawson criterion for fusion reactor viability. 
+                            Includes detailed energy balance analysis, MATLAB simulation code, and parameter 
+                            optimization for deuterium-tritium reactions.
+                        </p>
+                        <div class="note-highlights">
+                            <span class="highlight">Energy Balance</span>
+                            <span class="highlight">MATLAB Code</span>
+                            <span class="highlight">D-T Fusion</span>
+                            <span class="highlight">Optimization</span>
+                        </div>
+                        <div class="note-actions">
+                            <a href="lawson-criterion.html" class="btn btn-primary">Read Note</a>
+                            <a href="#" class="btn btn-secondary">Download Code</a>
+                        </div>
+                    </article>
+
+                    <!-- MHD Equilibrium - In Progress -->
+                    <article class="note-card">
+                        <div class="note-status">
+                            <span class="status-badge draft">Draft</span>
+                        </div>
+                        <div class="note-header">
+                            <h3><a href="#">MHD Equilibrium Theory</a></h3>
+                            <div class="note-meta">
+                                <span class="note-difficulty advanced">Advanced</span>
+                                <span class="note-area">Magnetohydrodynamics</span>
+                                <span class="note-date">In Progress</span>
+                            </div>
+                        </div>
+                        <p class="note-preview">
+                            Force balance in magnetized plasmas and the Grad-Shafranov equation. 
+                            Tokamak equilibrium configurations and computational solutions using 
+                            finite element methods.
+                        </p>
+                        <div class="note-highlights">
+                            <span class="highlight">Grad-Shafranov</span>
+                            <span class="highlight">Tokamak Geometry</span>
+                            <span class="highlight">Finite Elements</span>
+                            <span class="highlight">Flux Surfaces</span>
+                        </div>
+                        <div class="note-actions">
+                            <a href="#" class="btn btn-primary disabled">Coming Soon</a>
+                            <a href="#" class="btn btn-secondary disabled">Preview Draft</a>
+                        </div>
+                    </article>
+
+                    <!-- Plasma Instabilities - Planned -->
+                    <article class="note-card placeholder">
+                        <div class="note-status">
+                            <span class="status-badge planned">Planned</span>
+                        </div>
+                        <div class="note-header">
+                            <h3><a href="#">Plasma Instabilities</a></h3>
+                            <div class="note-meta">
+                                <span class="note-difficulty advanced">Advanced</span>
+                                <span class="note-area">Stability Theory</span>
+                                <span class="note-date">Planned</span>
+                            </div>
+                        </div>
+                        <p class="note-preview">
+                            Linear and nonlinear plasma instabilities including interchange modes, 
+                            tearing modes, and disruptions. Stability analysis methods and 
+                            mitigation strategies for fusion devices.
+                        </p>
+                        <div class="note-highlights">
+                            <span class="highlight">Linear Analysis</span>
+                            <span class="highlight">Tearing Modes</span>
+                            <span class="highlight">Disruptions</span>
+                            <span class="highlight">Mitigation</span>
+                        </div>
+                        <div class="note-actions">
+                            <a href="#" class="btn btn-primary disabled">Planned</a>
+                            <a href="#" class="btn btn-secondary disabled">Research Phase</a>
+                        </div>
+                    </article>
+
+                    <!-- Kinetic Theory - Planned -->
+                    <article class="note-card placeholder">
+                        <div class="note-status">
+                            <span class="status-badge planned">Planned</span>
+                        </div>
+                        <div class="note-header">
+                            <h3><a href="#">Kinetic Theory & Vlasov Equation</a></h3>
+                            <div class="note-meta">
+                                <span class="note-difficulty advanced">Advanced</span>
+                                <span class="note-area">Kinetic Theory</span>
+                                <span class="note-date">Planned</span>
+                            </div>
+                        </div>
+                        <p class="note-preview">
+                            Particle distribution functions and the Vlasov equation. Landau damping, 
+                            wave-particle interactions, and the transition from kinetic to fluid 
+                            descriptions of plasma dynamics.
+                        </p>
+                        <div class="note-highlights">
+                            <span class="highlight">Vlasov Equation</span>
+                            <span class="highlight">Landau Damping</span>
+                            <span class="highlight">Distribution Functions</span>
+                            <span class="highlight">Wave Physics</span>
+                        </div>
+                        <div class="note-actions">
+                            <a href="#" class="btn btn-primary disabled">Planned</a>
+                            <a href="#" class="btn btn-secondary disabled">Research Phase</a>
+                        </div>
+                    </article>
+
+                    <!-- Transport Theory - Planned -->
+                    <article class="note-card placeholder">
+                        <div class="note-status">
+                            <span class="status-badge planned">Planned</span>
+                        </div>
+                        <div class="note-header">
+                            <h3><a href="#">Transport & Confinement</a></h3>
+                            <div class="note-meta">
+                                <span class="note-difficulty intermediate">Intermediate</span>
+                                <span class="note-area">Transport Theory</span>
+                                <span class="note-date">Planned</span>
+                            </div>
+                        </div>
+                        <p class="note-preview">
+                            Classical and neoclassical transport in magnetized plasmas. Anomalous 
+                            transport, turbulence, and confinement scaling laws in tokamaks and 
+                            stellarators.
+                        </p>
+                        <div class="note-highlights">
+                            <span class="highlight">Neoclassical</span>
+                            <span class="highlight">Turbulence</span>
+                            <span class="highlight">Confinement</span>
+                            <span class="highlight">Scaling Laws</span>
+                        </div>
+                        <div class="note-actions">
+                            <a href="#" class="btn btn-primary disabled">Planned</a>
+                            <a href="#" class="btn btn-secondary disabled">Research Phase</a>
+                        </div>
+                    </article>
+
+                    <!-- Computational Methods - Planned -->
+                    <article class="note-card placeholder">
+                        <div class="note-status">
+                            <span class="status-badge planned">Planned</span>
+                        </div>
+                        <div class="note-header">
+                            <h3><a href="#">Computational Plasma Physics</a></h3>
+                            <div class="note-meta">
+                                <span class="note-difficulty intermediate">Intermediate</span>
+                                <span class="note-area">Numerical Methods</span>
+                                <span class="note-date">Planned</span>
+                            </div>
+                        </div>
+                        <p class="note-preview">
+                            Particle-in-cell (PIC) methods, finite difference schemes for MHD, 
+                            and spectral methods for plasma simulations. Implementation in MATLAB 
+                            and Python with performance optimization.
+                        </p>
+                        <div class="note-highlights">
+                            <span class="highlight">PIC Methods</span>
+                            <span class="highlight">MHD Codes</span>
+                            <span class="highlight">MATLAB/Python</span>
+                            <span class="highlight">Optimization</span>
+                        </div>
+                        <div class="note-actions">
+                            <a href="#" class="btn btn-primary disabled">Planned</a>
+                            <a href="#" class="btn btn-secondary disabled">Research Phase</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mathematical Foundations -->
+        <section class="math-foundations">
+            <div class="content-container">
+                <h2>Key Equations & Constants</h2>
+                <div class="equations-showcase">
+                    <div class="equation-group">
+                        <h4>Plasma Parameters</h4>
+                        <div class="equation-display">
+                            $$\omega_{pe} = \sqrt{\frac{n_e e^2}{\epsilon_0 m_e}}$$
+                            $$\lambda_D = \sqrt{\frac{\epsilon_0 k_B T_e}{n_e e^2}}$$
+                        </div>
+                    </div>
+                    
+                    <div class="equation-group">
+                        <h4>MHD Equations</h4>
+                        <div class="equation-display">
+                            $$\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0$$
+                            $$\mathbf{J} \times \mathbf{B} = \nabla p$$
+                        </div>
+                    </div>
+                    
+                    <div class="equation-group">
+                        <h4>Fusion Cross-Section</h4>
+                        <div class="equation-display">
+                            $$\sigma_{DT}(E) = \frac{S(E)}{E} e^{-2\pi\eta}$$
+                            $$\eta = \frac{Z_1 Z_2 e^2}{4\pi\epsilon_0 \hbar v}$$
+                        </div>
+                    </div>
+                    
+                    <div class="equation-group">
+                        <h4>Lawson Criterion</h4>
+                        <div class="equation-display">
+                            $$n\tau_E T \geq \frac{12 k_B T}{\langle\sigma v\rangle E_{fusion}}$$
+                            $$Q = \frac{P_{fusion}}{P_{input}} \geq 1$$
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources & Tools -->
+        <section class="resources-section">
+            <div class="content-container">
+                <h2>Plasma Physics Resources</h2>
+                <div class="resources-grid">
+                    <div class="resource-category">
+                        <h3>🧮 Simulation Tools</h3>
+                        <ul class="resource-list">
+                            <li><a href="#">MATLAB Fusion Toolbox</a></li>
+                            <li><a href="#">PIC Simulation Suite</a></li>
+                            <li><a href="#">MHD Equilibrium Solver</a></li>
+                            <li><a href="#">Transport Analysis Tools</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-category">
+                        <h3>📊 Experimental Data</h3>
+                        <ul class="resource-list">
+                            <li><a href="#">ITER Database</a></li>
+                            <li><a href="#">JET Results Archive</a></li>
+                            <li><a href="#">Tokamak Parameters</a></li>
+                            <li><a href="#">Stellarator Configurations</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-category">
+                        <h3>📚 Reference Materials</h3>
+                        <ul class="resource-list">
+                            <li><a href="#">Chen - Plasma Physics</a></li>
+                            <li><a href="#">Freidberg - Ideal MHD</a></li>
+                            <li><a href="#">Wesson - Tokamaks</a></li>
+                            <li><a href="#">NRL Plasma Formulary</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-category">
+                        <h3>🔗 Research Centers</h3>
+                        <ul class="resource-list">
+                            <li><a href="#">ITER Organization</a></li>
+                            <li><a href="#">Princeton Plasma Physics</a></li>
+                            <li><a href="#">MIT Plasma Science</a></li>
+                            <li><a href="#">Max Planck IPP</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigate</h4>
+                <ul class="footer-nav">
+                    <li><a href="../../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About</a></li>
+                    <li><a href="../../../projects/index.html">Projects</a></li>
+                    <li><a href="../../index.html">Notes</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Physics Topics</h4>
+                <ul class="footer-nav">
+                    <li><a href="lawson-criterion.html">Lawson Criterion</a></li>
+                    <li><a href="../index.html">All Physics</a></li>
+                    <li><a href="../../index.html">All Notes</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <p class="footer-note">
+                    Plasma Physics • The fourth state of matter
+                </p>
+                <p class="footer-note">
+                    Mathematical rigor meets fusion energy research
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../../../config/latex-config.js"></script>
+    <script src="../../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../../assets/js/latex-renderer.js"></script>
+    <script src="../../../../assets/js/main.js"></script>
+</body>
+</html>
