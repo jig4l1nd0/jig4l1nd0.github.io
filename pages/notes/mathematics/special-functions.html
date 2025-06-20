@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Functions - Mathematics Notes</title>
+    <meta name="description" content="Comprehensive study of special functions: Gamma, Beta, Bessel, Legendre, and hypergeometric functions">
+    <meta name="author" content="Josué Galindo">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Custom syntax highlighting styles -->
+    <link rel="stylesheet" href="../../../assets/css/syntax-highlighting.css">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../index.html" class="nav-link active">Notes</a></li>
+                <li><a href="../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main">
+        <!-- Note Header -->
+        <section class="note-header-section">
+            <div class="content-container">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Notes</a> → 
+                    <a href="index.html">Mathematics</a> → 
+                    <span>Special Functions</span>
+                </nav>
+                
+                <h1>Special Functions</h1>
+                
+                <div class="note-meta">
+                    <span class="note-area mathematics">Mathematics</span>
+                    <span class="note-date">June 19, 2025</span>
+                    <div class="note-tags">
+                        <span class="tag">Special Functions</span>
+                        <span class="tag">Gamma Function</span>
+                        <span class="tag">Bessel Functions</span>
+                        <span class="tag">Orthogonal Polynomials</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note Content -->
+        <article class="note-content">
+            <div class="content-container">
+                <!-- Introduction -->
+                <section>
+                    <h2>Introduction</h2>
+                    <p>
+                        Special functions arise naturally as solutions to differential equations in mathematical physics, 
+                        engineering, and pure mathematics. These functions extend elementary functions and provide powerful 
+                        tools for solving complex problems in various fields.
+                    </p>
+                </section>
+
+                <!-- Gamma and Beta Functions -->
+                <section>
+                    <h2>Gamma and Beta Functions</h2>
+                    
+                    <h3>The Gamma Function</h3>
+                    <p>The Gamma function generalizes the factorial to non-integer values:</p>
+                    
+                    $$\Gamma(z) = \int_0^{\infty} t^{z-1} e^{-t} dt, \quad \Re(z) > 0$$
+                    
+                    <h4>Key Properties</h4>
+                    <ul>
+                        <li><strong>Functional equation:</strong> $\Gamma(z+1) = z\Gamma(z)$</li>
+                        <li><strong>Factorial property:</strong> $\Gamma(n+1) = n!$ for $n \in \mathbb{N}_0$</li>
+                        <li><strong>Half-integer values:</strong> $\Gamma(1/2) = \sqrt{\pi}$</li>
+                        <li><strong>Reflection formula:</strong> $\Gamma(z)\Gamma(1-z) = \frac{\pi}{\sin(\pi z)}$</li>
+                    </ul>
+
+                    <h4>Stirling's Approximation</h4>
+                    <p>For large values of $z$:</p>
+                    
+                    $$\Gamma(z) \sim \sqrt{\frac{2\pi}{z}} \left(\frac{z}{e}\right)^z \quad \text{as } |z| \to \infty$$
+                    
+                    <p>More precise asymptotic expansion:</p>
+                    
+                    $$\ln \Gamma(z) = \left(z - \frac{1}{2}\right) \ln z - z + \frac{1}{2}\ln(2\pi) + \frac{1}{12z} + O(z^{-3})$$
+
+                    <h3>The Beta Function</h3>
+                    <p>The Beta function is defined as:</p>
+                    
+                    $$B(x,y) = \int_0^1 t^{x-1}(1-t)^{y-1} dt, \quad \Re(x), \Re(y) > 0$$
+                    
+                    <p>Relationship to Gamma function:</p>
+                    
+                    $$B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}$$
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Symmetry:</strong> $B(x,y) = B(y,x)$</li>
+                        <li><strong>Integral representation:</strong> $B(x,y) = 2\int_0^{\pi/2} \sin^{2x-1}\theta \cos^{2y-1}\theta \, d\theta$</li>
+                        <li><strong>Connection to binomial coefficients:</strong> $B(m,n) = \frac{(m-1)!(n-1)!}{(m+n-1)!}$</li>
+                    </ul>
+                </section>
+
+                <!-- Bessel Functions -->
+                <section>
+                    <h2>Bessel Functions</h2>
+                    
+                    <h3>Bessel's Differential Equation</h3>
+                    <p>The general Bessel equation is:</p>
+                    
+                    $$z^2 \frac{d^2w}{dz^2} + z\frac{dw}{dz} + (z^2 - \nu^2)w = 0$$
+                    
+                    <p>where $\nu$ is the order of the Bessel function.</p>
+
+                    <h3>Bessel Functions of the First Kind</h3>
+                    <p>The Bessel function $J_\nu(z)$ is defined by the series:</p>
+                    
+                    $$J_\nu(z) = \left(\frac{z}{2}\right)^\nu \sum_{k=0}^{\infty} \frac{(-1)^k}{k! \Gamma(k+\nu+1)} \left(\frac{z}{2}\right)^{2k}$$
+                    
+                    <h4>Generating Function</h4>
+                    $$e^{(z/2)(t-1/t)} = \sum_{n=-\infty}^{\infty} J_n(z) t^n$$
+                    
+                    <h4>Integral Representations</h4>
+                    <p>For integer order $n$:</p>
+                    
+                    $$J_n(z) = \frac{1}{2\pi} \int_{-\pi}^{\pi} e^{i(z\sin\theta - n\theta)} d\theta$$
+                    
+                    $$J_n(z) = \frac{1}{\pi} \int_0^{\pi} \cos(z\sin\theta - n\theta) d\theta$$
+
+                    <h3>Bessel Functions of the Second Kind</h3>
+                    <p>The Neumann function (Weber function) $Y_\nu(z)$:</p>
+                    
+                    $$Y_\nu(z) = \frac{J_\nu(z)\cos(\nu\pi) - J_{-\nu}(z)}{\sin(\nu\pi)}$$
+                    
+                    <p>For integer order $n$:</p>
+                    
+                    $$Y_n(z) = \lim_{\nu \to n} Y_\nu(z)$$
+
+                    <h3>Modified Bessel Functions</h3>
+                    <p>Solutions to the modified Bessel equation:</p>
+                    
+                    $$z^2 \frac{d^2w}{dz^2} + z\frac{dw}{dz} - (z^2 + \nu^2)w = 0$$
+                    
+                    <p>Modified Bessel functions of the first kind:</p>
+                    
+                    $$I_\nu(z) = i^{-\nu} J_\nu(iz) = \left(\frac{z}{2}\right)^\nu \sum_{k=0}^{\infty} \frac{1}{k! \Gamma(k+\nu+1)} \left(\frac{z}{2}\right)^{2k}$$
+                    
+                    <p>Modified Bessel functions of the second kind:</p>
+                    
+                    $$K_\nu(z) = \frac{\pi}{2} \frac{I_{-\nu}(z) - I_\nu(z)}{\sin(\nu\pi)}$$
+
+                    <h3>Asymptotic Behavior</h3>
+                    <p>For large $|z|$:</p>
+                    
+                    $$J_\nu(z) \sim \sqrt{\frac{2}{\pi z}} \cos\left(z - \frac{\nu\pi}{2} - \frac{\pi}{4}\right)$$
+                    
+                    $$Y_\nu(z) \sim \sqrt{\frac{2}{\pi z}} \sin\left(z - \frac{\nu\pi}{2} - \frac{\pi}{4}\right)$$
+                    
+                    $$I_\nu(z) \sim \frac{e^z}{\sqrt{2\pi z}}$$
+                    
+                    $$K_\nu(z) \sim \sqrt{\frac{\pi}{2z}} e^{-z}$$
+                </section>
+
+                <!-- Legendre Functions -->
+                <section>
+                    <h2>Legendre Functions</h2>
+                    
+                    <h3>Legendre's Differential Equation</h3>
+                    $$\frac{d}{dx}\left[(1-x^2)\frac{dy}{dx}\right] + \lambda y = 0$$
+                    
+                    <p>For $\lambda = l(l+1)$, solutions are Legendre polynomials.</p>
+
+                    <h3>Legendre Polynomials</h3>
+                    <p>The Legendre polynomials $P_l(x)$ can be defined by Rodrigues' formula:</p>
+                    
+                    $$P_l(x) = \frac{1}{2^l l!} \frac{d^l}{dx^l}(x^2-1)^l$$
+                    
+                    <h4>Explicit Forms</h4>
+                    <ul>
+                        <li>$P_0(x) = 1$</li>
+                        <li>$P_1(x) = x$</li>
+                        <li>$P_2(x) = \frac{1}{2}(3x^2 - 1)$</li>
+                        <li>$P_3(x) = \frac{1}{2}(5x^3 - 3x)$</li>
+                        <li>$P_4(x) = \frac{1}{8}(35x^4 - 30x^2 + 3)$</li>
+                    </ul>
+
+                    <h4>Generating Function</h4>
+                    $$\frac{1}{\sqrt{1 - 2xt + t^2}} = \sum_{l=0}^{\infty} P_l(x) t^l, \quad |t| < 1$$
+
+                    <h4>Orthogonality</h4>
+                    $$\int_{-1}^{1} P_l(x) P_m(x) dx = \frac{2}{2l+1} \delta_{lm}$$
+
+                    <h4>Recurrence Relations</h4>
+                    $$(l+1)P_{l+1}(x) = (2l+1)xP_l(x) - lP_{l-1}(x)$$
+                    
+                    $$\frac{d}{dx}P_l(x) = \frac{l}{x^2-1}[xP_l(x) - P_{l-1}(x)]$$
+
+                    <h3>Associated Legendre Functions</h3>
+                    <p>Solutions to the associated Legendre equation:</p>
+                    
+                    $$\frac{d}{dx}\left[(1-x^2)\frac{dy}{dx}\right] + \left[l(l+1) - \frac{m^2}{1-x^2}\right]y = 0$$
+                    
+                    <p>Associated Legendre polynomials:</p>
+                    
+                    $$P_l^m(x) = (-1)^m (1-x^2)^{m/2} \frac{d^m}{dx^m} P_l(x)$$
+                    
+                    <p>Orthogonality:</p>
+                    
+                    $$\int_{-1}^{1} P_l^m(x) P_{l'}^m(x) dx = \frac{2}{2l+1} \frac{(l+m)!}{(l-m)!} \delta_{ll'}$$
+
+                    <h3>Spherical Harmonics</h3>
+                    <p>Combinations of associated Legendre functions and exponentials:</p>
+                    
+                    $$Y_l^m(\theta, \phi) = \sqrt{\frac{(2l+1)}{4\pi}\frac{(l-|m|)!}{(l+|m|)!}} P_l^{|m|}(\cos\theta) e^{im\phi}$$
+                    
+                    <p>Orthonormality:</p>
+                    
+                    $$\int_0^{2\pi} d\phi \int_0^{\pi} \sin\theta \, d\theta \, [Y_l^m(\theta,\phi)]^* Y_{l'}^{m'}(\theta,\phi) = \delta_{ll'} \delta_{mm'}$$
+                </section>
+
+                <!-- Hypergeometric Functions -->
+                <section>
+                    <h2>Hypergeometric Functions</h2>
+                    
+                    <h3>Gauss Hypergeometric Function</h3>
+                    <p>The hypergeometric series:</p>
+                    
+                    $$_2F_1(a,b;c;z) = \sum_{n=0}^{\infty} \frac{(a)_n (b)_n}{(c)_n} \frac{z^n}{n!}$$
+                    
+                    <p>where $(a)_n = a(a+1)(a+2)\cdots(a+n-1)$ is the Pochhammer symbol.</p>
+
+                    <h3>Hypergeometric Differential Equation</h3>
+                    $$z(1-z)\frac{d^2w}{dz^2} + [c-(a+b+1)z]\frac{dw}{dz} - abw = 0$$
+                    
+                    <p>Solutions near $z = 0$:</p>
+                    <ul>
+                        <li>$w_1(z) = {_2F_1(a,b;c;z)}$</li>
+                        <li>$w_2(z) = z^{1-c} {_2F_1(a-c+1,b-c+1;2-c;z)}$ (if $c \neq$ integer)</li>
+                    </ul>
+
+                    <h3>Special Cases</h3>
+                    <p>Many special functions are special cases of hypergeometric functions:</p>
+                    
+                    <ul>
+                        <li><strong>Binomial series:</strong> $(1+z)^a = {_2F_1(-a,b;b;-z)}$</li>
+                        <li><strong>Legendre polynomials:</strong> $P_l(x) = {_2F_1(-l,l+1;1;\frac{1-x}{2})}$</li>
+                        <li><strong>Chebyshev polynomials:</strong> $T_n(\cos\theta) = {_2F_1(-n,n;\frac{1}{2};\sin^2\frac{\theta}{2})}$</li>
+                        <li><strong>Jacobi polynomials:</strong> $P_n^{(\alpha,\beta)}(x) = \binom{n+\alpha}{n} {_2F_1(-n,n+\alpha+\beta+1;\alpha+1;\frac{1-x}{2})}$</li>
+                    </ul>
+
+                    <h3>Confluent Hypergeometric Function</h3>
+                    <p>Kummer's function:</p>
+                    
+                    $$_1F_1(a;c;z) = \sum_{n=0}^{\infty} \frac{(a)_n}{(c)_n} \frac{z^n}{n!}$$
+                    
+                    <p>Satisfies Kummer's differential equation:</p>
+                    
+                    $$z\frac{d^2w}{dz^2} + (c-z)\frac{dw}{dz} - aw = 0$$
+                    
+                    <p>Connection to Bessel functions:</p>
+                    
+                    $$J_\nu(z) = \frac{(z/2)^\nu}{\Gamma(\nu+1)} e^{-iz} {_1F_1(\nu+\frac{1}{2}; 2\nu+1; 2iz)}$$
+                </section>
+
+                <!-- Python Implementation -->
+                <section>
+                    <h2>Computational Examples</h2>
+                    
+                    <p>
+                        Here's a comprehensive Python implementation exploring special functions:
+                    </p>
+                    
+                    <div class="note-code" data-language="python">
+                        <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import (gamma, beta, jv, yv, iv, kv, 
+                          legendre, sph_harm, hyp2f1, hyp1f1)
+from scipy.integrate import quad
+import warnings
+warnings.filterwarnings('ignore')
+
+# 1. Gamma and Beta Functions
+def gamma_beta_analysis():
+    """
+    Explore properties of Gamma and Beta functions
+    """
+    print("=== Gamma and Beta Functions Analysis ===")
+    
+    # Plot Gamma function
+    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+    
+    # Gamma function
+    x = np.linspace(0.1, 5, 1000)
+    y_gamma = gamma(x)
+    
+    # Stirling approximation
+    stirling = np.sqrt(2*np.pi/x) * (x/np.e)**x
+    
+    ax1.plot(x, y_gamma, 'b-', linewidth=2, label='Γ(x)')
+    ax1.plot(x[x > 1], stirling[x > 1], 'r--', linewidth=2, label="Stirling's approximation")
+    ax1.set_xlabel('x')
+    ax1.set_ylabel('Γ(x)')
+    ax1.set_title('Gamma Function and Stirling Approximation')
+    ax1.set_ylim(0, 20)
+    ax1.legend()
+    ax1.grid(True)
+    
+    # Beta function surface
+    x_beta = np.linspace(0.1, 5, 50)
+    y_beta = np.linspace(0.1, 5, 50)
+    X, Y = np.meshgrid(x_beta, y_beta)
+    Z = beta(X, Y)
+    
+    contour = ax2.contourf(X, Y, Z, levels=20, cmap='viridis')
+    ax2.set_xlabel('x')
+    ax2.set_ylabel('y')
+    ax2.set_title('Beta Function B(x,y)')
+    plt.colorbar(contour, ax=ax2)
+    
+    # Verify Gamma-Beta relationship
+    x_test = np.linspace(1, 4, 20)
+    y_test = np.linspace(1, 4, 20)
+    errors = []
+    
+    for x_val in x_test:
+        for y_val in y_test:
+            beta_direct = beta(x_val, y_val)
+            beta_gamma = gamma(x_val) * gamma(y_val) / gamma(x_val + y_val)
+            relative_error = abs(beta_direct - beta_gamma) / beta_direct
+            errors.append(relative_error)
+    
+    ax3.hist(errors, bins=30, alpha=0.7, color='green')
+    ax3.set_xlabel('Relative Error')
+    ax3.set_ylabel('Frequency')
+    ax3.set_title('Verification: B(x,y) = Γ(x)Γ(y)/Γ(x+y)')
+    ax3.grid(True)
+    
+    # Reflection formula verification
+    z_vals = np.linspace(0.1, 0.9, 100)
+    lhs = gamma(z_vals) * gamma(1 - z_vals)
+    rhs = np.pi / np.sin(np.pi * z_vals)
+    
+    ax4.plot(z_vals, lhs, 'b-', linewidth=2, label='Γ(z)Γ(1-z)')
+    ax4.plot(z_vals, rhs, 'r--', linewidth=2, label='π/sin(πz)')
+    ax4.set_xlabel('z')
+    ax4.set_ylabel('Value')
+    ax4.set_title('Reflection Formula: Γ(z)Γ(1-z) = π/sin(πz)')
+    ax4.legend()
+    ax4.grid(True)
+    
+    plt.tight_layout()
+    plt.show()
+    
+    print(f"Maximum relative error in Gamma-Beta relation: {max(errors):.2e}")
+    print(f"Average relative error: {np.mean(errors):.2e}")
+    print()
+
+# 2. Bessel Functions Analysis
+def bessel_functions_analysis():
+    """
+    Comprehensive analysis of Bessel functions
+    """
+    print("=== Bessel Functions Analysis ===")
+    
+    x = np.linspace(0, 20, 1000)
+    
+    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+    
+    # Bessel functions of first kind
+    for n in range(5):
+        ax1.plot(x, jv(n, x), label=f'J_{n}(x)', linewidth=2)
+    
+    ax1.set_xlabel('x')
+    ax1.set_ylabel('J_n(x)')
+    ax1.set_title('Bessel Functions of First Kind')
+    ax1.legend()
+    ax1.grid(True)
+    ax1.set_ylim(-0.5, 1)
+    
+    # Bessel functions of second kind
+    x_y = x[x > 0.1]  # Avoid singularity at x=0
+    for n in range(3):
+        ax2.plot(x_y, yv(n, x_y), label=f'Y_{n}(x)', linewidth=2)
+    
+    ax2.set_xlabel('x')
+    ax2.set_ylabel('Y_n(x)')
+    ax2.set_title('Bessel Functions of Second Kind')
+    ax2.legend()
+    ax2.grid(True)
+    ax2.set_ylim(-2, 1)
+    
+    # Modified Bessel functions
+    x_mod = np.linspace(0.1, 5, 1000)
+    for n in range(4):
+        ax3.plot(x_mod, iv(n, x_mod), label=f'I_{n}(x)', linewidth=2)
+    
+    ax3.set_xlabel('x')
+    ax3.set_ylabel('I_n(x)')
+    ax3.set_title('Modified Bessel Functions (First Kind)')
+    ax3.legend()
+    ax3.grid(True)
+    ax3.set_yscale('log')
+    
+    # Modified Bessel functions second kind
+    for n in range(3):
+        ax4.plot(x_mod, kv(n, x_mod), label=f'K_{n}(x)', linewidth=2)
+    
+    ax4.set_xlabel('x')
+    ax4.set_ylabel('K_n(x)')
+    ax4.set_title('Modified Bessel Functions (Second Kind)')
+    ax4.legend()
+    ax4.grid(True)
+    ax4.set_yscale('log')
+    
+    plt.tight_layout()
+    plt.show()
+    
+    # Verify orthogonality of Bessel functions
+    print("--- Bessel Function Orthogonality Check ---")
+    
+    # J_0 zeros (approximate)
+    zeros_j0 = [2.4048, 5.5201, 8.6537, 11.7915]
+    
+    def bessel_orthogonality(alpha, beta, a=1):
+        """Check orthogonality ∫₀ᵃ x J_0(αx) J_0(βx) dx"""
+        integrand = lambda x: x * jv(0, alpha * x) * jv(0, beta * x)
+        result, _ = quad(integrand, 0, a)
+        return result
+    
+    for i, alpha in enumerate(zeros_j0[:3]):
+        for j, beta in enumerate(zeros_j0[:3]):
+            integral = bessel_orthogonality(alpha, beta)
+            expected = 0 if i != j else 0.5 * jv(1, alpha)**2
+            print(f"∫₀¹ x J₀({alpha:.2f}x) J₀({beta:.2f}x) dx = {integral:.6f}, "
+                  f"Expected: {expected:.6f}")
+    print()
+
+# 3. Legendre Polynomials and Spherical Harmonics
+def legendre_spherical_analysis():
+    """
+    Analysis of Legendre polynomials and spherical harmonics
+    """
+    print("=== Legendre Polynomials and Spherical Harmonics ===")
+    
+    x = np.linspace(-1, 1, 1000)
+    
+    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+    
+    # Legendre polynomials
+    for l in range(6):
+        P_l = legendre(l)
+        ax1.plot(x, P_l(x), label=f'P_{l}(x)', linewidth=2)
+    
+    ax1.set_xlabel('x')
+    ax1.set_ylabel('P_l(x)')
+    ax1.set_title('Legendre Polynomials')
+    ax1.legend()
+    ax1.grid(True)
+    
+    # Verify generating function
+    t = 0.5
+    x_gen = np.linspace(-0.9, 0.9, 100)
+    generating_exact = 1 / np.sqrt(1 - 2*t*x_gen + t**2)
+    
+    # Series approximation
+    generating_series = np.zeros_like(x_gen)
+    for l in range(20):  # Sum first 20 terms
+        P_l = legendre(l)
+        generating_series += P_l(x_gen) * t**l
+    
+    ax2.plot(x_gen, generating_exact, 'b-', linewidth=3, label='Exact: 1/√(1-2tx+t²)')
+    ax2.plot(x_gen, generating_series, 'r--', linewidth=2, label='Series: Σ P_l(x) t^l')
+    ax2.set_xlabel('x')
+    ax2.set_ylabel('Value')
+    ax2.set_title(f'Generating Function (t = {t})')
+    ax2.legend()
+    ax2.grid(True)
+    
+    # Spherical harmonics
+    theta = np.linspace(0, np.pi, 100)
+    phi = np.linspace(0, 2*np.pi, 100)
+    THETA, PHI = np.meshgrid(theta, phi)
+    
+    # Y_2^1 spherical harmonic
+    Y_21 = sph_harm(1, 2, PHI, THETA)
+    
+    # Plot real part
+    im = ax3.contourf(THETA, PHI, np.real(Y_21), levels=20, cmap='RdBu')
+    ax3.set_xlabel('θ (radians)')
+    ax3.set_ylabel('φ (radians)')
+    ax3.set_title('Re[Y₂¹(θ,φ)] - Spherical Harmonic')
+    plt.colorbar(im, ax=ax3)
+    
+    # Verify orthogonality of Legendre polynomials
+    orthogonality_matrix = np.zeros((5, 5))
+    for l in range(5):
+        for m in range(5):
+            P_l = legendre(l)
+            P_m = legendre(m)
+            integrand = lambda x: P_l(x) * P_m(x)
+            integral, _ = quad(integrand, -1, 1)
+            orthogonality_matrix[l, m] = integral
+    
+    im2 = ax4.imshow(orthogonality_matrix, cmap='RdBu', aspect='auto')
+    ax4.set_xlabel('m')
+    ax4.set_ylabel('l')
+    ax4.set_title('Orthogonality Matrix: ∫₋₁¹ P_l(x) P_m(x) dx')
+    plt.colorbar(im2, ax=ax4)
+    
+    # Add text annotations
+    for i in range(5):
+        for j in range(5):
+            ax4.text(j, i, f'{orthogonality_matrix[i,j]:.2f}', 
+                    ha='center', va='center', color='white' if abs(orthogonality_matrix[i,j]) > 0.5 else 'black')
+    
+    plt.tight_layout()
+    plt.show()
+    
+    print("--- Legendre Orthogonality Verification ---")
+    for l in range(3):
+        expected_norm = 2/(2*l + 1)
+        actual_norm = orthogonality_matrix[l, l]
+        print(f"||P_{l}||² = {actual_norm:.6f}, Expected: {expected_norm:.6f}")
+    print()
+
+# 4. Hypergeometric Functions
+def hypergeometric_analysis():
+    """
+    Analysis of hypergeometric functions and their special cases
+    """
+    print("=== Hypergeometric Functions ===")
+    
+    z = np.linspace(-0.9, 0.9, 1000)
+    
+    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+    
+    # Gauss hypergeometric function examples
+    params = [(0.5, 1, 1.5), (1, 2, 1), (2, 1, 3), (-0.5, 0.5, 1)]
+    
+    for i, (a, b, c) in enumerate(params):
+        F = hyp2f1(a, b, c, z)
+        ax1.plot(z, np.real(F), label=f'₂F₁({a},{b};{c};z)', linewidth=2)
+    
+    ax1.set_xlabel('z')
+    ax1.set_ylabel('₂F₁(a,b;c;z)')
+    ax1.set_title('Gauss Hypergeometric Function')
+    ax1.legend()
+    ax1.grid(True)
+    
+    # Confluent hypergeometric function
+    z_conf = np.linspace(-5, 5, 1000)
+    params_conf = [(1, 2), (0.5, 1), (2, 1), (-1, 0.5)]
+    
+    for a, c in params_conf:
+        F_conf = hyp1f1(a, c, z_conf)
+        ax2.plot(z_conf, np.real(F_conf), label=f'₁F₁({a};{c};z)', linewidth=2)
+    
+    ax2.set_xlabel('z')
+    ax2.set_ylabel('₁F₁(a;c;z)')
+    ax2.set_title('Confluent Hypergeometric Function')
+    ax2.legend()
+    ax2.grid(True)
+    ax2.set_ylim(-10, 10)
+    
+    # Connection to binomial series
+    z_bin = np.linspace(-0.5, 0.5, 100)
+    alpha = 0.5
+    
+    binomial_exact = (1 + z_bin)**alpha
+    binomial_hyp = hyp2f1(-alpha, 1, 1, -z_bin)
+    
+    ax3.plot(z_bin, binomial_exact, 'b-', linewidth=3, label=f'(1+z)^{alpha}')
+    ax3.plot(z_bin, binomial_hyp, 'r--', linewidth=2, label=f'₂F₁(-{alpha},1;1;-z)')
+    ax3.set_xlabel('z')
+    ax3.set_ylabel('Value')
+    ax3.set_title(f'Binomial Series: (1+z)^{alpha}')
+    ax3.legend()
+    ax3.grid(True)
+    
+    # Connection to Legendre polynomials
+    x_leg = np.linspace(-0.9, 0.9, 100)
+    l = 3
+    
+    legendre_direct = legendre(l)(x_leg)
+    legendre_hyp = hyp2f1(-l, l+1, 1, (1-x_leg)/2)
+    
+    ax4.plot(x_leg, legendre_direct, 'b-', linewidth=3, label=f'P_{l}(x)')
+    ax4.plot(x_leg, legendre_hyp, 'r--', linewidth=2, label=f'₂F₁(-{l},{l+1};1;(1-x)/2)')
+    ax4.set_xlabel('x')
+    ax4.set_ylabel('Value')
+    ax4.set_title(f'Legendre Polynomial P_{l}(x)')
+    ax4.legend()
+    ax4.grid(True)
+    
+    plt.tight_layout()
+    plt.show()
+    
+    # Error analysis
+    binomial_error = np.max(np.abs(binomial_exact - binomial_hyp))
+    legendre_error = np.max(np.abs(legendre_direct - legendre_hyp))
+    
+    print(f"Binomial series representation error: {binomial_error:.2e}")
+    print(f"Legendre polynomial representation error: {legendre_error:.2e}")
+    print()
+
+# 5. Applications and Relationships
+def special_functions_applications():
+    """
+    Demonstrate applications and relationships between special functions
+    """
+    print("=== Special Functions Applications ===")
+    
+    # Quantum harmonic oscillator wavefunctions
+    x = np.linspace(-4, 4, 1000)
+    
+    def hermite_polynomial(n, x):
+        """Hermite polynomial using confluent hypergeometric function"""
+        return 2**n * hyp1f1(-n/2, 0.5, x**2) if n % 2 == 0 else \
+               2**n * x * hyp1f1(-(n-1)/2, 1.5, x**2)
+    
+    def qho_wavefunction(n, x, alpha=1):
+        """Quantum harmonic oscillator wavefunction"""
+        normalization = (alpha/np.pi)**(1/4) / np.sqrt(2**n * gamma(n+1))
+        hermite = hermite_polynomial(n, alpha * x)
+        return normalization * np.exp(-alpha * x**2 / 2) * hermite
+    
+    plt.figure(figsize=(12, 8))
+    
+    for n in range(5):
+        psi = qho_wavefunction(n, x)
+        plt.plot(x, psi + n * 0.8, label=f'ψ_{n}(x)', linewidth=2)
+        plt.axhline(y=n * 0.8, color='gray', linestyle='--', alpha=0.5)
+    
+    plt.xlabel('x')
+    plt.ylabel('ψ_n(x) + offset')
+    plt.title('Quantum Harmonic Oscillator Wavefunctions')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
+    print("Special functions enable exact solutions to fundamental physics problems:")
+    print("- Gamma functions: Statistical mechanics, quantum field theory")
+    print("- Bessel functions: Cylindrical wave problems, electromagnetic cavities")
+    print("- Legendre polynomials: Gravitational multipoles, atomic orbitals")
+    print("- Hypergeometric functions: Many special cases unify diverse problems")
+
+# Run all analyses
+if __name__ == "__main__":
+    gamma_beta_analysis()
+    bessel_functions_analysis()
+    legendre_spherical_analysis()
+    hypergeometric_analysis()
+    special_functions_applications()
+</code></pre>
+                    </div>
+                </section>
+
+                <!-- Applications -->
+                <section>
+                    <h2>Applications in Physics and Engineering</h2>
+                    
+                    <h3>Quantum Mechanics</h3>
+                    <ul>
+                        <li><strong>Hydrogen atom:</strong> Associated Legendre functions in angular solutions</li>
+                        <li><strong>Harmonic oscillator:</strong> Hermite polynomials in energy eigenstates</li>
+                        <li><strong>Cylindrical potentials:</strong> Bessel functions for radial solutions</li>
+                        <li><strong>Scattering theory:</strong> Spherical Bessel functions</li>
+                    </ul>
+
+                    <h3>Electromagnetism</h3>
+                    <ul>
+                        <li><strong>Multipole expansions:</strong> Spherical harmonics</li>
+                        <li><strong>Waveguides:</strong> Bessel functions for cylindrical modes</li>
+                        <li><strong>Antenna radiation:</strong> Associated Legendre functions</li>
+                        <li><strong>Cavity resonators:</strong> Various special functions</li>
+                    </ul>
+
+                    <h3>Statistical Mechanics</h3>
+                    <ul>
+                        <li><strong>Maxwell-Boltzmann distribution:</strong> Gamma function normalization</li>
+                        <li><strong>Fermi-Dirac statistics:</strong> Polylogarithm functions</li>
+                        <li><strong>Critical phenomena:</strong> Hypergeometric functions</li>
+                        <li><strong>Random matrix theory:</strong> Beta function integrals</li>
+                    </ul>
+
+                    <h3>Engineering Applications</h3>
+                    <ul>
+                        <li><strong>Signal processing:</strong> Bessel functions in filter design</li>
+                        <li><strong>Heat conduction:</strong> Various special functions for different geometries</li>
+                        <li><strong>Vibration analysis:</strong> Bessel functions for circular membranes</li>
+                        <li><strong>Optics:</strong> Bessel beams and optical vortices</li>
+                    </ul>
+                </section>
+
+                <!-- Summary -->
+                <section>
+                    <h2>Summary</h2>
+                    
+                    <p>
+                        Special functions provide the mathematical foundation for solving complex problems across science and engineering:
+                    </p>
+                    
+                    <ul>
+                        <li><strong>Gamma and Beta Functions:</strong> Generalize factorials and enable integration techniques</li>
+                        <li><strong>Bessel Functions:</strong> Solutions to cylindrical wave problems in physics and engineering</li>
+                        <li><strong>Legendre Functions:</strong> Essential for problems with spherical symmetry</li>
+                        <li><strong>Hypergeometric Functions:</strong> Unify many special functions as particular cases</li>
+                        <li><strong>Orthogonal Polynomials:</strong> Provide complete basis sets for function expansion</li>
+                    </ul>
+                    
+                    <p>
+                        Understanding the properties, relationships, and applications of special functions is crucial for 
+                        advanced mathematical physics and enables exact analytical solutions to otherwise intractable problems.
+                    </p>
+                </section>
+            </div>
+        </article>
+
+        <!-- Navigation between notes -->
+        <section class="note-navigation">
+            <div class="content-container">
+                <div class="nav-links">
+                    <a href="../computer-science/classic-information.html" class="nav-link next">Next: Classic Information →</a>
+                    <a href="index.html" class="nav-link up">↑ Back to Mathematics</a>
+                    <a href="../physics/advanced-mathematical-methods.html" class="nav-link prev">← Mathematical Methods</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <!-- ...existing footer content... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../../config/latex-config.js"></script>
+    <script src="../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../assets/js/latex-renderer.js"></script>
+    <script src="../../../assets/js/enhanced-syntax-highlighter.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
