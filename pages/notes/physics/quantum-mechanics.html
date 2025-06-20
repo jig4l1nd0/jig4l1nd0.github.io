@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Mechanics - Physics Notes</title>
+    <meta name="description" content="Fundamental principles of quantum mechanics: wave-particle duality, uncertainty principle, and Schrödinger equation">
+    <meta name="author" content="Josué Galindo">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/utilities.css">
+    <link rel="stylesheet" href="../../../config/style-config.css">
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Custom syntax highlighting styles -->
+    <link rel="stylesheet" href="../../../assets/css/syntax-highlighting.css">
+    
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-brand">
+                <a href="../../../index.html" class="brand-link">JG</a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../projects/index.html" class="nav-link">Projects</a></li>
+                <li><a href="../index.html" class="nav-link active">Notes</a></li>
+                <li><a href="../../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+                <button class="lang-toggle" aria-label="Language">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main">
+        <!-- Note Header -->
+        <section class="note-header-section">
+            <div class="content-container">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Notes</a> → 
+                    <a href="index.html">Physics</a> → 
+                    <span>Quantum Mechanics</span>
+                </nav>
+                
+                <h1>Quantum Mechanics</h1>
+                
+                <div class="note-meta">
+                    <span class="note-area physics">Physics</span>
+                    <span class="note-date">June 19, 2025</span>
+                    <div class="note-tags">
+                        <span class="tag">Quantum Physics</span>
+                        <span class="tag">Schrödinger</span>
+                        <span class="tag">Wave Function</span>
+                        <span class="tag">Uncertainty</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note Content -->
+        <article class="note-content">
+            <div class="content-container">
+                <!-- Introduction -->
+                <section>
+                    <h2>Introduction</h2>
+                    <p>
+                        Quantum mechanics revolutionized our understanding of nature at the atomic and subatomic scale. 
+                        It replaces the deterministic classical worldview with probabilistic descriptions, introducing 
+                        fundamental concepts like wave-particle duality and quantum superposition.
+                    </p>
+                </section>
+
+                <!-- Postulates of Quantum Mechanics -->
+                <section>
+                    <h2>Postulates of Quantum Mechanics</h2>
+                    
+                    <h3>Postulate 1: State Description</h3>
+                    <p>The state of a quantum system is completely described by a wave function $\Psi(\mathbf{r}, t)$ 
+                    such that $|\Psi(\mathbf{r}, t)|^2 d\tau$ gives the probability of finding the particle in volume element $d\tau$.</p>
+                    
+                    <p>Normalization condition:</p>
+                    $$\int_{all\ space} |\Psi(\mathbf{r}, t)|^2 d\tau = 1$$
+
+                    <h3>Postulate 2: Observables</h3>
+                    <p>To every observable physical quantity corresponds a Hermitian operator. For example:</p>
+                    
+                    <ul>
+                        <li>Position: $\hat{x} = x$</li>
+                        <li>Momentum: $\hat{p}_x = -i\hbar \frac{\partial}{\partial x}$</li>
+                        <li>Energy: $\hat{H} = -\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{r})$</li>
+                    </ul>
+
+                    <h3>Postulate 3: Measurement</h3>
+                    <p>The only possible results of measuring observable $\hat{A}$ are the eigenvalues $a_n$ of the equation:</p>
+                    
+                    $$\hat{A}\psi_n = a_n \psi_n$$
+
+                    <h3>Postulate 4: Expectation Values</h3>
+                    <p>The expectation value of observable $\hat{A}$ in state $\Psi$ is:</p>
+                    
+                    $$\langle A \rangle = \langle \Psi | \hat{A} | \Psi \rangle = \int \Psi^* \hat{A} \Psi \, d\tau$$
+
+                    <h3>Postulate 5: Time Evolution</h3>
+                    <p>The time evolution of a quantum system is governed by the time-dependent Schrödinger equation:</p>
+                    
+                    $$i\hbar \frac{\partial \Psi}{\partial t} = \hat{H} \Psi$$
+                </section>
+
+                <!-- Schrödinger Equation -->
+                <section>
+                    <h2>The Schrödinger Equation</h2>
+                    
+                    <h3>Time-Independent Schrödinger Equation</h3>
+                    <p>For systems with time-independent Hamiltonians, we can separate variables:</p>
+                    
+                    $$\Psi(\mathbf{r}, t) = \psi(\mathbf{r}) e^{-iEt/\hbar}$$
+                    
+                    <p>Leading to the time-independent equation:</p>
+                    
+                    $$\hat{H}\psi = E\psi$$
+                    
+                    <p>This is an eigenvalue equation where $E$ represents the energy eigenvalues.</p>
+
+                    <h3>Solutions in One Dimension</h3>
+                    <p>For a particle in a potential $V(x)$:</p>
+                    
+                    $$-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + V(x)\psi = E\psi$$
+                    
+                    <p>The general form can be written as:</p>
+                    
+                    $$\frac{d^2\psi}{dx^2} = -\frac{2m}{\hbar^2}[E - V(x)]\psi = -k^2(x)\psi$$
+                    
+                    <p>where $k(x) = \sqrt{2m[E-V(x)]/\hbar^2}$ is the local wave number.</p>
+                </section>
+
+                <!-- Key Quantum Systems -->
+                <section>
+                    <h2>Fundamental Quantum Systems</h2>
+                    
+                    <h3>Particle in a Box</h3>
+                    <p>For infinite potential walls at $x = 0$ and $x = L$:</p>
+                    
+                    $$\psi_n(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{n\pi x}{L}\right)$$
+                    
+                    $$E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2}, \quad n = 1, 2, 3, \ldots$$
+                    
+                    <p>This demonstrates energy quantization and zero-point energy.</p>
+
+                    <h3>Quantum Harmonic Oscillator</h3>
+                    <p>For potential $V(x) = \frac{1}{2}m\omega^2 x^2$:</p>
+                    
+                    $$E_n = \hbar\omega\left(n + \frac{1}{2}\right), \quad n = 0, 1, 2, \ldots$$
+                    
+                    <p>The ground state wave function is:</p>
+                    
+                    $$\psi_0(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \exp\left(-\frac{m\omega x^2}{2\hbar}\right)$$
+
+                    <h3>Hydrogen Atom</h3>
+                    <p>The hydrogen atom solution involves spherical coordinates and yields:</p>
+                    
+                    $$E_n = -\frac{13.6 \text{ eV}}{n^2}, \quad n = 1, 2, 3, \ldots$$
+                    
+                    <p>The wave function factorizes as:</p>
+                    
+                    $$\psi_{nlm}(r,\theta,\phi) = R_{nl}(r) Y_l^m(\theta,\phi)$$
+                    
+                    <p>where $R_{nl}(r)$ are radial functions and $Y_l^m(\theta,\phi)$ are spherical harmonics.</p>
+                </section>
+
+                <!-- Uncertainty Principle -->
+                <section>
+                    <h2>Heisenberg Uncertainty Principle</h2>
+                    
+                    <h3>General Form</h3>
+                    <p>For any two observables $\hat{A}$ and $\hat{B}$:</p>
+                    
+                    $$\sigma_A \sigma_B \geq \frac{1}{2}|\langle[\hat{A}, \hat{B}]\rangle|$$
+                    
+                    <p>where $\sigma_A = \sqrt{\langle A^2 \rangle - \langle A \rangle^2}$ is the standard deviation.</p>
+
+                    <h3>Position-Momentum Uncertainty</h3>
+                    <p>The most famous case with $[\hat{x}, \hat{p}] = i\hbar$:</p>
+                    
+                    $$\sigma_x \sigma_p \geq \frac{\hbar}{2}$$
+                    
+                    <p>This fundamental limit reflects the wave-particle duality of quantum objects.</p>
+
+                    <h3>Energy-Time Uncertainty</h3>
+                    <p>For systems with finite lifetimes:</p>
+                    
+                    $$\sigma_E \sigma_t \geq \frac{\hbar}{2}$$
+                    
+                    <p>This explains phenomena like natural line widths and virtual particles.</p>
+                </section>
+
+                <!-- Angular Momentum -->
+                <section>
+                    <h2>Angular Momentum</h2>
+                    
+                    <h3>Orbital Angular Momentum</h3>
+                    <p>The angular momentum operators satisfy:</p>
+                    
+                    $$[\hat{L}_i, \hat{L}_j] = i\hbar \epsilon_{ijk} \hat{L}_k$$
+                    
+                    <p>With eigenvalue equations:</p>
+                    
+                    $$\hat{L}^2 Y_l^m = \hbar^2 l(l+1) Y_l^m$$
+                    $$\hat{L}_z Y_l^m = \hbar m Y_l^m$$
+                    
+                    <p>where $l = 0, 1, 2, \ldots$ and $m = -l, -l+1, \ldots, l-1, l$.</p>
+
+                    <h3>Spin Angular Momentum</h3>
+                    <p>Intrinsic angular momentum with similar commutation relations:</p>
+                    
+                    $$\hat{S}^2 |s, m_s\rangle = \hbar^2 s(s+1) |s, m_s\rangle$$
+                    $$\hat{S}_z |s, m_s\rangle = \hbar m_s |s, m_s\rangle$$
+                    
+                    <p>For spin-1/2 particles (electrons, protons): $s = 1/2$, $m_s = \pm 1/2$.</p>
+                </section>
+
+                <!-- Python Implementation -->
+                <section>
+                    <h2>Computational Examples</h2>
+                    
+                    <p>
+                        Here's a Python simulation of wave packet evolution demonstrating quantum spreading:
+                    </p>
+                    
+                    <div class="note-code" data-language="python">
+                        <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+def gaussian_wave_packet(x, t, x0, k0, sigma, m=1, hbar=1):
+    """
+    Time evolution of a Gaussian wave packet
+    """
+    # Time-dependent width
+    sigma_t = sigma * np.sqrt(1 + (hbar * t / (2 * m * sigma**2))**2)
+    
+    # Phase terms
+    phase = k0 * (x - x0) - (hbar * k0**2 * t) / (2 * m)
+    phase += (x - x0 - hbar * k0 * t / m)**2 / (4 * sigma_t**2)
+    
+    # Amplitude
+    amplitude = (2 * np.pi * sigma_t**2)**(-1/4)
+    
+    # Wave function
+    psi = amplitude * np.exp(-((x - x0 - hbar * k0 * t / m)**2) / (4 * sigma_t**2)) * np.exp(1j * phase)
+    
+    return psi, sigma_t
+
+# Parameters
+L = 20.0           # Box length
+N = 1000           # Number of points
+x = np.linspace(-L/2, L/2, N)
+dx = x[1] - x[0]
+
+# Initial wave packet parameters
+x0 = -5.0          # Initial position
+k0 = 2.0           # Initial momentum (in units of hbar)
+sigma0 = 0.5       # Initial width
+m = 1.0            # Mass
+hbar = 1.0         # Reduced Planck constant
+
+# Time parameters
+dt = 0.01
+t_max = 5.0
+times = np.arange(0, t_max, dt)
+
+# Create figure
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8))
+
+def animate(frame):
+    ax1.clear()
+    ax2.clear()
+    
+    t = times[frame]
+    psi, sigma_t = gaussian_wave_packet(x, t, x0, k0, sigma0, m, hbar)
+    
+    # Probability density
+    prob_density = np.abs(psi)**2
+    
+    # Plot wave function (real and imaginary parts)
+    ax1.plot(x, np.real(psi), 'b-', label='Re(ψ)', linewidth=2)
+    ax1.plot(x, np.imag(psi), 'r-', label='Im(ψ)', linewidth=2)
+    ax1.plot(x, prob_density, 'k-', label='|ψ|²', linewidth=2)
+    
+    ax1.set_xlabel('Position x')
+    ax1.set_ylabel('Wave function')
+    ax1.set_title(f'Quantum Wave Packet Evolution (t = {t:.2f})')
+    ax1.legend()
+    ax1.grid(True)
+    ax1.set_ylim(-0.8, 0.8)
+    
+    # Plot uncertainty evolution
+    position_expectation = np.trapz(x * prob_density, x)
+    position_squared = np.trapz(x**2 * prob_density, x)
+    sigma_x = np.sqrt(position_squared - position_expectation**2)
+    
+    # Theoretical prediction
+    sigma_theory = sigma0 * np.sqrt(1 + (hbar * t / (2 * m * sigma0**2))**2)
+    
+    ax2.plot(times[:frame+1], [sigma_theory for _ in range(frame+1)], 'b-', 
+             linewidth=2, label='Theoretical σₓ(t)')
+    ax2.plot(t, sigma_x, 'ro', markersize=8, label='Numerical σₓ(t)')
+    
+    ax2.set_xlabel('Time t')
+    ax2.set_ylabel('Position uncertainty σₓ')
+    ax2.set_title('Quantum Spreading: Uncertainty Growth')
+    ax2.legend()
+    ax2.grid(True)
+    
+    # Display current values
+    ax2.text(0.02, 0.95, f'σₓ(t) = {sigma_x:.3f}\nσₓ(0) = {sigma0:.3f}\nRatio = {sigma_x/sigma0:.2f}', 
+             transform=ax2.transAxes, verticalalignment='top',
+             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.8))
+
+# Create animation
+anim = FuncAnimation(fig, animate, frames=len(times), interval=50, repeat=True)
+
+plt.tight_layout()
+plt.show()
+
+# Print uncertainty principle verification
+print(f"Initial uncertainty product: σₓ·σₚ = {sigma0 * k0:.3f}")
+print(f"Minimum allowed by uncertainty principle: ℏ/2 = {hbar/2:.3f}")
+print(f"Ratio: {(sigma0 * k0)/(hbar/2):.2f}")
+</code></pre>
+                    </div>
+                </section>
+
+                <!-- Quantum Tunneling -->
+                <section>
+                    <h2>Quantum Tunneling</h2>
+                    
+                    <h3>Transmission Through a Barrier</h3>
+                    <p>For a rectangular potential barrier of height $V_0$ and width $a$:</p>
+                    
+                    $$T = \frac{1}{1 + \frac{V_0^2 \sinh^2(\kappa a)}{4E(V_0 - E)}}$$
+                    
+                    <p>where $\kappa = \sqrt{2m(V_0 - E)}/\hbar$ for $E < V_0$.</p>
+                    
+                    <p>In the limit of a thick, high barrier:</p>
+                    
+                    $$T \approx e^{-2\kappa a} = \exp\left(-2a\sqrt{\frac{2m(V_0 - E)}{\hbar^2}}\right)$$
+
+                    <h3>Applications</h3>
+                    <ul>
+                        <li><strong>Scanning Tunneling Microscopy (STM):</strong> Atomic-resolution imaging</li>
+                        <li><strong>Tunnel Diodes:</strong> Negative resistance devices</li>
+                        <li><strong>Nuclear Fusion:</strong> Coulomb barrier penetration in stars</li>
+                        <li><strong>Alpha Decay:</strong> Nuclear tunneling process</li>
+                    </ul>
+                </section>
+
+                <!-- Many-Body Systems -->
+                <section>
+                    <h2>Many-Body Quantum Systems</h2>
+                    
+                    <h3>Identical Particles</h3>
+                    <p>For a system of $N$ identical particles, the wave function must be either:</p>
+                    
+                    <ul>
+                        <li><strong>Symmetric (Bosons):</strong> $\Psi(1,2,\ldots,N) = \Psi(2,1,\ldots,N)$</li>
+                        <li><strong>Antisymmetric (Fermions):</strong> $\Psi(1,2,\ldots,N) = -\Psi(2,1,\ldots,N)$</li>
+                    </ul>
+
+                    <h3>Pauli Exclusion Principle</h3>
+                    <p>No two fermions can occupy the same quantum state:</p>
+                    
+                    $$\Psi(1,2,\ldots,N) = \frac{1}{\sqrt{N!}} \det \begin{pmatrix}
+                    \psi_1(\mathbf{r}_1) & \psi_1(\mathbf{r}_2) & \cdots \\
+                    \psi_2(\mathbf{r}_1) & \psi_2(\mathbf{r}_2) & \cdots \\
+                    \vdots & \vdots & \ddots
+                    \end{pmatrix}$$
+                    
+                    <p>This is the Slater determinant representation.</p>
+
+                    <h3>Entanglement</h3>
+                    <p>For composite systems, states that cannot be written as products:</p>
+                    
+                    $$|\Psi\rangle \neq |\psi_A\rangle \otimes |\psi_B\rangle$$
+                    
+                    <p>Example: Bell states</p>
+                    
+                    $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+                </section>
+
+                <!-- Summary -->
+                <section>
+                    <h2>Summary</h2>
+                    
+                    <p>
+                        Quantum mechanics fundamentally changes our understanding of reality:
+                    </p>
+                    
+                    <ul>
+                        <li><strong>Probabilistic Nature:</strong> Measurements yield probabilistic outcomes</li>
+                        <li><strong>Wave-Particle Duality:</strong> All particles exhibit both wave and particle characteristics</li>
+                        <li><strong>Uncertainty Principle:</strong> Fundamental limits on simultaneous knowledge of observables</li>
+                        <li><strong>Superposition:</strong> Quantum systems can exist in multiple states simultaneously</li>
+                        <li><strong>Entanglement:</strong> Non-local correlations between separated systems</li>
+                    </ul>
+                    
+                    <p>
+                        These principles enable technologies like lasers, transistors, MRI machines, and form the foundation 
+                        for emerging quantum technologies including quantum computing and quantum cryptography.
+                    </p>
+                </section>
+            </div>
+        </article>
+
+        <!-- Navigation between notes -->
+        <section class="note-navigation">
+            <div class="content-container">
+                <div class="nav-links">
+                    <a href="advanced-mathematical-methods.html" class="nav-link next">Next: Mathematical Methods →</a>
+                    <a href="index.html" class="nav-link up">↑ Back to Physics</a>
+                    <a href="classical-mechanics.html" class="nav-link prev">← Classical Mechanics</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <!-- ...existing footer content... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../../../config/latex-config.js"></script>
+    <script src="../../../assets/js/theme-switcher.js"></script>
+    <script src="../../../assets/js/latex-renderer.js"></script>
+    <script src="../../../assets/js/enhanced-syntax-highlighter.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
