@@ -7,6 +7,19 @@
     <meta name="description" content="Personal space combining portfolio, knowledge management, and creative projects. Research, programming, art, and thoughts.">
     <meta name="author" content="Josué Galindo">
     
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="Josué Galindo | Personal Digital Space">
+    <meta property="og:description" content="Personal space combining portfolio, knowledge management, and creative projects. Research, programming, art, and thoughts.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jig4l1nd0.github.io">
+    <meta property="og:image" content="https://jig4l1nd0.github.io/assets/images/og-image.png">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Josué Galindo | Personal Digital Space">
+    <meta name="twitter:description" content="Personal space combining portfolio, knowledge management, and creative projects.">
+    <meta name="twitter:image" content="https://jig4l1nd0.github.io/assets/images/og-image.png">
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/utilities.css">
@@ -20,6 +33,9 @@
 </head>
 
 <body>
+    <!-- Skip Navigation for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Navigation Header -->
     <header class="site-header">
         <nav class="main-navigation">
@@ -42,7 +58,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="site-main">
+    <main class="site-main" id="main-content">
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-content">
@@ -115,6 +131,28 @@
                 </div>
             </div>
         </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="contact-content">
+                <h2>Get In Touch</h2>
+                <p>Let's collaborate on interesting projects or discuss ideas.</p>
+                <div class="contact-methods">
+                    <a href="mailto:your.email@example.com" class="contact-method">
+                        <span class="contact-icon">📧</span>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://github.com/jig4l1nd0" class="contact-method" target="_blank" rel="noopener">
+                        <span class="contact-icon">🐙</span>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com/in/josue-galindo" class="contact-method" target="_blank" rel="noopener">
+                        <span class="contact-icon">💼</span>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -123,9 +161,9 @@
             <div class="footer-section">
                 <h4>Connect</h4>
                 <ul class="social-links">
-                    <li><a href="#" class="social-link">GitHub</a></li>
-                    <li><a href="#" class="social-link">LinkedIn</a></li>
-                    <li><a href="#" class="social-link">Email</a></li>
+                    <li><a href="https://github.com/jig4l1nd0" class="social-link" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://linkedin.com/in/josue-galindo" class="social-link" target="_blank" rel="noopener">LinkedIn</a></li>
+                    <li><a href="mailto:your.email@example.com" class="social-link">Email</a></li>
                 </ul>
             </div>
             
@@ -171,6 +209,7 @@
     </script>
     
     <script src="assets/js/theme-switcher.js"></script>
+    <script src="assets/js/updates-manager.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
